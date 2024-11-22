@@ -8,7 +8,7 @@ import Signin from "./components/Signin";
 import NotFound from "./pages/NotFound";
 import FormBiodata from "./pages/FormBiodata";
 import Signup from "./components/Signup";
-import BctIot from "./pages/BctIot";
+// import BctIot from "./pages/BctIot";
 
 const router= createBrowserRouter([
     {
@@ -56,10 +56,6 @@ const router= createBrowserRouter([
         path:"*",
         element:<NotFound/>
     },
-    {
-        path:"/bctdashboard",
-        element:<BctIot/>
-    }
 ])
 
 export default router

@@ -28,7 +28,7 @@ const Navbar = ({ userName, onLogout }) => {
                     </div>
                     {
                         !token &&
-                        <div>
+                        <div className='flex justify-center items-center gap-5'>
                             <Link to="/signin" className='flex justify-center items-center'>
                                 <div className='text-xl text-sky-600 hover:cursor-pointer'>Log In</div>
                             </Link>

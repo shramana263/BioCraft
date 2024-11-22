@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { FaCirclePlus } from "react-icons/fa6";
+import axiosClient from '../axios-client';
+import axios from 'axios';
 const PersonalDetails = () => {
   const [isOpen, setOpen] = useState(false)
   return (
@@ -38,19 +40,35 @@ const PersonalDetailsForm = ({setOpen}) => {
   const mobileRef= useRef();
   const genderRef= useRef();
   const dobRef= useRef();
-  const nationalityRef= useRef();
 
-  const handleSubmit=()=>{
+  const handleSubmit=async()=>{
     const payload={
       fname: fnameRef.current.value,
       lname: lnameRef.current.value,
       address:addressRef.current.value,
-      mobileRef:mobileRef.current.value,
-      genderRef:genderRef.current.value,
-      dobRef:dobRef.current.value,
-      nationalityRef:nationalityRef.current.value,
+      contact_no:mobileRef.current.value,
+      gender:genderRef.current.value,
+      dob:dobRef.current.value
     }
-    console.log(payload)
+    // console.log(payload)
+    const token = localStorage.getItem('ACCESS_TOKEN');
+    try {
+      const response = await axiosClient.post('http://biodatamakerapi.local/api/store/personaldetails',payload,{
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': `Bearer ${token}`
+        },
+      });
+      if (response.status === 201) {
+        console.log("data uploaded successfully")
+      }
+      console.log(response.status)
+
+    } catch (error) {
+      console.error('Error uploading data:', error);
+    }
+
+    
   }
   return (
     <>
@@ -75,17 +93,14 @@ const PersonalDetailsForm = ({setOpen}) => {
             <input type="number" ref={mobileRef} className='h-12 w-56 border-2 rounded ps-2 focus:outline-none' />
           </div>
           <div className='flex items-center gap-4 text-lg'>
-            <label>Email Address:</label>
-            <input type="email" ref={genderRef} className='h-12 w-96 border-2 rounded ps-2 focus:outline-none' />
-          </div>
-          <div className='flex items-center gap-4 text-lg'>
             <label>Date of Birth:</label>
             <input type="date" ref={dobRef} className='h-12 w-56 border-2 rounded ps-2 pe-2 focus:outline-none' />
           </div>
           <div className='flex items-center gap-4 text-lg'>
-            <label>Country:</label>
-            <input type="text" ref={nationalityRef} className='h-12 w-56 border-2 rounded ps-2 focus:outline-none' />
+            <label>Gender:</label>
+            <input type="text" ref={genderRef} className='h-12 w-56 border-2 rounded ps-2 pe-2 focus:outline-none' />
           </div>
+          
           <div className='w-full flex justify-end items-center gap-4'>
             <div className='hover:cursor-pointer text-red-600 border-red-600 border-2 ps-5 pe-5 pt-2 pb-2 rounded-lg'
             onClick={() =>setOpen(false)}>

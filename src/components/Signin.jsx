@@ -49,12 +49,12 @@ const Signin = () => {
 
                         <div className="flex flex-row gap-4 w-3/4 items-center justify-center">
                             <div className="w-2/4"><b>Email Id</b></div>
-                            <input className=" rounded ps-3 focus:outline-none shadow h-10 w-72" type="email" ref={emailRef}  placeholder="Create username(Only letters and numbers)" required />
+                            <input className=" rounded ps-3 focus:outline-none shadow h-10 w-72" type="email" ref={emailRef}  placeholder="e.g.: abc@example.in" required />
                         </div>
                         <br/>
                         <div className="flex flex-row gap-4 w-3/4 items-center justify-center">
                             <div className="w-2/4" ><b>Password</b></div>
-                            <input className=" rounded ps-3 focus:outline-none shadow h-10 w-72" type="password" ref={passwordRef} placeholder="Create a password" required />
+                            <input className=" rounded ps-3 focus:outline-none shadow h-10 w-72" type="password" ref={passwordRef} placeholder="******" required />
                         </div>
 
                         <br />
