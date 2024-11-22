@@ -2,18 +2,21 @@ import { createContext, useContext, useState } from "react";
 
 const ProgressContext = createContext({
     isNext:null,
-    setNext:()=>{}
+    setNext:()=>{},
+    nextButton:false,
+    setNextButton:()=>{}
 
 });
 
 export const ProgressProvider = ({ children }) => {
 
     const [isNext, setNext]=useState(null)
+    const [nextButton, setNextButton]=useState(false)
 
     
     return(
         <ProgressContext.Provider value={{
-            isNext, setNext
+            isNext, setNext, nextButton, setNextButton
         }} >
             {children}
         </ProgressContext.Provider>
@@ -21,4 +24,4 @@ export const ProgressProvider = ({ children }) => {
 
 }
 
-export const useStateContext=()=>useContext(StateContext)
+export const useProgressContext=()=>useContext(ProgressContext)
