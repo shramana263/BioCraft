@@ -5,7 +5,8 @@ import { authLogout } from '../services/auth-api';
 import { toast } from 'react-toastify';
 import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Structure/Navbar';
+import Sidebar from '../components/Structure/Sidebar';
 
 const AuthLayout = () => {
   const navigate = useNavigate();
@@ -43,7 +44,8 @@ const AuthLayout = () => {
   return (
     authUser.isLoading ? <div>Loading...</div> :
       <>
-        <div className=''>
+      <div className='flex flex-row '>
+        <div className='flex flex-col'>
           <Navbar
             userName={authUser.data?.name}
             onLogout={onLogout}
@@ -53,6 +55,7 @@ const AuthLayout = () => {
             <Outlet />
           </main>
         </div>
+      </div>
 
       </>
   )
