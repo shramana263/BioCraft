@@ -28,7 +28,7 @@ const Experience = () => {
         <div className='border rounded-lg  xl:w-[900px] md:w-[700px] p-10'>
           <div className='flex flex-col gap-4 mb-12'>
             <div className='flex justify-start items-center md:text-4xl xl:text-5xl font-bold'>Provide Your Experience Details Here</div>
-            <div className='flex justify-start items-center text-gray-400 md:text-xl xl:text-2xl'>Click on the + to add the details</div>
+            <div className='flex justify-start items-center text-gray-400 md:text-xl xl:text-2xl'>Click on the + to add your job or internship experience details</div>
 
           </div>
 
@@ -81,26 +81,32 @@ const Experience = () => {
 export default Experience
 
 const ExperienceForm = ({ setOpen, setData }) => {
-  const certificateRef = useRef();
+  const starting_dateRef = useRef();
+  const ending_dateRef = useRef();
+  const roleRef = useRef();
   const organisationRef = useRef();
+  const descriptionRef = useRef();
 
   const handleSubmit = async () => {
     const payload = {
-      certificate: certificateRef.current.value,
-      organisation: organisationRef.current.value
+      starting_date: starting_dateRef.current.value,
+      ending_date:ending_dateRef.current.value,
+      role:roleRef.current.value,
+      organisation: organisationRef.current.value,
+      description: descriptionRef.current.value
     }
     // console.log(payload)
     const token = localStorage.getItem('ACCESS_TOKEN');
     try {
-      const response = await axiosClient.post('/store/specialization', payload, {
+      const response = await axiosClient.post('/store/experience', payload, {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Authorization': `Bearer ${token}`
         },
       });
-      if (response.status === 201) {
-        console.log("data uploaded successfully")
+      if (response.status === 201||response.status === 200) {
         setNextButton(false)
+        console.log("data uploaded successfully")
       }
       console.log(response.status)
 
@@ -115,16 +121,28 @@ const ExperienceForm = ({ setOpen, setData }) => {
 
   return (
     <>
-      <div className='absolute p-10 z-10 border-2 rounded-xl shadow-xl md:h-[450px] md:w-[780px] xl:h-[500px] xl:w-[900px] bg-white '>
+      <div className='absolute p-10 z-10 border-2 rounded-xl shadow-xl md:h-[550px] md:w-[780px] xl:h-[600px] xl:w-[900px] bg-white '>
         <form action="" className='text-lg gap-7 flex flex-col h-full justify-center'>
           
           <div className='flex gap-4 justify-start items-center w-full'>
-            <label htmlFor="">Name of Certification:</label>
-            <input type='text' ref={certificateRef} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
+            <label htmlFor="">Starting Date:</label>
+            <input type='date' ref={starting_dateRef} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
+          </div>
+          <div className='flex gap-4 justify-start items-center w-full'>
+            <label htmlFor="">Ending Date:</label>
+            <input type='date' ref={ending_dateRef} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
           </div>
           <div className='flex items-center gap-4 text-lg'>
-            <label>Name of Organisation:</label>
+            <label>Your Role:</label>
+            <input type="text" ref={roleRef} className='h-12 w-full border-2 rounded ps-2 focus:outline-none' />
+          </div>
+          <div className='flex items-center gap-4 text-lg'>
+            <label>Name of the organisation:</label>
             <input type="text" ref={organisationRef} className='h-12 w-full border-2 rounded ps-2 focus:outline-none' />
+          </div>
+          <div className='flex items-center gap-4 text-lg'>
+            <label>Description:</label>
+            <input type="text" ref={descriptionRef} className='h-12 w-full border-2 rounded ps-2 focus:outline-none' />
           </div>
          
 
@@ -150,12 +168,21 @@ const ExperienceData = ({ data }) => {
 
   return (
     <>
-      {/* <div>
-        <span>Certificate name : </span> <span>{data.certificate}</span>
+      <div>
+        <span className='font-bold'>Starting Date : </span> <span>{data.starting_date}</span>
       </div>
       <div>
-        <span>Organisation name : </span> <span>{data.Organisation}</span>
-      </div> */}
+        <span className='font-bold'>Ending Date : </span> <span>{data.ending_date}</span>
+      </div>
+      <div>
+        <span className='font-bold'>Role/Position: </span> <span>{data.role}</span>
+      </div>
+      <div>
+        <span className='font-bold'>Organisation : </span> <span>{data.organisation}</span>
+      </div>
+      <div>
+        <span className='font-bold'>Description : </span> <span>{data.description}</span>
+      </div>
     </>
   )
 }

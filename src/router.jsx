@@ -8,6 +8,8 @@ import Signin from "./components/Signin";
 import NotFound from "./pages/NotFound";
 import FormBiodata from "./pages/FormBiodata";
 import Signup from "./components/Signup";
+import FormikTanstack from "./pages/FormikTanstack";
+import DataPreview from "./pages/DataPreview";
 // import BctIot from "./pages/BctIot";
 
 const router= createBrowserRouter([
@@ -31,6 +33,14 @@ const router= createBrowserRouter([
                 path:"formbiodata",
                 element:<FormBiodata/>
             },
+            {
+                path:"formiktanstack",
+                element:<FormikTanstack/>
+            },
+            {
+                path:"datapreview",
+                element:<DataPreview/>
+            }
         ]
     },
     {
