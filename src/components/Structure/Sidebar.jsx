@@ -12,29 +12,27 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
 
     return (
         <>
-
-
-            <aside className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+            <aside className="fixed top-0 left-0 z-40 w-64 h-screen animate-slideRight" >
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 ">
                     <ul className="space-y-2 font-medium">
                         <div className="p-3 w-full flex justify-end" onClick={() => setOpen(false)}>
                             <ImCross />
                         </div>
                         <li>
-                            <Link className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                            <Link to="profile" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 " onClick={() => setOpen(false)}>
                                 <div><FaUser size={20} /></div>
                                 <span className="ms-3">Profile</span>
                             </Link>
                         </li>
                         <li>
-                            <Link className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                            <Link className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 " onClick={() => setOpen(false)}>
                                 <div><MdSpaceDashboard size={20} /></div>
                                 <span className="ms-3">Home</span>
                             </Link>
                         </li>
                         
                         <li>
-                            <Link className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                            <Link className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" onClick={() => setOpen(false)}>
                                 <div>
                                 <FaImagePortrait size={20} />
                                 </div>
@@ -44,7 +42,7 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                         </li>
 
                         <li>
-                            <Link className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                            <Link className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" onClick={() => setOpen(false)}>
                                 <div>
                                 <IoMdInformationCircle size={20} />
                                 </div>
@@ -52,7 +50,7 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                             </Link>
                         </li>
                         <li>
-                            <Link className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                            <Link className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" onClick={() => setOpen(false)}>
                                 <div>
                                 <RiContactsFill size={20} />
                                 </div>
@@ -61,7 +59,7 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                         </li>
 
                         <li>
-                            <div className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" onClick={onLogout}>
+                            <div className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" onClick={()=>{onLogout;setOpen(false)}}>
                                 <div>
                                 <RiLogoutCircleRLine size={20} />
                                 </div>

@@ -5,6 +5,7 @@ import { useProgressContext } from '../contexts.jsx/ProgressContext'
 import EducationDetails from '../components/EducationDetails'
 import Specialization from '../components/Specialization'
 import Experience from '../components/Experience'
+import Skills from '../components/Skills'
 
 const FormBiodata =  () => {
 
@@ -47,6 +48,10 @@ const FormBiodata =  () => {
         {
           ((isNext==3 && nextButton==true) || (isNext==4 && nextButton==false)) &&
           <Experience/>
+        }
+        {
+          ((isNext==4 && nextButton==true) || (isNext==5 && nextButton == false)) &&
+          <Skills/>
         }
       </div> 
     </>

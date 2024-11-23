@@ -45,7 +45,7 @@ const AuthLayout = () => {
     authUser.isLoading ? <div>Loading...</div> :
       <>
       <div className='flex flex-row '>
-        <div className='flex flex-col'>
+        <div className='flex flex-col w-full'>
           <Navbar
             userName={authUser.data?.name}
             onLogout={onLogout}

@@ -17,12 +17,15 @@ const Navbar = ({ userName, onLogout }) => {
                 </div>
             }
             <div className='h-full flex justify-between items-center p-5 border-b'>
+                <div className='flex justify-center items-center gap-3'>
+
                 <div className='border rounded-lg p-2' 
                 onClick={()=>setOpen(true)}
                 ><GiHamburgerMenu size={25}/></div>
                 <div className='font-bold text-3xl flex justify-center items-center'>
                     <span>BIOdata</span>
                     <span>Maker</span>
+                </div>
                 </div>
                 <div className='flex gap-12'>
                     {token &&
