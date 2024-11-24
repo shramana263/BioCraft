@@ -23,8 +23,7 @@ const Navbar = ({ userName, onLogout }) => {
                 onClick={()=>setOpen(true)}
                 ><GiHamburgerMenu size={25}/></div>
                 <div className='font-bold text-3xl flex justify-center items-center'>
-                    <span>BIOdata</span>
-                    <span>Maker</span>
+                    <span>BioCraft</span>
                 </div>
                 </div>
                 <div className='flex gap-12'>
