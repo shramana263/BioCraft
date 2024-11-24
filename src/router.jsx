@@ -12,6 +12,10 @@ import FormikTanstack from "./pages/FormikTanstack";
 import DataPreview from "./pages/DataPreview";
 import Profile from "./pages/Profile";
 import MakeBiodata from "./pages/MakeBiodata";
+import Template1 from "./components/outputTemplate/Template1";
+import Template2 from "./components/outputTemplate/Template2";
+import Template3 from "./components/outputTemplate/Template3";
+import Template4 from "./components/outputTemplate/Template4";
 // import BctIot from "./pages/BctIot";
 
 const router= createBrowserRouter([
@@ -50,7 +54,23 @@ const router= createBrowserRouter([
             {
                 path:"make-biodata",
                 element:<MakeBiodata/>
-            }
+            },
+            {
+                path:"template-1",
+                element:<Template1/>
+            },
+            {
+                path:"template-2",
+                element:<Template2/>
+            },
+            {
+                path:"template-3",
+                element:<Template3/>
+            },
+            {
+                path:"template-4",
+                element:<Template4/>
+            },
         ]
     },
     {

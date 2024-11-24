@@ -9,26 +9,29 @@ const DataPreview = () => {
     const [specializationData, setSpecializationData] = useState(null)
     const [experienceData, setExperienceData] = useState(null)
     const [skillData, setSkillData] = useState(null)
+    const [profileImage, setProfileImage] = useState(null)
 
     useEffect(() => {
         const fetchData = async () => {
-            const [response1, response2, response3, response4, response5] = await Promise.all([
+            const [response1, response2, response3, response4, response5, response6] = await Promise.all([
                 axiosClient.get('/show/personaldetails'),
                 axiosClient.get('/index/educationaldetails'),
                 axiosClient.get('/index/specialization'),
                 axiosClient.get('/index/experience'),
-                axiosClient.get('/index/skill')
+                axiosClient.get('/index/skill'),
+                axiosClient.get('/show/profile-image')
             ])
-            console.log("response1 : ", response1.data.data)
-            console.log("response2 : ", response2.data.data)
-            console.log("response3 : ", response3.data.data)
-            console.log("response4 : ", response4.data.data)
-            console.log("response5 : ", response5.data.data)
+            // console.log("response1 : ", response1.data.data)
+            // console.log("response2 : ", response2.data.data)
+            // console.log("response3 : ", response3.data.data)
+            // console.log("response4 : ", response4.data.data)
+            // console.log("response6 : ", response6.data.url)
             setPersonalData(response1.data.data);
             setEducationalData(response2.data.data);
             setSpecializationData(response3.data.data);
             setExperienceData(response4.data.data);
             setSkillData(response5.data.data);
+            setProfileImage(response6.data.url);
         };
 
         fetchData();
@@ -37,45 +40,67 @@ const DataPreview = () => {
     return (
         <>
             <div className='flex w-full p-5 h-full flex-col gap-5'>
-                <div className='text-4xl font-bold'>Your Details</div>
+                <div className='text-4xl font-bold ps-3 pe-3'>Your Information</div>
+                {/* Profile Image */}
+
                 {/* Personal details */}
-                <div className='border-2 rounded p-3 bg-green-100'>
-                    <div className='flex text-3xl mb-3'>
-                        Personal Details
+                <div className='flex justify-center items-center gap-5'>
+                    <div className="flex justify-center items-center w-[30%]">
+
+                        <div className='h-56 w-56 border-2 border-black rounded-full overflow-hidden'>
+                            <img src={profileImage} alt="" className='h-full w-full' />
+                        </div>
+                        {/* <div className=''> */}
+                            <div className='border p-3 rounded-full hover:cursor-pointer absolute bg-purple-200'><FaPencil /></div>
+                        {/* </div> */}
                     </div>
-                    {
-                        personalData && personalData.map((item, index) => (
 
-                            <div key={index} className='flex justify-between items-center border p-3 rounded bg-white'>
-                                <div>
+                    <div className='border-2 rounded p-3 bg-green-100 w-[70%]'>
 
+                        <div className='flex text-3xl mb-3'>
+                            Personal Details
+                        </div>
+
+
+                        {/* <div className='flex justify-center items-center '> */}
+                        {
+                            personalData && personalData.map((item, index) => (
+
+                                <div key={index} className='flex justify-between items-center border p-3 rounded bg-white'>
                                     <div>
-                                        <span className='font-bold'>First Name : </span> <span>{item.fname}</span>
+
+                                        <div>
+                                            <span className='font-bold'>First Name : </span> <span>{item.fname}</span>
+                                        </div>
+                                        <div>
+                                            <span className='font-bold'>Last Name : </span> <span>{item.lname}</span>
+                                        </div>
+                                        <div>
+                                            <span className='font-bold'>Address: </span> <span>{item.address}</span>
+                                        </div>
+                                        <div>
+                                            <span className='font-bold'>Contact no : </span> <span>{item.contact_no}</span>
+                                        </div>
+                                        <div>
+                                            <span className='font-bold'>Date of Birth : </span> <span>{item.DOB}</span>
+                                        </div>
+                                        <div>
+                                            <span className='font-bold'>Gender : </span> <span>{item.gender}</span>
+                                        </div>
                                     </div>
                                     <div>
-                                        <span className='font-bold'>Last Name : </span> <span>{item.lname}</span>
+                                        <div className='border p-3 rounded hover:cursor-pointer'><FaPencil /></div>
                                     </div>
-                                    <div>
-                                        <span className='font-bold'>Address: </span> <span>{item.address}</span>
-                                    </div>
-                                    <div>
-                                        <span className='font-bold'>Contact no : </span> <span>{item.contact_no}</span>
-                                    </div>
-                                    <div>
-                                        <span className='font-bold'>Date of Birth : </span> <span>{item.DOB}</span>
-                                    </div>
-                                    <div>
-                                        <span className='font-bold'>Gender : </span> <span>{item.gender}</span>
-                                    </div>
+
                                 </div>
-                                <div>
-                                    <div className='border p-3 rounded hover:cursor-pointer'><FaPencil /></div>
-                                </div>
+                            ))
+                        }
 
-                            </div>
-                        ))
-                    }
 
+                        {/* </div> */}
+
+
+                    </div>
                 </div>
 
                 {/* Educational details */}
