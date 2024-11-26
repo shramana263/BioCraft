@@ -1,55 +1,75 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaArrowRight, FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP, FaYoutube } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import ImageSlider from './ImageSlider'
 import IMAGES from '../data/data'
+import { useMobileContext } from '../contexts.jsx/MobileContext'
 
 const Landing = () => {
+
+    // const [isMobile, setIsMobile] = useState(false);
+    const { isMobile, setMobile } = useMobileContext()
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setMobile(true);
+            } else {
+                setMobile(false);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     return (
         <>
-            <div className=' bg-[#EFF2F9] xl:ps-48 md:ps-20 sm:ps-10 h-[630px]'>
-                <div className='ms-10 flex gap-28 ps-20 sm:ps-0 min-[412px]:ms-0'>
-                    <div className='md:w-1/3 md:pt-10 md:pb-20 xl:pt-26 xl:pb-28 sm:pt-10 sm:w-1/2 min-[412px]:w-full'>
-                        <div className='flex flex-wrap font-bold xl:text-6xl md:3xl sm:text-5xl min-[412px]:text-2xl'>
+            <div className=' bg-[#EFF2F9] xl:ps-48 md:ps-20 sm:ps-10 md:h-[630px] min-[412px]:h-96'>
+                <div className='ms-10 flex gap-28 xl:ps-20 md:ps-20 ps-0 min-[412px]:ms-0'>
+                    <div className='md:w-1/3 md:pt-10 md:pb-20 xl:pt-26 xl:pb-28 sm:pt-10 sm:w-1/2 min-[412px]:w-full min-[412px]:p-5 md:p-0'>
+                        <div className='flex flex-wrap font-bold xl:text-6xl md:text-3xl min-[412px]:text-4xl min-[412px]'>
                             The Ultimate Biodata Builder
                         </div>
-                        <div className='flex flex-wrap xl:text-2xl md:text-lg sm:text-lg mt-6 font-roboto'>
+                        <div className='flex flex-wrap xl:text-2xl md:text-lg text-lg mt-6 font-roboto'>
                             Build beautiful, recruiter-tested bio-datas in a few clicks! Our resume builder is powerful and easy to use, with a range of amazing functions. Custom-tailor resumes for any job within minutes. Increase your interview chances and rise above the competition.
                         </div>
-                        <div className='flex pt-5'>
-                            <Link to="/templates" className='rounded-md bg-blue-600 hover:bg-blue-800 text-white w-48 flex justify-center items-center p-5 text-2xl hover:cursor-pointer'>Try For Free</Link>
+                        <div className='flex pt-5 max-[500px]:justify-center'>
+                            <Link to="/templates" className='rounded-md bg-blue-600 hover:bg-blue-800 text-white w-48 flex justify-center items-center md:p-5 min-[412px]:p-2 md:text-2xl min-[412px]:text-lg hover:cursor-pointer'>Try For Free</Link>
                         </div>
 
                     </div>
-                    <div className='w-2/3  h-[630px]'>
-                        <div className='flex justify-center h-full items-center rounded-l-full overflow-hidden'>
-                            <img src="https://resources.biginterview.com/wp-content/uploads/2022/12/Resume-Template-for-a-Tech-Support.jpg" alt="" className=' w-full h-full' />
+                    {
+                        !isMobile &&
+                        <div className='w-2/3  h-[630px]'>
+                            <div className='flex justify-center h-full items-center rounded-l-full overflow-hidden'>
+                                <img src="https://resources.biginterview.com/wp-content/uploads/2022/12/Resume-Template-for-a-Tech-Support.jpg" alt="" className=' w-full h-full' />
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
-            <div className='flex gap-7 justify-center items-center p-7 text-gray-400'>
+            <div className='flex gap-7 xl:text-5xl md:text-4xl text-xl justify-center items-center p-7 text-gray-400'>
                 <div>
-                    <span className='text-4xl xl:text-5xl font-serif font-bold'>Forbes</span>
+                    <span className=' font-serif font-bold'>Forbes</span>
                 </div>
                 <div className='flex justify-center items-center'>
-                    <span className='text-4xl xl:text-5xl font-bold'>the</span>
-                    <span className='text-4xl xl:text-5xl'>muse</span>
+                    <span className='  font-bold'>the</span>
+                    <span className=''>muse</span>
                 </div>
                 <div>
-                    <span className='text-4xl xl:text-5xl font-serif'>Entrepreneur</span>
+                    <span className='font-serif'>Entrepreneur</span>
 
                 </div>
 
             </div>
             <hr />
 
-            <div className='flex md:flex-col xl:flex-row justify-between items-center p-24 xl:p-28 xl:ps-48 xl:pe-48 gap-16'>
+            <div className='flex flex-col md:flex-col xl:flex-row justify-between items-center md:p-24 xl:p-28 xl:ps-48 xl:pe-48 gap-16 min-[412px]:p-4 '>
                 <div className='h-[420px] xl:w-1/2'>
                     <img src="src/assets/images/img1.png" alt="" className='h-full w-full' />
                 </div>
                 <div className='xl:w-1/2 flex flex-col gap-7 xl:ps-20 xl:pe-20'>
-                    <div className='flex justify-center items-center flex-wrap md:text-4xl xl:text-5xl font-bold '>Create a biodata to land your next oppotunity</div>
+                    <div className='flex justify-center items-center flex-wrap text-4xl xl:text-5xl font-bold '>Create a biodata to land your next oppotunity</div>
                     <div className='text-xl font-thin flex justify-center items-center'>We have developed a resume builder based on feedback from thousands of users, recruiter expertise, stellar template design and the best hiring practices. The goal is simple: help you land that dream job interview! Get an advantage in the modern professional environment.</div>
 
                     <div className='flex justify-start items-center'>
@@ -60,8 +80,8 @@ const Landing = () => {
 
                 </div>
             </div>
-            <div className='flex justify-between items-center xl:ps-52 xl:pe-52 xl:gap-20 mb-8'>
-                <div className='flex flex-col w-1/3'>
+            <div className='flex xl:flex-row md:flex-row min-[412px]:flex-col min-[412px]:p-4 min-[412px]:gap-10 sm:p-0 justify-between items-center xl:ps-52 xl:pe-52 xl:gap-20 mb-8'>
+                <div className='flex flex-col md:w-1/3 '>
                     <div className="h-24">
                         <div className='h-20 w-20'>
                             <img src="src/assets/images/sword.png" alt="" className='h-full w-full' />
@@ -72,7 +92,7 @@ const Landing = () => {
                         <span className=''>Created to be suitable for all levels of job seekers. Our host of powerful features ranges from an excellent spell-checker, to job tracking, multi-format export, auto-generated summaries and more.</span>
                     </div>
                 </div>
-                <div className='flex flex-col w-1/3'>
+                <div className='flex flex-col md:w-1/3 '>
                     <div className="h-24">
                         <div className='h-20 w-20'>
                             <img src="src/assets/images/star.png" alt="" className='h-full w-full' />
@@ -85,7 +105,7 @@ const Landing = () => {
                     </div>
 
                 </div>
-                <div className='flex flex-col w-1/3'>
+                <div className='flex flex-col md:w-1/3'>
                     <div className="h-24">
                         <div className='h-20 w-20'>
                             <img src="src/assets/images/letter.png" alt="" className='h-full w-full' />
@@ -99,11 +119,11 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className=' bg-slate-800 flex flex-col gap-8 justify-center items-center h-[930px] overflow-hidden mt-14'>
+            <div className=' bg-slate-800 flex flex-col gap-8 justify-center items-center md:h-[930px] min-[412px]:h-[1000px] overflow-hidden mt-14'>
                 <div className='flex justify-center items-center'>
                     <div className='font-bold text-white text-5xl p-8'>Glimpses of Our Awesome Templates</div>
                 </div>
-                <div className='w-[1200px]'>
+                <div className='md:w-[1200px] min-[412px]:w-[400px]'>
                     <ImageSlider images={IMAGES} slidesToShow={3} />
                 </div>
                 <div className='flex justify-center items-center gap-5 text-white text-3xl hover:cursor-pointer group'>
@@ -133,8 +153,8 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className='flex justify-center items-center bg-black ps-48 pe-48 text-white '>
-                <div className='flex justify-between w-full items-center pt-10 pb-10 ms-10 me-10'>
+            <div className='flex justify-center items-center bg-black xl:ps-48 xl:pe-48 text-white '>
+                <div className='flex md:flex-row min-[412px]:flex-col min-[412px]:gap-5 md:gap-0 justify-between w-full items-center pt-10 pb-10 ms-10 me-10'>
                     <div className='flex flex-col gap-4'>
                         <div className='font-bold text-2xl'>Connect With Us on Social Media</div>
                         <div className='flex flex-wrap gap-3'>
@@ -145,7 +165,7 @@ const Landing = () => {
                             <div className="bg-slate-700 rounded-full p-3 hover:bg-gradient-to-tr hover:from-orange-300 hover:via-red-500 hover:to-rose-600"><FaInstagram size={22} /></div>
                         </div>
                     </div>
-                    <div className='flex gap-5'>
+                    <div className='flex gap-5 '>
                         <div className='flex flex-col gap-3'>
                             <div className='text-gray-600 font-bold'>OUR COMPANY</div>
                             <div className='flex flex-col gap-2 text-xl'>
@@ -174,8 +194,8 @@ const Landing = () => {
 
 
             </div>
-            <div className="flex justify-center items-center bg-black ps-48 pe-48">
-                <div className='flex justify-between w-full ms-10 me-10'>
+            <div className="flex justify-center items-center bg-black xl:ps-48 xl:pe-48">
+                <div className='flex xl:flex-row md:flex-row flex-col justify-between w-full ms-10 me-10'>
                     <div className='text-gray-600 text-xl'>
                         Copyright 2024 - BIOdataMaker
                     </div>
@@ -187,7 +207,7 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
-            
+
 
         </>
     )

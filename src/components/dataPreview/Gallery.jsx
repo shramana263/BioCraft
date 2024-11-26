@@ -95,7 +95,7 @@ const Gallery = () => {
     }, [currentProfileImage])
     return (
         <>
-            <div className='h-[80vh] w-[80vh] border rounded p-3 flex flex-col justify-center items-center gap-3'>
+            <div className='md:h-[90vh] md:w-[100vh] min-[412px]:h-full min-[412px]:w-screen  border rounded-lg p-7 shadow-lg flex  flex-col justify-center items-center gap-3'>
                 <div>
                     Click to choose from below
                 </div>
@@ -118,9 +118,9 @@ const Gallery = () => {
 
                 </div>
                 <div className='flex justify-between items-center gap-3'>
-                    <div className='h-0 w-56 border '></div>
+                    <div className='h-0 md:w-56 min-[412px]:w-36 border '></div>
                     <div> OR</div>
-                    <div className='h-0 w-56 border '></div>
+                    <div className='h-0 md:w-56 min-[412px]:w-36 border '></div>
                 </div>
                 <UploadDoc />
 

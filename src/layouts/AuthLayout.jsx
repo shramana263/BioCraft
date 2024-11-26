@@ -51,7 +51,7 @@ const AuthLayout = () => {
             onLogout={onLogout}
           />
           <main className=''>
-            <h3>AuthLayout</h3>
+            {/* <h3>AuthLayout</h3> */}
             <Outlet />
           </main>
         </div>

@@ -48,12 +48,12 @@ const DataPreview = () => {
     return (
         <>
             <div className='flex w-full p-5 h-full flex-col gap-5'>
-                <div className='text-4xl font-bold ps-3 pe-3'>Your Information</div>
+                <div className='text-4xl font-bold ps-3 pe-3 max-[412px]:flex max-[412px]:justify-center'>Your Information</div>
                 {/* Profile Image */}
 
                 {/* Personal details */}
-                <div className='flex justify-center items-center gap-5'>
-                    <div className="flex justify-center items-center w-[30%]">
+                <div className='flex md:flex-row min-[412px]:flex-col justify-center items-center gap-5'>
+                    <div className="flex justify-center items-center md:w-[30%]">
 
                         <div className='h-56 w-56 border-2 border-black rounded-full overflow-hidden'>
                             <img src={profileImage} alt="hello" className='h-full w-full' />
@@ -63,7 +63,7 @@ const DataPreview = () => {
                         {/* </div> */}
                     </div>
 
-                    <div className='border-2 rounded p-3 bg-green-100 w-[70%]'>
+                    <div className='border-2 rounded p-3 bg-green-100 md:w-[70%]'>
 
                         <div className='flex text-3xl mb-3'>
                             Personal Details
@@ -246,8 +246,8 @@ const DataPreview = () => {
 
                 </div>
             </div>
-            <div className='flex w-full  p-3'>
-                <div className="flex justify-center items-center w-56 p-3 bg-green-800 text-white font-bold rounded-r-full rounded-l-full">
+            <div className='flex w-full p-3'>
+                <div className="flex justify-center max-[412px]:w-full items-center w-56 p-3 bg-green-800 text-white font-bold rounded-r-full rounded-l-full">
 
                     Back to Home
                 </div>

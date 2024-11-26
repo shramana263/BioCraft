@@ -10,22 +10,25 @@ import { ToastContainer } from 'react-toastify'
 import { RiProgress4Fill } from 'react-icons/ri'
 import { ProgressProvider } from './contexts.jsx/ProgressContext.jsx'
 import { DataProvider } from './contexts.jsx/DataContext.jsx'
+import { MobileProvider } from './contexts.jsx/MobileContext.jsx'
 
 
 const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StateProvider>
-      <ProgressProvider>
-        <DataProvider>
-          <QueryClientProvider client={queryClient}>
+      <MobileProvider>
+        <ProgressProvider>
+          <DataProvider>
+            <QueryClientProvider client={queryClient}>
 
-            <RouterProvider router={router} />
-            <ToastContainer />
+              <RouterProvider router={router} />
+              <ToastContainer />
 
-          </QueryClientProvider>
-        </DataProvider>
-      </ProgressProvider>
+            </QueryClientProvider>
+          </DataProvider>
+        </ProgressProvider>
+      </MobileProvider>
     </StateProvider>
 
   </React.StrictMode>,
