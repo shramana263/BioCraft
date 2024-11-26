@@ -9,6 +9,7 @@ import { StateProvider } from './contexts.jsx/StateContext.jsx'
 import { ToastContainer } from 'react-toastify'
 import { RiProgress4Fill } from 'react-icons/ri'
 import { ProgressProvider } from './contexts.jsx/ProgressContext.jsx'
+import { DataProvider } from './contexts.jsx/DataContext.jsx'
 
 
 const queryClient = new QueryClient()
@@ -16,12 +17,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StateProvider>
       <ProgressProvider>
-      <QueryClientProvider client={queryClient}>
+        <DataProvider>
+          <QueryClientProvider client={queryClient}>
 
-        <RouterProvider router={router} />
-        <ToastContainer />
+            <RouterProvider router={router} />
+            <ToastContainer />
 
-      </QueryClientProvider>
+          </QueryClientProvider>
+        </DataProvider>
       </ProgressProvider>
     </StateProvider>
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from '../axios-client'
 import { FaPencil } from 'react-icons/fa6'
+import { useNavigate } from 'react-router-dom'
+import { useDataContext } from '../contexts.jsx/DataContext'
 
 const DataPreview = () => {
 
@@ -9,7 +11,13 @@ const DataPreview = () => {
     const [specializationData, setSpecializationData] = useState(null)
     const [experienceData, setExperienceData] = useState(null)
     const [skillData, setSkillData] = useState(null)
-    const [profileImage, setProfileImage] = useState(null)
+    const {profileImage, setProfileImage, isOpenProfileIMageUpdateModal, setOpenProfileImageUpdateModal,currentProfileImage} = useDataContext()
+    const navigate= useNavigate();
+
+    const handleProfileImageUpdate=()=>{
+        // navigate('/update-profile-image');
+        setOpenProfileImageUpdateModal(true)
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,7 +33,7 @@ const DataPreview = () => {
             // console.log("response2 : ", response2.data.data)
             // console.log("response3 : ", response3.data.data)
             // console.log("response4 : ", response4.data.data)
-            // console.log("response6 : ", response6.data.url)
+            // console.log("response6 : ", response6)
             setPersonalData(response1.data.data);
             setEducationalData(response2.data.data);
             setSpecializationData(response3.data.data);
@@ -35,7 +43,7 @@ const DataPreview = () => {
         };
 
         fetchData();
-    }, [])
+    }, [currentProfileImage])
 
     return (
         <>
@@ -48,10 +56,10 @@ const DataPreview = () => {
                     <div className="flex justify-center items-center w-[30%]">
 
                         <div className='h-56 w-56 border-2 border-black rounded-full overflow-hidden'>
-                            <img src={profileImage} alt="" className='h-full w-full' />
+                            <img src={profileImage} alt="hello" className='h-full w-full' />
                         </div>
                         {/* <div className=''> */}
-                            <div className='border p-3 rounded-full hover:cursor-pointer absolute bg-purple-200'><FaPencil /></div>
+                            <div className='border p-3 rounded-full hover:cursor-pointer absolute bg-purple-200' onClick={handleProfileImageUpdate}><FaPencil /></div>
                         {/* </div> */}
                     </div>
 

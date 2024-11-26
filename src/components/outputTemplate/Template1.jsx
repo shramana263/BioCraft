@@ -5,7 +5,7 @@ const Template1 = () => {
     <>
       <div className='flex justify-center items-center h-full w-full p-5'>
 
-        <div className='flex flex-col justify-center border-2 pt-3 '>
+        <div className='flex flex-col w-[90vh] justify-center border-2 pt-3 '>
           <div className='flex justify-center items-center w-full h-[21%] bg-blue-900 pe-3'>
             <div className='h-[135px] w-[120px] border'>
 

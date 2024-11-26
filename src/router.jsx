@@ -16,6 +16,7 @@ import Template1 from "./components/outputTemplate/Template1";
 import Template2 from "./components/outputTemplate/Template2";
 import Template3 from "./components/outputTemplate/Template3";
 import Template4 from "./components/outputTemplate/Template4";
+import ProfileImageUpdate from "./pages/update/ProfileImageUpdate";
 // import BctIot from "./pages/BctIot";
 
 const router= createBrowserRouter([
@@ -71,6 +72,10 @@ const router= createBrowserRouter([
                 path:"template-4",
                 element:<Template4/>
             },
+            {
+                path:"update-profile-image",
+                element:<ProfileImageUpdate/>
+            }
         ]
     },
     {

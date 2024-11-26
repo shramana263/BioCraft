@@ -14,7 +14,7 @@ const Preview = ({ image }) => {
                 Preview
             </div>
             {isOpen &&
-                <PreviewComponent image={image} setOpen={setOpen} />
+                <PreviewComponent image={image} setOpen={setOpen} isOpen={isOpen} />
 
             }
 
@@ -25,18 +25,21 @@ const Preview = ({ image }) => {
 
 export default Preview
 
-export const PreviewComponent = ({ image , setOpen }) => {
+export const PreviewComponent = ({ image , setOpen, isOpen }) => {
     return createPortal(
         <>
-            <div className='flex justify-center flex-col items-center bg-slate-700 p-20 h-screen w-screen'>
+        {
+            isOpen &&
+            <div className='flex justify-center flex-col items-center bg-slate-700/50 p-20 h-screen w-screen'>
                 
                 <div className='h-[700px] w-[400px] relative pt-10'>
-                <div className=' flex justify-end items-end w-[450px] h-[50px] z-10 absolute top-3'>
-                    <div className='border-2 text-gray-300 cursor-pointer bg-gray-800 text-2xl rounded-full p-5' onClick={() =>setOpen(false)}><RxCross1 /></div>
+                <div className=' flex justify-end items-end w-[450px] h-[50px] z-10 absolute top-5 right-[-20px]'>
+                    <div className='border-2 text-gray-300 cursor-pointer bg-gray-800 text-2xl rounded-full p-3' onClick={() =>setOpen(false)}><RxCross1 /></div>
                 </div>
                     <img src={image} alt="" className='h-full w-full' />
                 </div>
             </div>
+        }
 
 
         </>, document.getElementById('portal')
