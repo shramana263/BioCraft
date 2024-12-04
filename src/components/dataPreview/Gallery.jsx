@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axiosClient from '../../axios-client';
 import UploadDoc from '../forms/UploadDoc';
 import Preview, { PreviewComponent } from '../Preview';
-import { useDataContext } from '../../contexts.jsx/DataContext';
+import { useDataContext } from '../../contexts/DataContext';
 
 const Gallery = () => {
     const [images, setImages] = useState(null)

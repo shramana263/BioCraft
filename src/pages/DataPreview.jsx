@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axiosClient from '../axios-client'
 import { FaPencil } from 'react-icons/fa6'
 import { useNavigate } from 'react-router-dom'
-import { useDataContext } from '../contexts.jsx/DataContext'
+import { useDataContext } from '../contexts/DataContext'
 
 const DataPreview = () => {
 

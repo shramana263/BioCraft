@@ -2,11 +2,12 @@ import React, { useRef, useState } from 'react'
 import { FaCirclePlus } from "react-icons/fa6";
 import axiosClient from '../axios-client';
 import axios from 'axios';
+import { useProgressContext } from '../contexts/ProgressContext';
 const PersonalDetails = () => {
   const [isOpen, setOpen] = useState(false)
   return (
     <>
-      <div className='border flex justify-center items-center h-full w-full p-20'>
+      <div className='border flex justify-center items-center h-full w-full md:p-20 p-8'>
         <div className='border rounded-lg xl:h-[600px] xl:w-[900px] md:h-[600px] md:w-[700px] p-10'>
           <div className='flex flex-col gap-4 mb-12'>
             <div className='flex justify-start items-center md:text-4xl xl:text-5xl font-bold'>Provide Your Personal Details Here</div>
@@ -34,6 +35,8 @@ const PersonalDetails = () => {
 export default PersonalDetails
 
 const PersonalDetailsForm = ({setOpen}) => {
+
+  const {isNext, setNext}= useProgressContext()
   const fnameRef= useRef();
   const lnameRef= useRef();
   const addressRef= useRef();
@@ -61,6 +64,7 @@ const PersonalDetailsForm = ({setOpen}) => {
       });
       if (response.status === 201) {
         console.log("data uploaded successfully")
+        setNext(1)
       }
       console.log(response.status)
 
@@ -72,9 +76,9 @@ const PersonalDetailsForm = ({setOpen}) => {
   }
   return (
     <>
-      <div className='absolute p-10 z-10 rounded-xl shadow-xl md:h-[650px] md:w-[780px] xl:h-[700px] xl:w-[900px] bg-white'>
+      <div className='absolute top-20 p-10 z-10 rounded-xl shadow-xl h-[700px] w-[90%] m-5 justify-center items-center md:h-[650px] md:w-[780px] xl:h-[700px] xl:w-[900px] bg-white motion-preset-expand '>
         <form action="" className='text-lg gap-7 flex flex-col'>
-          <div className='flex gap-4'>
+          <div className='flex gap-4 flex-col md:flex-row'>
             <div className='flex items-center gap-4 '>
               <label>First Name:</label>
               <input type="text" ref={fnameRef} className='h-12 w-56 border-2 rounded ps-2 focus:outline-none' />

@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import React, { useRef } from 'react'
 import { authLogin } from '../services/auth-api'
 import { Link, useNavigate } from 'react-router-dom'
-import { useStateContext } from '../contexts.jsx/StateContext'
+import { useStateContext } from '../contexts/StateContext'
 
 const Signin = () => {
 

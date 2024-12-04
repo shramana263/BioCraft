@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import PersonalDetails from '../components/PersonalDetails'
 import axiosClient from '../axios-client'
-import { useProgressContext } from '../contexts.jsx/ProgressContext'
+import { useProgressContext } from '../contexts/ProgressContext'
 import EducationDetails from '../components/EducationDetails'
 import Specialization from '../components/Specialization'
 import Experience from '../components/Experience'

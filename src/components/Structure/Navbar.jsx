@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useStateContext } from '../../contexts.jsx/StateContext'
+import { useStateContext } from '../../contexts/StateContext'
 import Sidebar from './Sidebar';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { useMobileContext } from '../../contexts.jsx/MobileContext';
+import { useMobileContext } from '../../contexts/MobileContext';
 
 const Navbar = ({ userName, onLogout }) => {
     const { token } = useStateContext();

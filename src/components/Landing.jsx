@@ -3,7 +3,7 @@ import { FaArrowRight, FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP, FaY
 import { Link } from 'react-router-dom'
 import ImageSlider from './ImageSlider'
 import IMAGES from '../data/data'
-import { useMobileContext } from '../contexts.jsx/MobileContext'
+import { useMobileContext } from '../contexts/MobileContext'
 
 const Landing = () => {
 

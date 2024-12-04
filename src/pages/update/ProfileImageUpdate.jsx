@@ -1,14 +1,14 @@
 import React from 'react'
 import UploadDoc from '../../components/forms/UploadDoc'
 import Gallery from '../../components/dataPreview/Gallery'
-import { useDataContext } from '../../contexts.jsx/DataContext'
+import { useDataContext } from '../../contexts/DataContext'
 import { LuMinimize2 } from 'react-icons/lu'
 
 const ProfileImageUpdate = () => {
 
     const {currentProfileImage, setCurrentProfileImage, isOpenProfileIMageUpdateModal, setOpenProfileImageUpdateModal}= useDataContext()
     return (
-        <div className='h-full flex xl:flex-row md:flex-col sm:flex-col min-[412px]:flex-col min-[412px]:overflow-y-scroll md:p-10 min-[412px]:pt-5 shadow-lg gap-6 w-full justify-center items-center'>
+        <div className=' flex xl:flex-row md:flex-col sm:flex-col min-[412px]:flex-col min-[412px]:overflow-y-scroll md:p-10 min-[412px]:pt-5 shadow-lg gap-6 w-full justify-center items-center'>
             
             <div className='md:w-[30%] flex flex-col gap-4 justify-center items-center'>
                 <div className='text-2xl font-bold'>Current Profile Picture</div>

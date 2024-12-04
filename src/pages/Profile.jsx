@@ -3,7 +3,7 @@ import DataPreview from './DataPreview'
 import { IoDocuments } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 import ProfileImageUpdate from './update/ProfileImageUpdate'
-import { useDataContext } from '../contexts.jsx/DataContext'
+import { useDataContext } from '../contexts/DataContext'
 
 const Profile = () => {
     const navigate = useNavigate()

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 const ProgressContext = createContext({
-    isNext:null,
+    isNext:0,
     setNext:()=>{},
     nextButton:false,
     setNextButton:()=>{}
@@ -10,7 +10,7 @@ const ProgressContext = createContext({
 
 export const ProgressProvider = ({ children }) => {
 
-    const [isNext, setNext]=useState(null)
+    const [isNext, setNext]=useState(0)
     const [nextButton, setNextButton]=useState(false)
 
     

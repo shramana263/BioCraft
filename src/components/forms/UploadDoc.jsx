@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { SlCloudUpload } from "react-icons/sl";
 import axiosClient from '../../axios-client';
-import { useDataContext } from '../../contexts.jsx/DataContext';
+import { useDataContext } from '../../contexts/DataContext';
 
 const UploadDoc = () => {
 

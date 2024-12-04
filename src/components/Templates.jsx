@@ -2,7 +2,7 @@ import React from 'react'
 import Preview from './Preview'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import { useStateContext } from '../contexts.jsx/StateContext'
+import { useStateContext } from '../contexts/StateContext'
 
 const bio_templates = [
   {

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FaCirclePlus, FaPencil } from "react-icons/fa6";
 import axiosClient from '../axios-client';
 import axios from 'axios';
-import { useProgressContext } from '../contexts.jsx/ProgressContext';
+import { useProgressContext } from '../contexts/ProgressContext';
 const EducationDetails = () => {
   const [isOpen, setOpen] = useState(false)
   const [data, setData] = useState(null)
@@ -23,7 +23,7 @@ const EducationDetails = () => {
   }, [!isOpen])
   return (
     <>
-      <div className='border flex justify-center items-center h-full w-full p-20'>
+      <div className='border flex justify-center items-center h-full w-full md:p-20 p-8'>
         <div className='border rounded-lg  xl:w-[900px] md:w-[700px] p-10'>
           <div className='flex flex-col gap-4 mb-12'>
             <div className='flex justify-start items-center md:text-4xl xl:text-5xl font-bold'>Provide Your Educational Details Here</div>
@@ -118,29 +118,29 @@ const EducationDetailsForm = ({ setOpen, setData }) => {
 
   return (
     <>
-      <div className='absolute p-10 z-10 border-2 rounded-xl shadow-xl md:h-[450px] md:w-[780px] xl:h-[500px] xl:w-[900px] bg-white'>
+      <div className='absolute top-20 p-10 z-10 rounded-xl shadow-xl h-[700px] w-[90%] m-5 justify-center items-center md:h-[550px] md:w-[780px] xl:w-[900px] bg-white motion-preset-expand '>
         <form action="" className='text-lg gap-7 flex flex-col'>
-          <div className='flex gap-4'>
-            <div className='flex items-center gap-4 '>
+          <div className='flex gap-4 md:flex-row flex-col'>
+            <div className='flex sm:flex-row flex-col sm:items-center gap-4 '>
               <label>Degree Name:</label>
-              <input type="text" ref={degreeRef} className='h-12 w-56 border-2 rounded ps-2 focus:outline-none' />
+              <input type="text" ref={degreeRef} className='h-12 md:w-56 w-full border-2 rounded ps-2 focus:outline-none' />
             </div>
-            <div className='flex items-center gap-4 text-lg'>
+            <div className='flex sm:flex-row flex-col sm:items-center gap-4 text-lg'>
               <label>School/University Name:</label>
-              <input type="text" ref={school_universityRef} className='h-12 w-56 border-2 rounded ps-2 focus:outline-none' />
+              <input type="text" ref={school_universityRef} className='h-12 md:w-56 w-full border-2 rounded ps-2 focus:outline-none' />
             </div>
           </div>
-          <div className='flex gap-4 justify-start items-center w-full'>
+          <div className='flex gap-4 justify-start sm:flex-row flex-col sm:items-center w-full'>
             <label htmlFor="">Year of Passing:</label>
-            <input type='text' ref={year_of_passingRef} className='border-2 rounded w-56 h-12 ps-2 focus:outline-none' />
+            <input type='text' ref={year_of_passingRef} className='border-2 rounded md:w-56 w-full h-12 ps-2 focus:outline-none' />
           </div>
-          <div className='flex items-center gap-4 text-lg'>
+          <div className='flex sm:flex-row flex-col sm:items-center gap-4 text-lg'>
             <label>Percentage marks:</label>
-            <input type="text" ref={percentageRef} className='h-12 w-56 border-2 rounded ps-2 focus:outline-none' />
+            <input type="text" ref={percentageRef} className='h-12 md:w-56 w-full border-2 rounded ps-2 focus:outline-none' />
           </div>
-          <div className='flex items-center gap-4 text-lg'>
+          <div className='flex sm:flex-row flex-col sm:items-center gap-4 text-lg'>
             <label>Marks in GPA:</label>
-            <input type="text" ref={gpaRef} className='h-12 w-56 border-2 rounded ps-2 pe-2 focus:outline-none' />
+            <input type="text" ref={gpaRef} className='h-12 md:w-56 w-full border-2 rounded ps-2 pe-2 focus:outline-none' />
           </div>
 
           <div className='w-full flex justify-end items-center gap-4'>

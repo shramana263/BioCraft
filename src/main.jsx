@@ -5,12 +5,12 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import router from './router.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { StateProvider } from './contexts.jsx/StateContext.jsx'
+import { StateProvider } from './contexts/StateContext.jsx'
 import { ToastContainer } from 'react-toastify'
 import { RiProgress4Fill } from 'react-icons/ri'
-import { ProgressProvider } from './contexts.jsx/ProgressContext.jsx'
-import { DataProvider } from './contexts.jsx/DataContext.jsx'
-import { MobileProvider } from './contexts.jsx/MobileContext.jsx'
+import { ProgressProvider } from './contexts/ProgressContext.jsx'
+import { DataProvider } from './contexts/DataContext.jsx'
+import { MobileProvider } from './contexts/MobileContext.jsx'
 
 
 const queryClient = new QueryClient()

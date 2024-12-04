@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import { useStateContext } from '../contexts.jsx/StateContext'
+import { useStateContext } from '../contexts/StateContext'
 
 const bio_templates = [
   {
@@ -31,7 +31,7 @@ const MakeBiodata = () => {
         Templates
       </div>
       <div className='flex justify-center items-center bg-indigo-50 h-full p-20 pt-0'>
-        <div className='flex flex-wrap gap-10'>
+        <div className='grid md:grid-cols-3 min-[412px]:grid-cols-1  gap-10'>
           {
             bio_templates && <FormTemplates bio_template={bio_templates} />
           }
@@ -54,7 +54,7 @@ const FormTemplates = ({ bio_template }) => {
       {
         bio_template.map((img, index) => (
           <>
-            <div key={index} className='h-[600px] w-[400px] group relative'>
+            <div key={index} className='h-full w-full group relative'>
               <img src={img.src} alt="" className='h-full w-full' />
               <div className='absolute invisible group-hover:visible h-full w-full bg-slate-600/10 top-0 backdrop-blur-sm'>
                 <div className='absolute invisible  group-hover:visible top-[430px] right-[100px] hover:cursor-pointer '>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useStateContext } from '../contexts.jsx/StateContext'
+import { useStateContext } from '../contexts/StateContext'
 import { fetchUser } from '../services/user-api';
 import { authLogout } from '../services/auth-api';
 import { toast } from 'react-toastify';
