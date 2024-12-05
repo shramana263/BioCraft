@@ -10,18 +10,6 @@ const Landing = () => {
     // const [isMobile, setIsMobile] = useState(false);
     const { isMobile, setMobile } = useMobileContext()
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth < 768) {
-                setMobile(true);
-            } else {
-                setMobile(false);
-            }
-        };
-        window.addEventListener('resize', handleResize);
-        handleResize();
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
     return (
         <>
             <div className=' bg-[#EFF2F9] xl:ps-48 md:ps-20 sm:ps-10 md:h-[630px] min-[412px]:h-96'>
