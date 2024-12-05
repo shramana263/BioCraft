@@ -35,7 +35,7 @@ const Profile = () => {
             </div>
             {
                 isOpenProfileImageUpdateModal &&
-                <div className='z-10 h-screen w-full flex justify-center items-center  absolute top-0 left 0 bg-white overflow-y-scroll'>
+                <div className='z-30 h-screen w-full flex justify-center items-center  absolute top-0 left 0 bg-white overflow-y-scroll'>
                     {/* {console.log("hello update profile image")} */}
                     <div className='w-full h-full'>
 

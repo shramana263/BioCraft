@@ -7,6 +7,7 @@ const PersonalDetailsUpdate = () => {
 
     const { isPersonalDetailsUpdateModalOpen, setPersonalDetailsUpdateModalOpen } = useDataContext()
     const [data, setData] = useState(null)
+    const [updateButton, setUpdateButton] = useState(false)
 
     const fnameRef = useRef();
     const lnameRef = useRef();
@@ -27,20 +28,20 @@ const PersonalDetailsUpdate = () => {
         // console.log(payload)
         const token = localStorage.getItem('ACCESS_TOKEN');
         try {
-            const response = await axiosClient.put('http://biodatamakerapi.local/api/store/personaldetails', payload, {
+            const response = await axiosClient.put('http://biodatamakerapi.local/api/update/personaldetails', payload, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': `Bearer ${token}`
                 },
             });
-            if (response.status === 201) {
-                console.log("data uploaded successfully")
-                setNext(1)
+            if (response.status === 200) {
+                console.log("data updated successfully")
             }
             console.log(response.status)
+            setPersonalDetailsUpdateModalOpen(false)
 
         } catch (error) {
-            console.error('Error uploading data:', error);
+            console.error('Error updating data:', error);
         }
 
 
@@ -63,13 +64,13 @@ const PersonalDetailsUpdate = () => {
 
 
                 <div className=' fixed grid grid-rows-[50px_1fr_50px] gap-3 border  sm:p-10 min-[300px]:p-3 pt-8  rounded-xl shadow-xl h-[620px] w-[90%] m-5 items-center md:h-[600px] md:w-[780px] xl:h-[560px] xl:w-[800px] bg-white motion-preset-expand'>
-                    <div className='border-b-2 ps-2 pe-2 text-2xl pb-2'>
+                    <div className='border-b-2 ps-2 pe-2 font-bold sm:text-2xl text-lg pb-2'>
                         Update Your Personal Details
                     </div>
                     <div className='h-full sm:pt-0 w-full flex justify-center items-center overflow-y-scroll'>
-                        
+
                         {
-                            data ? <form action="" className='sm:text-lg text-sm gap-2 sm:gap-7 h-full flex flex-col w-full'>
+                            data ? <form action="" className='sm:text-lg text-sm gap-2 sm:gap-7 h-full flex flex-col w-full' onChange={() => { setUpdateButton(true) }}>
                                 <div className='flex gap-4 flex-col md:flex-row'>
                                     <div className='flex min-[300px]:flex-col sm:flex-row sm:items-center gap-4'>
                                         <label>First Name:</label>
@@ -90,7 +91,7 @@ const PersonalDetailsUpdate = () => {
                                 </div>
                                 <div className='flex min-[300px]:flex-col sm:flex-row sm:items-center gap-4'>
                                     <label>Date of Birth:</label>
-                                    <input type="date" ref={dobRef} defaultValue={data.dob} className='h-12 sm:w-56 border-2 rounded ps-2 pe-2 focus:outline-none' />
+                                    <input type="date" ref={dobRef} defaultValue={data.DOB} className='h-12 sm:w-56 border-2 rounded ps-2 pe-2 focus:outline-none' />
                                 </div>
                                 <div className='flex min-[300px]:flex-col sm:flex-row sm:items-center gap-4'>
                                     <label>Gender:</label>
@@ -99,10 +100,10 @@ const PersonalDetailsUpdate = () => {
 
 
                             </form>
-                            :
-                            <div>
-                                <AiOutlineLoading3Quarters size={40} className='motion-preset-spin'/>
-                            </div>
+                                :
+                                <div>
+                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                </div>
                         }
 
                     </div>
@@ -112,10 +113,13 @@ const PersonalDetailsUpdate = () => {
                                 onClick={() => setPersonalDetailsUpdateModalOpen(false)}>
                                 Cancel
                             </div>
-                            <div className='hover:cursor-pointer rounded-lg bg-blue-700 ps-5 pe-5 pt-3 pb-3 text-white'
-                                onClick={handleSubmit}>
-                                UPDATE
-                            </div>
+                            {
+                                updateButton &&
+                                <div className='hover:cursor-pointer rounded-lg bg-blue-700 ps-5 pe-5 pt-3 pb-3 text-white'
+                                    onClick={handleSubmit}>
+                                    UPDATE
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import { useDataContext } from '../contexts/DataContext'
 import PersonalDetailsUpdate from '../components/forms/update/PersonalDetailsUpdate'
 import EducationDetailsUpdate from '../components/forms/update/EducationalDetailsUpdate'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import SpecializationUpdate from '../components/forms/update/SpecializationUpdate'
+import ExperienceUpdate from '../components/forms/update/ExperienceUpdate'
+import SkillsUpdate from '../components/forms/update/SkillsUpdate'
+import { IoAddCircleOutline } from 'react-icons/io5'
 
 const DataPreview = () => {
 
@@ -13,8 +18,11 @@ const DataPreview = () => {
     const [specializationData, setSpecializationData] = useState(null)
     const [experienceData, setExperienceData] = useState(null)
     const [skillData, setSkillData] = useState(null)
+    const [index, setIndex] = useState(0)
     const { profileImage, setProfileImage, isOpenProfileIMageUpdateModal, setOpenProfileImageUpdateModal, currentProfileImage } = useDataContext()
-    const { isPersonalDetailsUpdateModalOpen, setPersonalDetailsUpdateModalOpen,isEducationalDetailsUpdateModalOpen,setEducationalDetailsUpdateModalOpen } = useDataContext()
+    const { isPersonalDetailsUpdateModalOpen, setPersonalDetailsUpdateModalOpen, isEducationalDetailsUpdateModalOpen, setEducationalDetailsUpdateModalOpen, isSpecializationDetailsUpdateModalOpen, setSpecializationDetailsUpdateModalOpen,
+        isExperienceDetailsUpdateModalOpen, setExperienceDetailsUpdateModalOpen, isSkillDetailsUpdateModalOpen, setSkillDetailsUpdateModalOpen
+    } = useDataContext()
     const navigate = useNavigate();
 
     const handleProfileImageUpdate = () => {
@@ -34,7 +42,7 @@ const DataPreview = () => {
             ])
             // console.log("response1 : ", response1.data.data)
             // console.log("response2 : ", response2.data.data)
-            // console.log("response3 : ", response3.data.data)
+            // console.log("response3 : ", response3.data.data[0].id)
             // console.log("response4 : ", response4.data.data)
             // console.log("response6 : ", response6)
             setPersonalData(response1.data.data);
@@ -51,7 +59,7 @@ const DataPreview = () => {
     return (
         <>
             <div className='flex w-full p-5 h-full flex-col gap-5'>
-                <div className='text-4xl font-bold ps-3 pe-3 max-[300px]:flex max-[300px]:justify-center'>Your Information</div>
+                {/* <div className='text-4xl font-bold ps-3 pe-3 max-[300px]:flex max-[300px]:justify-center'>Your Information</div> */}
                 {/* Profile Image */}
 
                 {/* Personal details */}
@@ -59,14 +67,21 @@ const DataPreview = () => {
                     <div className="flex justify-center items-center md:w-[30%]">
 
                         <div className='h-56 w-56 border-2 border-black rounded-full overflow-hidden'>
-                            <img src={profileImage} alt="hello" className='h-full w-full' />
+                            {
+                                profileImage ?
+                                    <img src={profileImage} alt="hello" className='h-full w-full' />
+                                    :
+                                    <div className='h-full w-full flex justify-center items-center'>
+                                        <AiOutlineLoading3Quarters size={80} className='motion-preset-spin' />
+                                    </div>
+                            }
                         </div>
                         {/* <div className=''> */}
                         <div className='border p-3 rounded-full hover:cursor-pointer absolute bg-purple-200' onClick={handleProfileImageUpdate}><FaPencil /></div>
                         {/* </div> */}
                     </div>
 
-                    <div className='border-2 rounded p-3 bg-green-100 md:w-[70%]'>
+                    <div className='border-2 rounded p-3 bg-green-100 sm:w-[70%] w-full'>
 
                         <div className='flex text-3xl mb-3'>
                             Personal Details
@@ -75,7 +90,7 @@ const DataPreview = () => {
 
                         {/* <div className='flex justify-center items-center '> */}
                         {
-                            personalData && personalData.map((item, index) => (
+                            personalData ? personalData.map((item, index) => (
 
                                 <div key={index} className='flex justify-between items-center border p-3 rounded bg-white'>
                                     <div>
@@ -100,13 +115,17 @@ const DataPreview = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className='border p-3 rounded hover:cursor-pointer' 
-                                        onClick={()=>{setPersonalDetailsUpdateModalOpen(prev=>true)}}
+                                        <div className='border p-3 rounded hover:cursor-pointer'
+                                            onClick={() => { setPersonalDetailsUpdateModalOpen(prev => true) }}
                                         ><FaPencil /></div>
                                     </div>
 
                                 </div>
                             ))
+                                :
+                                <div>
+                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                </div>
                         }
 
 
@@ -118,12 +137,18 @@ const DataPreview = () => {
 
                 {/* Educational details */}
                 <div className='border-2 rounded p-3 bg-pink-100'>
-                    <div className='flex text-3xl mb-3'>
-                        Educational Details
+                    <div className='flex justify-between items-center text-3xl mb-3'>
+                        <div className='flex justify-center items-center'>
+
+                            Education
+                        </div>
+                        <div className='flex justify-center items-center'>
+                            <IoAddCircleOutline />
+                        </div>
                     </div>
                     <div className='flex flex-col gap-4'>
                         {
-                            educationalData && educationalData.map((item, index) => (
+                            educationalData ? educationalData.map((item, index) => (
                                 <div key={index} className='flex justify-between items-center border rounded p-3 bg-white'>
                                     <div>
                                         <div>
@@ -150,12 +175,16 @@ const DataPreview = () => {
                                     </div>
                                     <div>
                                         <div className='border p-3 rounded hover:cursor-pointer'
-                                        onClick={()=>setEducationalDetailsUpdateModalOpen(true)}
+                                            onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
                                         ><FaPencil /></div>
                                     </div>
 
                                 </div>
                             ))
+                                :
+                                <div>
+                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                </div>
                         }
 
                     </div>
@@ -163,12 +192,18 @@ const DataPreview = () => {
 
                 {/* Specialization details */}
                 <div className='border-2 rounded p-3 bg-purple-100'>
-                    <div className='flex text-3xl mb-3'>
-                        Specialization Details
+                    <div className='flex justify-between items-center text-3xl mb-3'>
+                        <div className='flex justify-center items-center'>
+
+                            Specialization 
+                        </div>
+                        <div className='flex justify-center items-center'>
+                            <IoAddCircleOutline />
+                        </div>
                     </div>
                     <div className='flex flex-col gap-4'>
                         {
-                            specializationData && specializationData.map((item, index) => (
+                            specializationData ? specializationData.map((item, index) => (
                                 <div key={index} className='flex justify-between items-center border rounded p-3 bg-white'>
                                     <div>
 
@@ -180,10 +215,16 @@ const DataPreview = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className='border p-3 rounded hover:cursor-pointer'><FaPencil /></div>
+                                        <div className='border p-3 rounded hover:cursor-pointer'
+                                            onClick={() => { setSpecializationDetailsUpdateModalOpen(true); setIndex(index) }}
+                                        ><FaPencil /></div>
                                     </div>
                                 </div>
                             ))
+                                :
+                                <div>
+                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                </div>
                         }
 
                     </div>
@@ -191,13 +232,19 @@ const DataPreview = () => {
 
                 {/* Experience details */}
                 <div className='border-2 rounded p-3 bg-yellow-100'>
-                    <div className='flex text-3xl mb-3'>
-                        Experience Details
+                    <div className='flex justify-between items-center text-3xl mb-3'>
+                        <div className='flex justify-center items-center'>
+
+                            Experience 
+                        </div>
+                        <div className='flex justify-center items-center'>
+                            <IoAddCircleOutline />
+                        </div>
                     </div>
                     <div className='flex flex-col gap-4'>
 
                         {
-                            experienceData && experienceData.map((item, index) => (
+                            experienceData ? experienceData.map((item, index) => (
                                 <div key={index} className='flex justify-between items-center border rounded p-3 bg-white'>
                                     <div>
 
@@ -218,10 +265,17 @@ const DataPreview = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className='border p-3 rounded hover:cursor-pointer'><FaPencil /></div>
+                                        <div className='border p-3 rounded hover:cursor-pointer'
+                                            onClick={() => { setExperienceDetailsUpdateModalOpen(true); setIndex(index) }}
+
+                                        ><FaPencil /></div>
                                     </div>
                                 </div>
                             ))
+                                :
+                                <div>
+                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                </div>
                         }
                     </div>
 
@@ -229,13 +283,19 @@ const DataPreview = () => {
 
                 {/* Skills details */}
                 <div className='border-2 rounded p-3 bg-rose-100'>
-                    <div className='flex text-3xl mb-3'>
-                        Skills Details
+                <div className='flex justify-between items-center text-3xl mb-3'>
+                        <div className='flex justify-center items-center'>
+
+                        Skills
+                        </div>
+                        <div className='flex justify-center items-center'>
+                        <IoAddCircleOutline />
+                        </div>
                     </div>
                     <div className='flex flex-col gap-4'>
 
                         {
-                            skillData && skillData.map((item, index) => (
+                            skillData ? skillData.map((item, index) => (
                                 <div key={index} className='flex justify-between items-center border rounded p-3 bg-white'>
                                     <div>
 
@@ -244,10 +304,17 @@ const DataPreview = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className='border p-3 rounded hover:cursor-pointer'><FaPencil /></div>
+                                        <div className='border p-3 rounded hover:cursor-pointer'
+                                            onClick={() => { setSkillDetailsUpdateModalOpen(true); setIndex(index) }}
+
+                                        ><FaPencil /></div>
                                     </div>
                                 </div>
                             ))
+                                :
+                                <div>
+                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                </div>
                         }
                     </div>
 
@@ -272,9 +339,35 @@ const DataPreview = () => {
             {
                 isEducationalDetailsUpdateModalOpen &&
                 <div className='w-full flex justify-center items-center'>
-                    <EducationDetailsUpdate/>
+                    <EducationDetailsUpdate id={educationalData[index].id} />
                 </div>
             }
+
+            {/* Specialization-details-update form */}
+            {
+                isSpecializationDetailsUpdateModalOpen &&
+                <div className='w-full flex justify-center items-center'>
+                    <SpecializationUpdate id={specializationData[index].id} />
+                </div>
+            }
+
+            {/* Experience-details-update form */}
+            {
+                isExperienceDetailsUpdateModalOpen &&
+                <div className='w-full flex justify-center items-center'>
+                    <ExperienceUpdate id={experienceData[index].id} />
+                </div>
+            }
+
+            {/* Skills-details-update form */}
+            {
+                isSkillDetailsUpdateModalOpen &&
+                <div className='w-full flex justify-center items-center'>
+                    <SkillsUpdate id={skillData[index].id} />
+                </div>
+            }
+
+
 
 
         </>

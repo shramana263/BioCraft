@@ -41,8 +41,8 @@ const UploadDoc = () => {
     }
 
     try {
-      console.log(payload)
-      await axiosClient.put(`/update/profile-image/${currentProfileImage.id}`, payload, {
+      // console.log(payload)
+      const response= await axiosClient.put(`/update/profile-image/${currentProfileImage.id}`, payload, {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',

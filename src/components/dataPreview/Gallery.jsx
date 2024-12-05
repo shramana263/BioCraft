@@ -16,6 +16,7 @@ const Gallery = () => {
                 console.log("currentprofileimage : ", response.data)
 
                 setCurrentProfileImage(prev => response.data)
+                console.log(currentProfileImage)
                 // setNext(response.data.step)
                 //   return response.data;
             })
@@ -35,7 +36,7 @@ const Gallery = () => {
         }
 
         try {
-            console.log(payload)
+            // console.log(payload)
             await axiosClient.put(`/update/profile-image/${currentProfileImage.id}`, payload, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,6 +47,9 @@ const Gallery = () => {
             if (response.status == 201 || response.status == 200) {
                 console.log("data updated")
                 getCurrentProfileImage();
+            }
+            else{
+                console.log("error")
             }
         }
         catch (error) {
@@ -86,7 +90,7 @@ const Gallery = () => {
             .then(response => {
                 // console.log("response gallery : ", response.data.url[0].id)
                 setImages(response.data.url)
-                console.log(images)
+                // console.log("images", images)
                 // setNext(response.data.step)
                 //   return response.data;
             })
@@ -98,7 +102,7 @@ const Gallery = () => {
         <>
             <div className='md:h-[90vh] md:w-[100vh] min-[412px]:h-full min-[412px]:w-screen  border rounded-lg p-7 shadow-lg flex  flex-col justify-center items-center gap-3'>
                 {
-                    images!=null &&
+                    images?
                     <>
                         <div>
                             Click to choose from below
@@ -121,14 +125,17 @@ const Gallery = () => {
 
 
                         </div>
+                        <div className='flex justify-between items-center gap-3'>
+                            <div className='h-0 md:w-56 min-[412px]:w-36 border '></div>
+                            <div> OR</div>
+                            <div className='h-0 md:w-56 min-[412px]:w-36 border '></div>
+                        </div>
                     </>
+                    :
+                    <div>Upload image</div>
                 }
 
-                <div className='flex justify-between items-center gap-3'>
-                    <div className='h-0 md:w-56 min-[412px]:w-36 border '></div>
-                    <div> OR</div>
-                    <div className='h-0 md:w-56 min-[412px]:w-36 border '></div>
-                </div>
+
                 <UploadDoc />
 
             </div>
