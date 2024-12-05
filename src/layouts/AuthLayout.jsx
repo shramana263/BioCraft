@@ -44,18 +44,21 @@ const AuthLayout = () => {
   return (
     authUser.isLoading ? <div>Loading...</div> :
       <>
-      <div className='flex flex-row '>
-        <div className='flex flex-col w-full'>
-          <Navbar
-            userName={authUser.data?.name}
-            onLogout={onLogout}
-          />
-          <main className=''>
-            {/* <h3>AuthLayout</h3> */}
-            <Outlet />
-          </main>
+        <div className='flex w-full'>
+          <div className='flex flex-col w-full'>
+            <div className='h-20 w-full z-20'>
+
+              <Navbar
+                userName={authUser.data?.name}
+                onLogout={onLogout}
+              />
+            </div>
+            <main className=''>
+              {/* <h3>AuthLayout</h3> */}
+              <Outlet />
+            </main>
+          </div>
         </div>
-      </div>
 
       </>
   )

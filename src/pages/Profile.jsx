@@ -27,7 +27,7 @@ const Profile = () => {
                         <DataPreview />
                     </div>
                 </div>
-                <div className=' rounded-full p-3 fixed z-10 xl:right-16 xl:top-[610px] sm:top-96 sm:right-2 bg-purple-900 text-white hover:cursor-pointer'
+                <div className=' rounded-full p-3 fixed z-10 xl:right-16 sm:top-[650px] sm:right-16 min-[300px]:bottom-[30px] min-[300px]:right-[30px] bg-purple-900 text-white hover:cursor-pointer'
                     onClick={handleClick}
                 >
                     <IoDocuments size={30} />

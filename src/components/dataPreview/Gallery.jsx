@@ -68,14 +68,14 @@ const Gallery = () => {
                 'Authorization': `Bearer ${token}`
             },
         })
-        .then(response=>{
-            console.log('profile picture update', response)
-            changeActiveStatus();
-            getCurrentProfileImage();
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+            .then(response => {
+                console.log('profile picture update', response)
+                changeActiveStatus();
+                getCurrentProfileImage();
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
 
     }
@@ -86,6 +86,7 @@ const Gallery = () => {
             .then(response => {
                 // console.log("response gallery : ", response.data.url[0].id)
                 setImages(response.data.url)
+                console.log(images)
                 // setNext(response.data.step)
                 //   return response.data;
             })
@@ -96,27 +97,33 @@ const Gallery = () => {
     return (
         <>
             <div className='md:h-[90vh] md:w-[100vh] min-[412px]:h-full min-[412px]:w-screen  border rounded-lg p-7 shadow-lg flex  flex-col justify-center items-center gap-3'>
-                <div>
-                    Click to choose from below
-                </div>
-                <div className='grid grid-cols-4 h-56 gap-2 overflow-y-scroll'>
-                    {images && images.map((image, index) => (
-                        <div key={index} className="h-[100%] w-[100%]" onDoubleClick={() => {
-                            setOpen(true);
-                            setSelectedImage(image.url);
-                        }}
-
-                            onClick={() => handleClick(image.id)}
-                        >
-                            <img src={image.url} alt="" />
-                            {isOpen && (
-                                <PreviewComponent image={selectedImage} setOpen={setOpen} isOpen={isOpen} />
-                            )}
+                {
+                    images!=null &&
+                    <>
+                        <div>
+                            Click to choose from below
                         </div>
-                    ))}
+                        <div className='grid grid-cols-4 h-56 gap-2 overflow-y-scroll'>
+                            {images && images.map((image, index) => (
+                                <div key={index} className="h-[100%] w-[100%]" onDoubleClick={() => {
+                                    setOpen(true);
+                                    setSelectedImage(image.url);
+                                }}
+
+                                    onClick={() => handleClick(image.id)}
+                                >
+                                    <img src={image.url} alt="" />
+                                    {isOpen && (
+                                        <PreviewComponent image={selectedImage} setOpen={setOpen} isOpen={isOpen} />
+                                    )}
+                                </div>
+                            ))}
 
 
-                </div>
+                        </div>
+                    </>
+                }
+
                 <div className='flex justify-between items-center gap-3'>
                     <div className='h-0 md:w-56 min-[412px]:w-36 border '></div>
                     <div> OR</div>

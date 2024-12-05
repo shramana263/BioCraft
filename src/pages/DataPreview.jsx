@@ -3,6 +3,8 @@ import axiosClient from '../axios-client'
 import { FaPencil } from 'react-icons/fa6'
 import { useNavigate } from 'react-router-dom'
 import { useDataContext } from '../contexts/DataContext'
+import PersonalDetailsUpdate from '../components/forms/update/PersonalDetailsUpdate'
+import EducationDetailsUpdate from '../components/forms/update/EducationalDetailsUpdate'
 
 const DataPreview = () => {
 
@@ -11,10 +13,11 @@ const DataPreview = () => {
     const [specializationData, setSpecializationData] = useState(null)
     const [experienceData, setExperienceData] = useState(null)
     const [skillData, setSkillData] = useState(null)
-    const {profileImage, setProfileImage, isOpenProfileIMageUpdateModal, setOpenProfileImageUpdateModal,currentProfileImage} = useDataContext()
-    const navigate= useNavigate();
+    const { profileImage, setProfileImage, isOpenProfileIMageUpdateModal, setOpenProfileImageUpdateModal, currentProfileImage } = useDataContext()
+    const { isPersonalDetailsUpdateModalOpen, setPersonalDetailsUpdateModalOpen,isEducationalDetailsUpdateModalOpen,setEducationalDetailsUpdateModalOpen } = useDataContext()
+    const navigate = useNavigate();
 
-    const handleProfileImageUpdate=()=>{
+    const handleProfileImageUpdate = () => {
         // navigate('/update-profile-image');
         setOpenProfileImageUpdateModal(true)
     }
@@ -48,18 +51,18 @@ const DataPreview = () => {
     return (
         <>
             <div className='flex w-full p-5 h-full flex-col gap-5'>
-                <div className='text-4xl font-bold ps-3 pe-3 max-[412px]:flex max-[412px]:justify-center'>Your Information</div>
+                <div className='text-4xl font-bold ps-3 pe-3 max-[300px]:flex max-[300px]:justify-center'>Your Information</div>
                 {/* Profile Image */}
 
                 {/* Personal details */}
-                <div className='flex md:flex-row min-[412px]:flex-col justify-center items-center gap-5'>
+                <div className='flex md:flex-row min-[300px]:flex-col sm:flex-row justify-center items-center gap-5'>
                     <div className="flex justify-center items-center md:w-[30%]">
 
                         <div className='h-56 w-56 border-2 border-black rounded-full overflow-hidden'>
                             <img src={profileImage} alt="hello" className='h-full w-full' />
                         </div>
                         {/* <div className=''> */}
-                            <div className='border p-3 rounded-full hover:cursor-pointer absolute bg-purple-200' onClick={handleProfileImageUpdate}><FaPencil /></div>
+                        <div className='border p-3 rounded-full hover:cursor-pointer absolute bg-purple-200' onClick={handleProfileImageUpdate}><FaPencil /></div>
                         {/* </div> */}
                     </div>
 
@@ -97,7 +100,9 @@ const DataPreview = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className='border p-3 rounded hover:cursor-pointer'><FaPencil /></div>
+                                        <div className='border p-3 rounded hover:cursor-pointer' 
+                                        onClick={()=>{setPersonalDetailsUpdateModalOpen(prev=>true)}}
+                                        ><FaPencil /></div>
                                     </div>
 
                                 </div>
@@ -144,7 +149,9 @@ const DataPreview = () => {
                                         }
                                     </div>
                                     <div>
-                                        <div className='border p-3 rounded hover:cursor-pointer'><FaPencil /></div>
+                                        <div className='border p-3 rounded hover:cursor-pointer'
+                                        onClick={()=>setEducationalDetailsUpdateModalOpen(true)}
+                                        ><FaPencil /></div>
                                     </div>
 
                                 </div>
@@ -247,11 +254,29 @@ const DataPreview = () => {
                 </div>
             </div>
             <div className='flex w-full p-3'>
-                <div className="flex justify-center max-[412px]:w-full items-center w-56 p-3 bg-green-800 text-white font-bold rounded-r-full rounded-l-full">
+                <div className="flex justify-center max-[300px]:w-full items-center w-56 p-3 bg-green-800 text-white font-bold rounded-r-full rounded-l-full">
 
                     Back to Home
                 </div>
             </div>
+
+            {/* Personal-details-update form */}
+            {
+                isPersonalDetailsUpdateModalOpen &&
+                <div className='w-full flex justify-center items-center'>
+                    <PersonalDetailsUpdate />
+                </div>
+            }
+
+            {/* Educational-details-update form */}
+            {
+                isEducationalDetailsUpdateModalOpen &&
+                <div className='w-full flex justify-center items-center'>
+                    <EducationDetailsUpdate/>
+                </div>
+            }
+
+
         </>
     )
 }

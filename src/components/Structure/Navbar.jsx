@@ -20,7 +20,7 @@ const Navbar = ({ userName, onLogout }) => {
                     <Sidebar setOpen={setOpen} onLogout={onLogout} />
                 </div>
             }
-            <div className='h-full flex justify-between items-center p-5 border-b'>
+            <div className='fixed w-full bg-white flex justify-between items-center p-5 border-b'>
                 <div className='flex justify-center items-center gap-3'>
 
                     <div className='border rounded-lg p-2'

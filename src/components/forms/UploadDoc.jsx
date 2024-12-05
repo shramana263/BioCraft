@@ -11,7 +11,7 @@ const UploadDoc = () => {
   const [uploadStatus, setUploadStatus] = useState('');
   const [isDraggingOver, setDraggingOver] = useState(false)
   const { profileImage, setProfileImage } = useDataContext()
-  const {currentProfileImage, setCurrentProfileImage} = useDataContext()
+  const { currentProfileImage, setCurrentProfileImage } = useDataContext()
 
   const inputRef = useRef()
   const token = localStorage.getItem('ACCESS_TOKEN');
@@ -49,16 +49,16 @@ const UploadDoc = () => {
           'Authorization': `Bearer ${token}`
         },
       })
-      if(response.status==201 || response.status==200){
+      if (response.status == 201 || response.status == 200) {
         console.log("data updated")
         getCurrentProfileImage();
       }
     }
-    catch (error){
+    catch (error) {
       console.log(error)
     }
-    
-  
+
+
   }
 
 
@@ -111,9 +111,12 @@ const UploadDoc = () => {
   };
 
   const handleFileChange = (event) => {
-    setSelectedFiles(event.target.files); // Select multiple files
-    // console.log(event.target.files)
-    setUploadStatus(''); // Clear previous status
+    setSelectedFiles(prev => [...prev, ...event.target.files]); // Select multiple files
+    console.log(selectedFiles)
+    if (selectedFiles.length > 1) {
+      setUploadStatus('Select only one image')
+    }
+    // setUploadStatus(''); // Clear previous status
   };
 
 
@@ -201,28 +204,31 @@ const UploadDoc = () => {
                 >Select File</div>
               </div>
             }
-            {
-              selectedFiles.length > 0 &&
-              <span className='text-xl'>Selected Files</span>
-            }
-            {
-              selectedFiles &&
-              <>
-                <div className=''>
+            <div className='flex flex-col'>
 
-                  {
-                    selectedFiles && selectedFiles.map((file) => (
+              {
+                selectedFiles.length > 0 &&
+                <span className='text-xl font-bold'>Selected File</span>
+              }
+              {
+                selectedFiles &&
+                <>
+                  <div className='w-full'>
 
-                      <div className='flex justify-center items-center flex-col gap-3'>
-                        {/* {console.log(file)} */}
-                        <span className='border ps-4 pe-4 pt-2 pb-2 border-black text-lg'>{file.name}</span>
-                        <div className='border p-3 rounded bg-slate-900 text-white hover:cursor-pointer' onClick={handleChangeFile}>Change file</div>
-                      </div>
-                    ))
-                  }
-                </div>
-              </>
-            }
+                    {
+                      selectedFiles && selectedFiles.map((file) => (
+
+                        <div className='grid grid-cols-2 justify-center items-center gap-7'>
+                          {/* {console.log("file",file)} */}
+                          <span className='border ps-4 pe-4 pt-2 pb-2 border-black text-lg'>{file.name}</span>
+                          <div className='border p-2 rounded bg-slate-900 flex justify-center items-center text-xl text-white hover:cursor-pointer' onClick={handleChangeFile}>Change file</div>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </>
+              }
+            </div>
           </div>
 
 
