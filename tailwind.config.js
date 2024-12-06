@@ -19,7 +19,7 @@ export default {
       },
       animation:{
         slide: 'slide ease-in-out 1s infinite',
-        slideRight: 'slideRight ease-in-out 1s '
+        slideRight: 'slideRight ease-in-out 0.5s '
       },
     },
   },

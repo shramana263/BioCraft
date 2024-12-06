@@ -4,24 +4,32 @@ import { Link } from 'react-router-dom'
 import ImageSlider from './ImageSlider'
 import IMAGES from '../data/data'
 import { useMobileContext } from '../contexts/MobileContext'
+import { usePanelContext } from '../contexts/PanelContext'
 
 const Landing = () => {
 
     // const [isMobile, setIsMobile] = useState(false);
     const { isMobile, setMobile } = useMobileContext()
+    const { isSidebarOpen } = usePanelContext()
 
+    const openSidebar = (!isMobile && isSidebarOpen) ? 'xl:ps-10' : 'xl-ps-20'
+    const adjustTextSizeofTitle = (!isMobile && isSidebarOpen) ? 'xl:text-5xl' : 'xl:text-6xl'
+    const adjustTextSizeofBody = (!isMobile && isSidebarOpen) ? 'xl:text-xl' : 'xl:text-2xl'
     return (
         <>
-            <div className=' bg-[#EFF2F9] xl:ps-48 md:ps-20 sm:ps-10 md:h-[630px] min-[412px]:h-96'>
-                <div className='ms-10 flex gap-28 xl:ps-20 md:ps-20 ps-0 min-[412px]:ms-0'>
-                    <div className='md:w-1/3 md:pt-10 md:pb-20 xl:pt-26 xl:pb-28 sm:pt-10 sm:w-1/2 min-[412px]:w-full min-[412px]:p-5 md:p-0'>
-                        <div className='flex flex-wrap font-bold xl:text-6xl md:text-3xl min-[412px]:text-4xl min-[412px]'>
-                            The Ultimate Biodata Builder
+            <div className={`${openSidebar} bg-[#EFF2F9] md:ps-20 sm:ps-10 md:h-[630px] min-[412px]:h-96`}>
+                <div className={`${openSidebar} ms-10 flex gap-28 md:ps-20 ps-0 min-[412px]:ms-0`}>
+                    <div className='md:w-1/3 md:pt-10 md:pb-20 xl:pt-26 xl:pb-28 sm:pt-10 sm:w-1/2 min-[412px]:w-full min-[412px]:p-5 md:p-0 '>
+                        <div className='motion-preset-slide-right'>
+
+                            <div className={`flex flex-wrap font-bold ${adjustTextSizeofTitle} md:text-3xl min-[412px]:text-4xl min-[412px]`}>
+                                The Ultimate Biodata Builder
+                            </div>
+                            <div className={`flex flex-wrap ${adjustTextSizeofBody} md:text-lg text-lg mt-6 font-roboto`}>
+                                Build beautiful, recruiter-tested bio-datas in a few clicks! Our resume builder is powerful and easy to use, with a range of amazing functions. Custom-tailor resumes for any job within minutes. Increase your interview chances and rise above the competition.
+                            </div>
                         </div>
-                        <div className='flex flex-wrap xl:text-2xl md:text-lg text-lg mt-6 font-roboto'>
-                            Build beautiful, recruiter-tested bio-datas in a few clicks! Our resume builder is powerful and easy to use, with a range of amazing functions. Custom-tailor resumes for any job within minutes. Increase your interview chances and rise above the competition.
-                        </div>
-                        <div className='flex pt-5 max-[500px]:justify-center'>
+                        <div className='flex pt-5 max-[500px]:justify-center motion-preset-shrink'>
                             <Link to="/templates" className='rounded-md bg-blue-600 hover:bg-blue-800 text-white w-48 flex justify-center items-center md:p-5 min-[412px]:p-2 md:text-2xl min-[412px]:text-lg hover:cursor-pointer'>Try For Free</Link>
                         </div>
 
@@ -29,7 +37,7 @@ const Landing = () => {
                     {
                         !isMobile &&
                         <div className='w-2/3  h-[630px]'>
-                            <div className='flex justify-center h-full items-center rounded-l-full overflow-hidden'>
+                            <div className='flex justify-center h-full items-center rounded-l-full overflow-hidden motion-preset-slide-left'>
                                 <img src="https://resources.biginterview.com/wp-content/uploads/2022/12/Resume-Template-for-a-Tech-Support.jpg" alt="" className=' w-full h-full' />
                             </div>
                         </div>
@@ -53,11 +61,11 @@ const Landing = () => {
             <hr />
 
             <div className='flex flex-col md:flex-col xl:flex-row justify-between items-center md:p-24 xl:p-28 xl:ps-48 xl:pe-48 gap-16 min-[412px]:p-4 '>
-                <div className='h-[420px] xl:w-1/2'>
+                <div className='h-[420px] xl:w-1/2 motion-preset-pop'>
                     <img src="src/assets/images/img1.png" alt="" className='h-full w-full' />
                 </div>
-                <div className='xl:w-1/2 flex flex-col gap-7 xl:ps-20 xl:pe-20'>
-                    <div className='flex justify-center items-center flex-wrap text-4xl xl:text-5xl font-bold '>Create a biodata to land your next oppotunity</div>
+                <div className={`xl:w-1/2 flex flex-col gap-7 ${(!isMobile && isSidebarOpen) ? 'xl:ps-10 xl:pe-10' : 'xl:ps-20 xl:pe-20 motion-preset-slide-left'} `}>
+                    <div className={`${(!isMobile && isSidebarOpen) ? 'xl:text-4xl' : 'xl:text-5xl'} flex justify-center items-center flex-wrap text-4xl font-bold `}>Create a biodata to land your next oppotunity</div>
                     <div className='text-xl font-thin flex justify-center items-center'>We have developed a resume builder based on feedback from thousands of users, recruiter expertise, stellar template design and the best hiring practices. The goal is simple: help you land that dream job interview! Get an advantage in the modern professional environment.</div>
 
                     <div className='flex justify-start items-center'>

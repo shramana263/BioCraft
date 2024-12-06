@@ -11,6 +11,7 @@ import { RiProgress4Fill } from 'react-icons/ri'
 import { ProgressProvider } from './contexts/ProgressContext.jsx'
 import { DataProvider } from './contexts/DataContext.jsx'
 import { MobileProvider } from './contexts/MobileContext.jsx'
+import { PanelProvider } from './contexts/PanelContext.jsx'
 
 
 const queryClient = new QueryClient()
@@ -18,16 +19,18 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StateProvider>
       <MobileProvider>
-        <ProgressProvider>
-          <DataProvider>
-            <QueryClientProvider client={queryClient}>
+        <PanelProvider>
+          <ProgressProvider>
+            <DataProvider>
+              <QueryClientProvider client={queryClient}>
 
-              <RouterProvider router={router} />
-              <ToastContainer />
+                <RouterProvider router={router} />
+                <ToastContainer />
 
-            </QueryClientProvider>
-          </DataProvider>
-        </ProgressProvider>
+              </QueryClientProvider>
+            </DataProvider>
+          </ProgressProvider>
+        </PanelProvider>
       </MobileProvider>
     </StateProvider>
 

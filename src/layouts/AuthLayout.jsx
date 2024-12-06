@@ -8,11 +8,15 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import Navbar from '../components/Structure/Navbar';
 import Sidebar from '../components/Structure/Sidebar';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { usePanelContext } from '../contexts/PanelContext';
+import { useMobileContext } from '../contexts/MobileContext';
 
 const AuthLayout = () => {
   const navigate = useNavigate();
   const { user, token, setUser, setToken } = useStateContext();
   const [isOpen, setOpen] = useState(true);
+  const {isSidebarOpen, setSidebarOpen}= usePanelContext()
+  const {isMobile}= useMobileContext()
 
   const authUser = useQuery({
     queryKey: ['user'],
@@ -41,15 +45,16 @@ const AuthLayout = () => {
     ev.preventDefault();
     logout.mutate()
   }
-
+  const outletWidth= (!isMobile && isSidebarOpen) ?'w-[83.5%]': 'w-full'
+  const outletPosition=(!isMobile && isSidebarOpen) ? 'justify-end slideRight': ''
   return (
     authUser.isLoading ? <div className='h-screen w-full flex justify-center items-center'>
       <AiOutlineLoading3Quarters size={80} className='motion-preset-spin' />
     </div> :
       <>
-        <div className='flex w-full'>
-          <div className='flex flex-col w-full'>
-            <div className='h-20 w-full z-20'>
+        <div className={`flex w-full ${outletPosition}`}>
+          <div className={`flex flex-col ${outletWidth}`}>
+            <div className={`h-20 w-full z-20`}>
 
               <Navbar
                 userName={authUser.data?.name}

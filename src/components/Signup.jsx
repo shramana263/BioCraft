@@ -40,25 +40,20 @@ const SignUpForm = () => {
 
     return (
         <>
-            <div className='flex flex-col gap-6 w-screen h-screen items-center'>
-                {/* <div className='flex justify-between items-center font-bold font text-5xl text-orange-700 pt-5 pb-5 bg-gray-800 w-full ps-10 pe-10'>
-                    <div className='flex gap-10 items-center'>
-                        <div className='h-28 w-28 rounded-full overflow-hidden'>
-                            <img src="https://cdn.dribbble.com/users/7004524/screenshots/15197928/media/40944f27c2dcfaf14038f387b4e88c2d.jpg" alt="" className='h-full w-full' />
+            <div className='flex flex-col gap-6 w-full h-full items-center'>
+                
+
+                <div className="flex justify-center gap-3 items-center flex-col h-full  w-full">
+
+                    <div className='flex gap-5 font-bold sm:text-5xl text-2xl w-3/4 sm:m-20 m-10 sm:ps-5 sm:mb-5 mb-2 '>
+                        <div className='motion-preset-slide-right'>
+                            
+                        Create New Account 
                         </div>
-                        <div className='flex gap-5 justify-center items-center'><span><i>CREATE </i></span><span className='text-orange-200'>Account</span><span className='flex justify-center items-center'></span></div>
+                        <div className='sm:h-14 sm:w-14 h-10 w-10 motion-translate-x-in-[0%] motion-translate-y-in-[-100%]'><img src="https://cdn-icons-png.flaticon.com/512/3658/3658756.png" alt="" className='w-full h-full'/></div>
                     </div>
 
-                    <div className='h-32 w-32 rounded-full overflow-hidden'>
-                        <img src="https://www.recipetineats.com/wp-content/uploads/2014/06/Pasta1.jpg" alt="" className='h-full w-full' />
-
-                    </div>
-
-                </div> */}
-
-                <div className="flex justify-center items-center flex-col w-full">
-
-                    <form onSubmit={handleSubmit} method="post" className="flex w-3/4 flex-col justify-center items-center border rounded-md pt-5 pb-5 shadow-lg">
+                    <form onSubmit={handleSubmit} method="post" className="flex w-3/4 flex-col justify-center items-center border rounded-md pt-5 pb-5 shadow-lg motion-preset-pop ">
                         {/* {% csrf_token %} */}
 
                         <div className="flex flex-row gap-4 w-3/4 items-center justify-center">
@@ -91,7 +86,7 @@ const SignUpForm = () => {
                             <button type="submit" className="border p-3 rounded-s-full rounded-e-full ps-5 pe-5 border-orange-800 font-bold text-orange-800 hover:text-white hover:bg-orange-800 hover:shadow-lg  hover:ps-6 hover:pe-6">SIGN UP</button>
                         </div>
                     </form>
-                    <div className="m-3">Already have an account? <Link to="/signin" className="text-decoration-none font-bold text-orange-500">Sign In</Link></div>
+                    <div className="m-3 motion-translate-x-in-[0%] motion-translate-y-in-[100%]">Already have an account? <Link to="/signin" className="text-decoration-none font-bold text-orange-500">Sign In</Link></div>
 
                 </div>
             </div>

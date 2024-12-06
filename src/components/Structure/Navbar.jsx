@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useStateContext } from '../../contexts/StateContext'
 import Sidebar from './Sidebar';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useMobileContext } from '../../contexts/MobileContext';
+import { usePanelContext } from '../../contexts/PanelContext';
 
 const Navbar = ({ userName, onLogout }) => {
     const { token } = useStateContext();
     const [isOpen, setOpen] = useState(false)
     const { isMobile } = useMobileContext()
 
+    const {isSidebarOpen, setSidebarOpen}= usePanelContext()
+    const outletWidth= (!isMobile && isSidebarOpen) ?'w-[83.5%]': 'w-full'
+    // useEffect(()=>{
+    //     console.log(isMobile)
+    // },[])
 
     return (
         <>
@@ -20,11 +26,11 @@ const Navbar = ({ userName, onLogout }) => {
                     <Sidebar setOpen={setOpen} onLogout={onLogout} />
                 </div>
             }
-            <div className='fixed w-full bg-white flex justify-between items-center p-5 border-b'>
+            <div className={`fixed ${outletWidth} bg-white flex justify-between items-center p-5 border-b`}>
                 <div className='flex justify-center items-center gap-3'>
 
                     <div className='border rounded-lg p-2'
-                        onClick={() => setOpen(true)}
+                        onClick={() => {setOpen(true); setSidebarOpen(true)}}
                     ><GiHamburgerMenu size={25} /></div>
                     <div className='font-bold text-3xl flex justify-center items-center'>
                         <span>BioCraft</span>
@@ -36,7 +42,7 @@ const Navbar = ({ userName, onLogout }) => {
                         <div className='font-bold flex justify-center items-center'>Hello, {userName}</div>
                     } */}
                     {
-                        !isMobile &&
+                        (!isMobile && !isSidebarOpen) &&
                         <>
                             <div className='flex justify-center items-center'>
                                 <div className='text-xl'>Blog</div>
@@ -57,7 +63,7 @@ const Navbar = ({ userName, onLogout }) => {
                                 <div className='text-xl text-sky-600 hover:cursor-pointer'>Log In</div>
                             </Link>
                             <Link to="/signup" className='flex justify-center items-center'>
-                                <div className='border rounded-md bg-sky-600 hover:bg-sky-700 text-white p-4 text-xl font-semibold  ps-5 pe-5 hover:cursor-pointer'>Sign Up</div>
+                                <div className='flex items-center bg-sky-600 text-white rounded-md ms-3 px-3 py-2 font-sans text font-bold justify-end md:float-right'>Sign Up</div>
                             </Link>
                         </div>
                     }
