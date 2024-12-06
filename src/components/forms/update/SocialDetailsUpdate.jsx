@@ -1,21 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDataContext } from '../../../contexts/DataContext';
-import axiosClient from '../../../axios-client';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import axiosClient from '../../../axios-client';
 
-const SkillsUpdate = ({ id }) => {
-    const skillRef = useRef();
-    const { isSkillDetailsUpdateModalOpen, setSkillDetailsUpdateModalOpen } = useDataContext()
+const SocialDetailsUpdate = ({ id }) => {
+    const nameRef = useRef();
+    const linkRef= useRef()
+    const { isSocialDetailsUpdateModalOpen, setSocialDetailsUpdateModalOpen } = useDataContext()
     const [data, setData] = useState(null)
     const [updateButton, setUpdateButton] = useState(false)
     const handleSubmit = async () => {
         const payload = {
-            skill: skillRef.current.value
+            name: nameRef.current.value,
+            link:linkRef.current.value
         }
         // console.log(payload)
         const token = localStorage.getItem('ACCESS_TOKEN');
         try {
-            const response = await axiosClient.put(`/update/skill/${data.id}`, payload, {
+            const response = await axiosClient.put(`/update/social-network/${data.id}`, payload, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': `Bearer ${token}`
@@ -23,7 +25,7 @@ const SkillsUpdate = ({ id }) => {
             });
             if (response.status === 200) {
                 console.log("data updated successfully")
-                setSkillDetailsUpdateModalOpen(false)
+                setSocialDetailsUpdateModalOpen(false)
 
             }
             console.log(response.status)
@@ -36,8 +38,9 @@ const SkillsUpdate = ({ id }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axiosClient.get(`/show/skill/${id}`)
-
+            console.log(id)
+            const response = await axiosClient.get(`/show/social-network/${id}`)
+            console.log(response.data.data)
             setData(response.data.data)
         }
         fetchData();
@@ -50,10 +53,10 @@ const SkillsUpdate = ({ id }) => {
             <div className='h-screen w-full absolute z-50 flex justify-center items-center top-0 left-0'>
 
 
-                <div className=' fixed grid grid-rows-[50px_1fr_50px] gap-3 border  sm:p-10 min-[300px]:p-3 pt-8  rounded-xl shadow-xl h-[300px] w-[90%] m-5 items-center md:w-[780px] xl:w-[800px] bg-white motion-preset-expand'>
+                <div className=' fixed grid grid-rows-[50px_1fr_50px] gap-3 border  sm:p-10 min-[300px]:p-3 pt-8  rounded-xl shadow-xl sm:h-[500px] h-[400px] w-[90%] m-5 items-center md:w-[780px] xl:w-[800px] bg-white motion-preset-expand'>
 
                     <div className='border-b-2 ps-2 pe-2 font-bold sm:text-2xl text-lg pb-2'>
-                        Update Your Skill Details
+                        Update Your Social Network Details
                     </div>
                     <div className='h-full sm:pt-0 w-full flex justify-center items-center overflow-y-scroll'>
                         {
@@ -61,8 +64,12 @@ const SkillsUpdate = ({ id }) => {
                                 <form action="" className='text-lg gap-7 flex flex-col h-full w-full justify-center' onChange={() => { setUpdateButton(true) }}>
 
                                     <div className='flex flex-col gap-4 justify-start w-full'>
-                                        <label htmlFor="">Your Skills:</label>
-                                        <input type='text' ref={skillRef} defaultValue={data.skill} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
+                                        <label htmlFor="">Name:</label>
+                                        <input type='text' ref={nameRef} defaultValue={data.name} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
+                                    </div>
+                                    <div className='flex flex-col gap-4 justify-start w-full'>
+                                        <label htmlFor="">Link:</label>
+                                        <input type='text' ref={linkRef} defaultValue={data.link} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
                                     </div>
 
 
@@ -76,7 +83,7 @@ const SkillsUpdate = ({ id }) => {
                     <div>
                         <div className='w-full flex justify-end items-center gap-4'>
                             <div className='hover:cursor-pointer text-red-600 border-red-600 border-2 ps-5 pe-5 pt-2 pb-2 rounded-lg'
-                                onClick={() => setSkillDetailsUpdateModalOpen(false)}>
+                                onClick={() => setSocialDetailsUpdateModalOpen(false)}>
                                 Cancel
                             </div>
                             {
@@ -94,4 +101,5 @@ const SkillsUpdate = ({ id }) => {
     )
 }
 
-export default SkillsUpdate
+
+export default SocialDetailsUpdate
