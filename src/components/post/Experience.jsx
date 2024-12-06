@@ -69,7 +69,7 @@ const Experience = () => {
 
         </div>
         {
-          isOpen && <ExperienceForm setOpen={setOpen} setData={setData} />
+          isOpen && <ExperienceForm setOpen={setOpen} setData={setData} isOpen={isOpen} />
         }
 
 
@@ -80,7 +80,7 @@ const Experience = () => {
 
 export default Experience
 
-const ExperienceForm = ({ setOpen, setData }) => {
+export const ExperienceForm = ({ setOpen, setData, isOpen, isNewEntry, setNewEntry }) => {
   const starting_dateRef = useRef();
   const ending_dateRef = useRef();
   const roleRef = useRef();
@@ -107,13 +107,23 @@ const ExperienceForm = ({ setOpen, setData }) => {
       if (response.status === 201 || response.status === 200) {
         setNextButton(false)
         console.log("data uploaded successfully")
+        // window.location.reload()
+
       }
       console.log(response.status)
 
     } catch (error) {
       console.error('Error uploading data:', error);
     }
-    setOpen(false)
+    if (isOpen == true) {
+
+      setOpen(false)
+    }
+    if (isNewEntry != null) {
+
+      setNewEntry(null)
+    }
+
 
   }
 
@@ -121,42 +131,78 @@ const ExperienceForm = ({ setOpen, setData }) => {
 
   return (
     <>
-      <div className='absolute top-30 border p-10 z-10 rounded-xl shadow-xl h-[550px] w-[90%] m-5 justify-center items-center md:h-[400px] md:w-[780px] xl:w-[900px] bg-white motion-preset-expand '>
-        <form action="" className='text-lg gap-7 flex flex-col h-full justify-center'>
-
-          <div className='flex gap-4 justify-start items-center w-full'>
-            <label htmlFor="">Starting Date:</label>
-            <input type='date' ref={starting_dateRef} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
-          </div>
-          <div className='flex gap-4 justify-start items-center w-full'>
-            <label htmlFor="">Ending Date:</label>
-            <input type='date' ref={ending_dateRef} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
-          </div>
-          <div className='flex items-center gap-4 text-lg'>
-            <label>Your Role:</label>
-            <input type="text" ref={roleRef} className='h-12 w-full border-2 rounded ps-2 focus:outline-none' />
-          </div>
-          <div className='flex items-center gap-4 text-lg'>
-            <label>Name of the organisation:</label>
-            <input type="text" ref={organisationRef} className='h-12 w-full border-2 rounded ps-2 focus:outline-none' />
-          </div>
-          <div className='flex items-center gap-4 text-lg'>
-            <label>Description:</label>
-            <input type="text" ref={descriptionRef} className='h-12 w-full border-2 rounded ps-2 focus:outline-none' />
-          </div>
+      <div className='h-screen w-full absolute z-50 flex justify-center items-center top-0 left-0'>
 
 
-          <div className='w-full flex justify-end items-center gap-4'>
-            <div className='hover:cursor-pointer text-red-600 border-red-600 border-2 ps-5 pe-5 pt-2 pb-2 rounded-lg'
-              onClick={() => setOpen(false)}>
-              Cancel
+        <div className=' fixed grid grid-rows-[60px_1fr_50px] gap-3 border  sm:p-10 min-[300px]:p-3 pt-8  rounded-xl shadow-xl h-[450px] w-[90%] m-5 items-center md:h-[600px] md:w-[780px] xl:h-[560px] xl:w-[800px] bg-white motion-preset-expand'>
+
+          <div className='border-b-2 ps-2 pe-2 font-bold sm:text-2xl text-lg pb-2'>
+            Add Experience Details
+          </div>
+          <div className='h-full sm:pt-0 w-full flex justify-center items-center overflow-y-scroll'>
+
+            <form action="" className='sm:text-lg text-sm gap-2 sm:gap-7 h-full flex flex-col w-full'>
+
+              <div className='flex gap-4 justify-start items-center w-full'>
+                <label htmlFor="">Starting Date:</label>
+                <input type='date' ref={starting_dateRef} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
+              </div>
+              <div className='flex gap-4 justify-start items-center w-full'>
+                <label htmlFor="">Ending Date:</label>
+                <input type='date' ref={ending_dateRef} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
+              </div>
+              <div className='flex items-center gap-4 '>
+                <label>Your Role:</label>
+                <input type="text" ref={roleRef} className='h-12 w-full border-2 rounded ps-2 focus:outline-none' />
+              </div>
+              <div className='flex items-center gap-4 '>
+                <label>Name of the organisation:</label>
+                <input type="text" ref={organisationRef} className='h-12 w-full border-2 rounded ps-2 focus:outline-none' />
+              </div>
+              <div className='flex items-center gap-4'>
+                <label>Description:</label>
+                <input type="text" ref={descriptionRef} className='h-12 w-full border-2 rounded ps-2 focus:outline-none' />
+              </div>
+            </form>
+
+          </div>
+          {
+            isOpen &&
+            <div>
+              <div className='w-full flex justify-end items-center gap-4'>
+                <div className='hover:cursor-pointer text-red-600 border-red-600 border-2 ps-5 pe-5 pt-2 pb-2 rounded-lg'
+                  onClick={() => { setOpen(false) }}>
+                  Cancel
+                </div>
+                {
+
+                  <div className='hover:cursor-pointer rounded-lg bg-blue-700 ps-5 pe-5 pt-3 pb-3 text-white'
+                    onClick={handleSubmit}>
+                    SUBMIT
+                  </div>
+                }
+              </div>
             </div>
-            <div className='hover:cursor-pointer rounded-lg bg-blue-700 ps-5 pe-5 pt-3 pb-3 text-white'
-              onClick={handleSubmit}>
-              SUBMIT
+          }
+          {
+            isNewEntry == 'addExperience' &&
+            <div>
+              <div className='w-full flex justify-end items-center gap-4'>
+                <div className='hover:cursor-pointer text-red-600 border-red-600 border-2 ps-5 pe-5 pt-2 pb-2 rounded-lg'
+                  onClick={() => { setNewEntry(null) }}>
+                  Cancel
+                </div>
+                {
+
+                  <div className='hover:cursor-pointer rounded-lg bg-blue-700 ps-5 pe-5 pt-3 pb-3 text-white'
+                    onClick={handleSubmit}>
+                    SUBMIT
+                  </div>
+                }
+              </div>
             </div>
-          </div>
-        </form>
+          }
+        </div>
       </div>
     </>
   )

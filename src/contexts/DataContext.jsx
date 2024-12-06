@@ -17,6 +17,10 @@ const DataContext = createContext({
     setExperienceDetailsUpdateModalOpen:()=>{},    
     isSkillDetailsUpdateModalOpen:null,
     setSkillDetailsUpdateModalOpen:()=>{},    
+    isSocialDetailsUpdateModalOpen:null,
+    setSocialDetailsUpdateModalOpen:()=>{},  
+    isNewEntry:null,
+    setNewEntry:()=>{}  
 
 });
 
@@ -30,6 +34,8 @@ export const DataProvider = ({ children }) => {
     const [isSpecializationDetailsUpdateModalOpen, setSpecializationDetailsUpdateModalOpen]= useState(false)
     const [isExperienceDetailsUpdateModalOpen, setExperienceDetailsUpdateModalOpen]= useState(false)
     const [isSkillDetailsUpdateModalOpen, setSkillDetailsUpdateModalOpen]= useState(false)
+    const [ isSocialDetailsUpdateModalOpen,setSocialDetailsUpdateModalOpen] =useState(false)
+    const [isNewEntry, setNewEntry]= useState(null)
     
     return(
         <DataContext.Provider value={{
@@ -37,7 +43,8 @@ export const DataProvider = ({ children }) => {
             isPersonalDetailsUpdateModalOpen, setPersonalDetailsUpdateModalOpen, isEducationalDetailsUpdateModalOpen, setEducationalDetailsUpdateModalOpen,
             isSpecializationDetailsUpdateModalOpen, setSpecializationDetailsUpdateModalOpen,
             isExperienceDetailsUpdateModalOpen, setExperienceDetailsUpdateModalOpen,
-            isSkillDetailsUpdateModalOpen, setSkillDetailsUpdateModalOpen
+            isSkillDetailsUpdateModalOpen, setSkillDetailsUpdateModalOpen, isSocialDetailsUpdateModalOpen,
+            setSocialDetailsUpdateModalOpen,isNewEntry, setNewEntry
         }} >
             {children}
         </DataContext.Provider>

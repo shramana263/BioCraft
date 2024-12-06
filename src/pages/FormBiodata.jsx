@@ -22,8 +22,7 @@ const FormBiodata =  () => {
         navigate("/profile")
       }
 
-      // console.log("nextButton, isNext: ",nextButton, isNext)
-      
+      console.log("nextButton, isNext: ",nextButton, isNext)      
   },[isNext,nextButton])
   return (
     <>

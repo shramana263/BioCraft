@@ -12,8 +12,8 @@ const SocialNetwork = () => {
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        const payload={
-            "step":7
+        const payload = {
+            "step": 7
         }
         axiosClient.put('/update/progress', payload)
             .then(response => {
@@ -84,7 +84,7 @@ const SocialNetwork = () => {
 
                 </div>
                 {
-                    isOpen && <SocialNetworkForm setOpen={setOpen} setData={setData} setNextButton={setNextButton} />
+                    isOpen && <SocialNetworkForm setOpen={setOpen} setData={setData} setNextButton={setNextButton} isOpen={isOpen} />
                 }
 
 
@@ -95,7 +95,7 @@ const SocialNetwork = () => {
 
 export default SocialNetwork
 
-const SocialNetworkForm = ({ setOpen, setData, setNextButton }) => {
+export const SocialNetworkForm = ({ setOpen, setData, setNextButton, isOpen, isNewEntry, setNewEntry }) => {
     const nameRef = useRef();
     const linkRef = useRef();
 
@@ -122,7 +122,14 @@ const SocialNetworkForm = ({ setOpen, setData, setNextButton }) => {
         } catch (error) {
             console.error('Error uploading data:', error);
         }
-        setOpen(false)
+        if (isOpen == true) {
+
+            setOpen(false)
+          }
+          if (isNewEntry != null) {
+      
+            setNewEntry(null)
+          }
 
     }
 
@@ -130,29 +137,68 @@ const SocialNetworkForm = ({ setOpen, setData, setNextButton }) => {
 
     return (
         <>
-            <div className='absolute top-30 border p-10 z-10 rounded-xl shadow-xl h-[300px] w-[90%] m-5 justify-center items-center md:h-[400px] md:w-[780px] xl:w-[900px] bg-white motion-preset-expand '>
-                <form action="" className='text-lg gap-7 flex flex-col h-full justify-center'>
+            <div className='h-screen w-full absolute z-50 flex justify-center items-center top-0 left-0'>
 
-                    <div className='flex gap-4 justify-start items-center w-full'>
-                        <label htmlFor="">Name:</label>
-                        <input type='text' ref={nameRef} placeholder='e.g: Github ' className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
-                    </div>
-                    <div className='flex gap-4 justify-start items-center w-full'>
-                        <label htmlFor="">Link:</label>
-                        <input type='text' ref={linkRef} placeholder='e.g: https://github.com/xxxxx ' className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
-                    </div>
 
-                    <div className='w-full flex justify-end items-center gap-4'>
-                        <div className='hover:cursor-pointer text-red-600 border-red-600 border-2 ps-5 pe-5 pt-2 pb-2 rounded-lg'
-                            onClick={() => setOpen(false)}>
-                            Cancel
-                        </div>
-                        <div className='hover:cursor-pointer rounded-lg bg-blue-700 ps-5 pe-5 pt-3 pb-3 text-white'
-                            onClick={handleSubmit}>
-                            SUBMIT
-                        </div>
+                <div className=' fixed grid grid-rows-[50px_1fr_50px] gap-3 border  sm:p-10 min-[300px]:p-3 pt-8  rounded-xl shadow-xl sm:h-[500px] h-[400px] w-[90%] m-5 items-center md:w-[780px] xl:w-[800px] bg-white motion-preset-expand'>
+
+                    <div className='border-b-2 ps-2 pe-2 font-bold sm:text-2xl text-lg pb-2'>
+                        Update Your Social Network Details
                     </div>
-                </form>
+                    <div className='h-full sm:pt-0 w-full flex justify-center items-center overflow-y-scroll'>
+
+                        <form action="" className='text-lg gap-7 flex flex-col h-full w-full justify-center'>
+
+                            <div className='flex flex-col gap-4 justify-start w-full'>
+                                <label htmlFor="">Name:</label>
+                                <input type='text' ref={nameRef} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
+                            </div>
+                            <div className='flex flex-col gap-4 justify-start w-full'>
+                                <label htmlFor="">Link:</label>
+                                <input type='text' ref={linkRef} className='border-2 rounded w-full h-12 ps-2 focus:outline-none' />
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                    {
+                        isOpen &&
+                        <div>
+                            <div className='w-full flex justify-end items-center gap-4'>
+                                <div className='hover:cursor-pointer text-red-600 border-red-600 border-2 ps-5 pe-5 pt-2 pb-2 rounded-lg'
+                                    onClick={() => { setOpen(false) }}>
+                                    Cancel
+                                </div>
+                                {
+
+                                    <div className='hover:cursor-pointer rounded-lg bg-blue-700 ps-5 pe-5 pt-3 pb-3 text-white'
+                                        onClick={handleSubmit}>
+                                        SUBMIT
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    {
+                        isNewEntry == 'addSocial' &&
+                        <div>
+                            <div className='w-full flex justify-end items-center gap-4'>
+                                <div className='hover:cursor-pointer text-red-600 border-red-600 border-2 ps-5 pe-5 pt-2 pb-2 rounded-lg'
+                                    onClick={() => { setNewEntry(null) }}>
+                                    Cancel
+                                </div>
+                                {
+
+                                    <div className='hover:cursor-pointer rounded-lg bg-blue-700 ps-5 pe-5 pt-3 pb-3 text-white'
+                                        onClick={handleSubmit}>
+                                        SUBMIT
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </>
     )

@@ -10,6 +10,13 @@ import SpecializationUpdate from '../components/forms/update/SpecializationUpdat
 import ExperienceUpdate from '../components/forms/update/ExperienceUpdate'
 import SkillsUpdate from '../components/forms/update/SkillsUpdate'
 import { IoAddCircleOutline } from 'react-icons/io5'
+import SocialDetailsUpdate from '../components/forms/update/SocialDetailsUpdate'
+import EducationDetails, { EducationDetailsForm } from '../components/post/EducationDetails'
+import { ExperienceForm } from '../components/post/Experience'
+import { SpecializationForm } from '../components/post/Specialization'
+import { SkillsForm } from '../components/post/Skills'
+import { SocialNetworkForm } from '../components/post/SocialNetwork'
+import { MdDeleteForever } from 'react-icons/md'
 
 const DataPreview = () => {
 
@@ -22,7 +29,8 @@ const DataPreview = () => {
     const [index, setIndex] = useState(0)
     const { profileImage, setProfileImage, isOpenProfileIMageUpdateModal, setOpenProfileImageUpdateModal, currentProfileImage } = useDataContext()
     const { isPersonalDetailsUpdateModalOpen, setPersonalDetailsUpdateModalOpen, isEducationalDetailsUpdateModalOpen, setEducationalDetailsUpdateModalOpen, isSpecializationDetailsUpdateModalOpen, setSpecializationDetailsUpdateModalOpen,
-        isExperienceDetailsUpdateModalOpen, setExperienceDetailsUpdateModalOpen, isSkillDetailsUpdateModalOpen, setSkillDetailsUpdateModalOpen
+        isExperienceDetailsUpdateModalOpen, setExperienceDetailsUpdateModalOpen, isSkillDetailsUpdateModalOpen, setSkillDetailsUpdateModalOpen,
+        isSocialDetailsUpdateModalOpen, setSocialDetailsUpdateModalOpen, isNewEntry, setNewEntry
     } = useDataContext()
     const navigate = useNavigate();
 
@@ -57,7 +65,7 @@ const DataPreview = () => {
         };
 
         fetchData();
-    }, [currentProfileImage])
+    }, [currentProfileImage, isNewEntry])
 
     return (
         <>
@@ -145,7 +153,7 @@ const DataPreview = () => {
 
                             Education
                         </div>
-                        <div className='flex justify-center items-center'>
+                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addEducation')}>
                             <IoAddCircleOutline />
                         </div>
                     </div>
@@ -176,7 +184,10 @@ const DataPreview = () => {
                                             </div>
                                         }
                                     </div>
-                                    <div>
+                                    <div className='flex gap-3'>
+                                        <div className='border p-3 rounded hover:cursor-pointer'
+                                            onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                        ><MdDeleteForever size={20} /></div>
                                         <div className='border p-3 rounded hover:cursor-pointer'
                                             onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
                                         ><FaPencil /></div>
@@ -200,7 +211,7 @@ const DataPreview = () => {
 
                             Specialization
                         </div>
-                        <div className='flex justify-center items-center'>
+                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addSpecialization')}>
                             <IoAddCircleOutline />
                         </div>
                     </div>
@@ -217,7 +228,10 @@ const DataPreview = () => {
                                             <span className='font-bold'>Organisation name : </span> <span>{item.Organisation}</span>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className='flex gap-3'>
+                                        <div className='border p-3 rounded hover:cursor-pointer'
+                                            onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                        ><MdDeleteForever size={20} /></div>
                                         <div className='border p-3 rounded hover:cursor-pointer'
                                             onClick={() => { setSpecializationDetailsUpdateModalOpen(true); setIndex(index) }}
                                         ><FaPencil /></div>
@@ -240,7 +254,7 @@ const DataPreview = () => {
 
                             Experience
                         </div>
-                        <div className='flex justify-center items-center'>
+                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addExperience')}>
                             <IoAddCircleOutline />
                         </div>
                     </div>
@@ -267,7 +281,10 @@ const DataPreview = () => {
                                             <span className='font-bold'>Description : </span> <span>{item.description}</span>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className='flex gap-3'>
+                                        <div className='border p-3 rounded hover:cursor-pointer'
+                                            onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                        ><MdDeleteForever size={20} /></div>
                                         <div className='border p-3 rounded hover:cursor-pointer'
                                             onClick={() => { setExperienceDetailsUpdateModalOpen(true); setIndex(index) }}
 
@@ -291,7 +308,7 @@ const DataPreview = () => {
 
                             Skills
                         </div>
-                        <div className='flex justify-center items-center'>
+                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addSkill')}>
                             <IoAddCircleOutline />
                         </div>
                     </div>
@@ -306,7 +323,10 @@ const DataPreview = () => {
                                             <span className='font-bold'>Skills : </span> <span>{item.skill}</span>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className='flex gap-3'>
+                                        <div className='border p-3 rounded hover:cursor-pointer'
+                                            onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                        ><MdDeleteForever size={20} /></div>
                                         <div className='border p-3 rounded hover:cursor-pointer'
                                             onClick={() => { setSkillDetailsUpdateModalOpen(true); setIndex(index) }}
 
@@ -322,14 +342,14 @@ const DataPreview = () => {
                     </div>
 
                 </div>
-                {/* Skills details */}
+                {/* Social network details */}
                 <div className='border-2 rounded p-3 bg-lime-100'>
                     <div className='flex justify-between items-center text-3xl mb-3'>
                         <div className='flex justify-center items-center'>
 
                             Social Networks
                         </div>
-                        <div className='flex justify-center items-center'>
+                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addSocial')}>
                             <IoAddCircleOutline />
                         </div>
                     </div>
@@ -348,9 +368,12 @@ const DataPreview = () => {
                                                     <span className='font-bold capitalize '>{item.name} : </span> <span>{item.link}</span>
                                                 </div>
                                             </div>
-                                            <div>
+                                            <div className='flex gap-3'>
                                                 <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setSkillDetailsUpdateModalOpen(true); setIndex(index) }}
+                                                    onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                                ><MdDeleteForever size={20} /></div>
+                                                <div className='border p-3 rounded hover:cursor-pointer'
+                                                    onClick={() => { setSocialDetailsUpdateModalOpen(true); setIndex(index) }}
 
                                                 ><FaPencil /></div>
                                             </div>
@@ -411,6 +434,66 @@ const DataPreview = () => {
                 isSkillDetailsUpdateModalOpen &&
                 <div className='w-full flex justify-center items-center'>
                     <SkillsUpdate id={skillData[index].id} />
+                </div>
+            }
+            {/* Skills-details-update form */}
+            {
+                isSocialDetailsUpdateModalOpen &&
+                <div className='w-full flex justify-center items-center'>
+                    <SocialDetailsUpdate id={socialNetworkData[index].id} />
+                </div>
+            }
+
+
+            {/* Add Data Forms */}
+            {
+                isNewEntry == 'addEducation' &&
+                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
+
+                    <EducationDetailsForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
+
+
+
+                </div>
+            }
+            {
+                isNewEntry == 'addExperience' &&
+                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
+
+                    <ExperienceForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
+
+
+
+                </div>
+            }
+            {
+                isNewEntry == 'addSpecialization' &&
+                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
+
+                    <SpecializationForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
+
+
+
+                </div>
+            }
+            {
+                isNewEntry == 'addSkill' &&
+                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
+
+                    <SkillsForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
+
+
+
+                </div>
+            }
+            {
+                isNewEntry == 'addSocial' &&
+                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
+
+                    <SocialNetworkForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
+
+
+
                 </div>
             }
 

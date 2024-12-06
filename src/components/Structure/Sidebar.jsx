@@ -73,7 +73,7 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                         }
 
                         <li>
-                            <Link className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" >
+                            <Link to="/about-us" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" >
                                 <div>
                                     <IoMdInformationCircle size={20} />
                                 </div>

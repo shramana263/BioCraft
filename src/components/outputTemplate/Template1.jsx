@@ -47,13 +47,11 @@ const Template1 = () => {
                   <div><span>Phone : </span><span>{personalData.contact_no}</span></div>
                   <div><span>Email : </span><span>{authUser.data.email}</span></div>
                   {
-                    socialNetworkData[0].name=='linkedin' &&
-                    <div><span>LinkedIn : </span><span>abcdbyugfwekufbvc</span></div>
-                  }
-                  {
-                    socialNetworkData[0].name=='github' &&
-                    <div><span>Github : </span><span>abcdbyugfwekufbvc</span></div>
-                  }
+                    socialNetworkData && socialNetworkData.map((data, index)=>(
+
+                      <div key={index}><span>{data.name} : </span><span>{data.link}</span></div>
+                    ))
+}
                 </div>
                 <div className='h-[50px] m-3 border-l-[1px] border-gray-300'>
 
