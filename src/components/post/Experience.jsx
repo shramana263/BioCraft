@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaCirclePlus, FaPencil } from "react-icons/fa6";
-import axiosClient from '../axios-client';
+import axiosClient from '../../axios-client';
 import axios from 'axios';
-import { useProgressContext } from '../contexts/ProgressContext';
+import { useProgressContext } from '../../contexts/ProgressContext';
 const Experience = () => {
   const [isOpen, setOpen] = useState(false)
   const [data, setData] = useState(null)

@@ -7,6 +7,7 @@ import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import Navbar from '../components/Structure/Navbar';
 import Sidebar from '../components/Structure/Sidebar';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const AuthLayout = () => {
   const navigate = useNavigate();
@@ -42,7 +43,9 @@ const AuthLayout = () => {
   }
 
   return (
-    authUser.isLoading ? <div>Loading...</div> :
+    authUser.isLoading ? <div className='h-screen w-full flex justify-center items-center'>
+      <AiOutlineLoading3Quarters size={80} className='motion-preset-spin' />
+    </div> :
       <>
         <div className='flex w-full'>
           <div className='flex flex-col w-full'>

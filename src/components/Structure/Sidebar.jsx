@@ -32,7 +32,7 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                         </li>
                         
                         <li>
-                            <Link className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" onClick={() => setOpen(false)}>
+                            <Link to="make-biodata" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" onClick={() => setOpen(false)}>
                                 <div>
                                 <FaImagePortrait size={20} />
                                 </div>

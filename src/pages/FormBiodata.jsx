@@ -1,32 +1,28 @@
 import React, { useEffect } from 'react'
-import PersonalDetails from '../components/PersonalDetails'
 import axiosClient from '../axios-client'
 import { useProgressContext } from '../contexts/ProgressContext'
-import EducationDetails from '../components/EducationDetails'
-import Specialization from '../components/Specialization'
-import Experience from '../components/Experience'
-import Skills from '../components/Skills'
+import PersonalDetails from '../components/post/PersonalDetails';
+import EducationDetails from '../components/post/EducationDetails';
+import Specialization from '../components/post/Specialization';
+import Experience from '../components/post/Experience';
+import Skills from '../components/post/Skills';
+import SocialNetwork from '../components/post/SocialNetwork';
+import Profile from './Profile';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
+
 
 const FormBiodata =  () => {
 
   const {isNext, setNext, nextButton}= useProgressContext();
-
-  const func=()=>{
-    return (axiosClient.get('/index/progress'))
-        .then(response => {
-          console.log(response.data.step)
-          setNext(response.data.step)
-            return response.data;
-        })
-        .catch(err => {
-            throw err;
-        });
-  }
+  const navigate= useNavigate()
+  
   useEffect( ()=>{
-      // const response= axiosClient.get('/index/progress')
-      // console.log("progress",response?.data)
-      func();
-      console.log("nextButton, isNext: ",nextButton, isNext)
+      
+      if(isNext==7){
+        navigate("/profile")
+      }
+
+      // console.log("nextButton, isNext: ",nextButton, isNext)
       
   },[isNext,nextButton])
   return (
@@ -53,6 +49,15 @@ const FormBiodata =  () => {
           ((isNext==4 && nextButton==true) || (isNext==5 && nextButton == false)) &&
           <Skills/>
         }
+        {
+          ((isNext == 5 && nextButton==true)||(isNext==6 && nextButton== false))&&
+          <SocialNetwork/>
+        }
+        {/* {
+          isNext==7 &&
+            <Navigate to="profile"/>
+          
+        } */}
       </div> 
     </>
   )

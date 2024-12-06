@@ -18,6 +18,7 @@ const DataPreview = () => {
     const [specializationData, setSpecializationData] = useState(null)
     const [experienceData, setExperienceData] = useState(null)
     const [skillData, setSkillData] = useState(null)
+    const [socialNetworkData, setSocialNetworkData] = useState(null)
     const [index, setIndex] = useState(0)
     const { profileImage, setProfileImage, isOpenProfileIMageUpdateModal, setOpenProfileImageUpdateModal, currentProfileImage } = useDataContext()
     const { isPersonalDetailsUpdateModalOpen, setPersonalDetailsUpdateModalOpen, isEducationalDetailsUpdateModalOpen, setEducationalDetailsUpdateModalOpen, isSpecializationDetailsUpdateModalOpen, setSpecializationDetailsUpdateModalOpen,
@@ -32,25 +33,27 @@ const DataPreview = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const [response1, response2, response3, response4, response5, response6] = await Promise.all([
+            const [response1, response2, response3, response4, response5, response6, response7] = await Promise.all([
                 axiosClient.get('/show/personaldetails'),
                 axiosClient.get('/index/educationaldetails'),
                 axiosClient.get('/index/specialization'),
                 axiosClient.get('/index/experience'),
                 axiosClient.get('/index/skill'),
-                axiosClient.get('/show/profile-image')
+                axiosClient.get('/show/profile-image'),
+                axiosClient.get('/index/social-network')
             ])
             // console.log("response1 : ", response1.data.data)
             // console.log("response2 : ", response2.data.data)
             // console.log("response3 : ", response3.data.data[0].id)
             // console.log("response4 : ", response4.data.data)
-            // console.log("response6 : ", response6)
+            // console.log("response6 : ", response7.data.data[0])
             setPersonalData(response1.data.data);
             setEducationalData(response2.data.data);
             setSpecializationData(response3.data.data);
             setExperienceData(response4.data.data);
             setSkillData(response5.data.data);
             setProfileImage(response6.data.url);
+            setSocialNetworkData(response7.data.data)
         };
 
         fetchData();
@@ -195,7 +198,7 @@ const DataPreview = () => {
                     <div className='flex justify-between items-center text-3xl mb-3'>
                         <div className='flex justify-center items-center'>
 
-                            Specialization 
+                            Specialization
                         </div>
                         <div className='flex justify-center items-center'>
                             <IoAddCircleOutline />
@@ -235,7 +238,7 @@ const DataPreview = () => {
                     <div className='flex justify-between items-center text-3xl mb-3'>
                         <div className='flex justify-center items-center'>
 
-                            Experience 
+                            Experience
                         </div>
                         <div className='flex justify-center items-center'>
                             <IoAddCircleOutline />
@@ -283,13 +286,13 @@ const DataPreview = () => {
 
                 {/* Skills details */}
                 <div className='border-2 rounded p-3 bg-rose-100'>
-                <div className='flex justify-between items-center text-3xl mb-3'>
+                    <div className='flex justify-between items-center text-3xl mb-3'>
                         <div className='flex justify-center items-center'>
 
-                        Skills
+                            Skills
                         </div>
                         <div className='flex justify-center items-center'>
-                        <IoAddCircleOutline />
+                            <IoAddCircleOutline />
                         </div>
                     </div>
                     <div className='flex flex-col gap-4'>
@@ -309,6 +312,50 @@ const DataPreview = () => {
 
                                         ><FaPencil /></div>
                                     </div>
+                                </div>
+                            ))
+                                :
+                                <div>
+                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                </div>
+                        }
+                    </div>
+
+                </div>
+                {/* Skills details */}
+                <div className='border-2 rounded p-3 bg-lime-100'>
+                    <div className='flex justify-between items-center text-3xl mb-3'>
+                        <div className='flex justify-center items-center'>
+
+                            Social Networks
+                        </div>
+                        <div className='flex justify-center items-center'>
+                            <IoAddCircleOutline />
+                        </div>
+                    </div>
+                    <div className='flex flex-col gap-4'>
+
+                        {
+                            socialNetworkData ? socialNetworkData.map((item, index) => (
+                                <div key={index} >
+                                    {
+                                        // item.github &&
+                                        <div className='flex justify-between items-center border rounded p-3 bg-white'>
+
+                                            <div>
+
+                                                <div>
+                                                    <span className='font-bold capitalize '>{item.name} : </span> <span>{item.link}</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className='border p-3 rounded hover:cursor-pointer'
+                                                    onClick={() => { setSkillDetailsUpdateModalOpen(true); setIndex(index) }}
+
+                                                ><FaPencil /></div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             ))
                                 :
