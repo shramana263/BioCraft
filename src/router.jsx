@@ -102,7 +102,11 @@ const router= createBrowserRouter([
             {
                 path:"/about-us",
                 element:<AboutUs/>
-            }
+            },
+            {
+                path:"/guest-templates",
+                element:<Templates/>
+            },
             
         ],
     },

@@ -75,7 +75,7 @@ const FormTemplates = ({ bio_template }) => {
       {
         bio_template.map((img, index) => (
           <>
-            <div key={index} className='h-[600px] w-[400px] group relative'>
+            <div key={index} className='h-[600px] w-[400px] group relative motion-preset-pop'>
               <img src={img.src} alt="" className='h-full w-full' />
               <div className='absolute invisible group-hover:visible h-full w-full bg-slate-600/10 top-0 backdrop-blur-sm'>
                 <div className='absolute invisible  group-hover:visible top-[430px] right-[100px] hover:cursor-pointer '>
