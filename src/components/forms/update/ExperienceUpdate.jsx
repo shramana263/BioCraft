@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import axiosClient from '../../../axios-client';
 import { useDataContext } from '../../../contexts/DataContext';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { useMessageContext } from '../../../contexts/MessageContext';
 
 const ExperienceUpdate = ({id}) => {
     const starting_dateRef = useRef();
@@ -12,6 +13,7 @@ const ExperienceUpdate = ({id}) => {
     const { isExperienceDetailsUpdateModalOpen, setExperienceDetailsUpdateModalOpen } = useDataContext()
     const [data, setData] = useState(null)
     const [updateButton, setUpdateButton] = useState(false)
+    const {message, setMessage}= useMessageContext()
 
     const handleSubmit = async () => {
         const payload = {
@@ -30,14 +32,16 @@ const ExperienceUpdate = ({id}) => {
                     'Authorization': `Bearer ${token}`
                 },
             });
-            if (response.status === 200) {
+            if (response.status === 200 || response.status===201) {
                 console.log("data updated successfully")
                 setExperienceDetailsUpdateModalOpen(false)
+                setMessage('Data Updated Successfully')
             }
             console.log(response.status)
 
         } catch (error) {
             console.error('Error updating data:', error);
+            setMessage('Error in Data Updating')
         }
 
 

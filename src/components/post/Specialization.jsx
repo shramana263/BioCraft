@@ -3,6 +3,7 @@ import { FaCirclePlus, FaPencil } from "react-icons/fa6";
 import axiosClient from '../../axios-client';
 import axios from 'axios';
 import { useProgressContext } from '../../contexts/ProgressContext';
+import { useMessageContext } from '../../contexts/MessageContext';
 const Specialization = () => {
   const [isOpen, setOpen] = useState(false)
   const [data, setData] = useState(null)
@@ -83,6 +84,7 @@ export default Specialization
 export const SpecializationForm = ({ setOpen, setData, isOpen, setNewEntry, isNewEntry }) => {
   const certificateRef = useRef();
   const organisationRef = useRef();
+  const {message, setMessage}= useMessageContext()
 
   const handleSubmit = async () => {
     const payload = {
@@ -98,14 +100,16 @@ export const SpecializationForm = ({ setOpen, setData, isOpen, setNewEntry, isNe
           'Authorization': `Bearer ${token}`
         },
       });
-      if (response.status === 201) {
+      if (response.status === 201 || response.status===200) {
         console.log("data uploaded successfully")
+        setMessage('Data Uploaded Successfully')
         setNextButton(false)
       }
       console.log(response.status)
 
     } catch (error) {
       console.error('Error uploading data:', error);
+      setMessage('Error in Data Uploading')
     }
     if (isOpen == true) {
 

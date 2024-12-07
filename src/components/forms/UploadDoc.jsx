@@ -3,6 +3,7 @@ import axios from 'axios';
 import { SlCloudUpload } from "react-icons/sl";
 import axiosClient from '../../axios-client';
 import { useDataContext } from '../../contexts/DataContext';
+import { useMessageContext } from '../../contexts/MessageContext';
 
 const UploadDoc = () => {
 
@@ -12,6 +13,7 @@ const UploadDoc = () => {
   const [isDraggingOver, setDraggingOver] = useState(false)
   const { profileImage, setProfileImage } = useDataContext()
   const { currentProfileImage, setCurrentProfileImage } = useDataContext()
+  const {setMessage}= useMessageContext()
 
   const inputRef = useRef()
   const token = localStorage.getItem('ACCESS_TOKEN');
@@ -51,11 +53,14 @@ const UploadDoc = () => {
       })
       if (response.status == 201 || response.status == 200) {
         console.log("data updated")
+        setMessage('Profile Picture Updated Successfully')
         getCurrentProfileImage();
+      
       }
     }
     catch (error) {
       console.log(error)
+      setMessage('Error in Updating Profile Picture')
     }
 
 
@@ -72,9 +77,6 @@ const UploadDoc = () => {
       setUploadStatus('Please select a file to upload');
       return;
     }
-
-
-
     // for (const file of selectedFiles) {
 
     const formData = new FormData();

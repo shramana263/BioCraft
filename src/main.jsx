@@ -12,26 +12,27 @@ import { ProgressProvider } from './contexts/ProgressContext.jsx'
 import { DataProvider } from './contexts/DataContext.jsx'
 import { MobileProvider } from './contexts/MobileContext.jsx'
 import { PanelProvider } from './contexts/PanelContext.jsx'
+import { MessageProvider } from './contexts/MessageContext.jsx'
 
 
 const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StateProvider>
-      <MobileProvider>
-        <PanelProvider>
-          <ProgressProvider>
-            <DataProvider>
-              <QueryClientProvider client={queryClient}>
-
-                <RouterProvider router={router} />
-                <ToastContainer />
-
-              </QueryClientProvider>
-            </DataProvider>
-          </ProgressProvider>
-        </PanelProvider>
-      </MobileProvider>
+      <MessageProvider>
+        <MobileProvider>
+          <PanelProvider>
+            <ProgressProvider>
+              <DataProvider>
+                <QueryClientProvider client={queryClient}>
+                  <RouterProvider router={router} />
+                  <ToastContainer />
+                </QueryClientProvider>
+              </DataProvider>
+            </ProgressProvider>
+          </PanelProvider>
+        </MobileProvider>
+      </MessageProvider>
     </StateProvider>
 
   </React.StrictMode>,

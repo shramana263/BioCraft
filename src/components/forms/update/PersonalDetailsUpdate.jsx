@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDataContext } from '../../../contexts/DataContext';
 import axiosClient from '../../../axios-client';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { useMessageContext } from '../../../contexts/MessageContext';
 
 const PersonalDetailsUpdate = () => {
 
     const { isPersonalDetailsUpdateModalOpen, setPersonalDetailsUpdateModalOpen } = useDataContext()
     const [data, setData] = useState(null)
     const [updateButton, setUpdateButton] = useState(false)
+    const {message, setMessage}= useMessageContext()
 
     const fnameRef = useRef();
     const lnameRef = useRef();
@@ -34,14 +36,16 @@ const PersonalDetailsUpdate = () => {
                     'Authorization': `Bearer ${token}`
                 },
             });
-            if (response.status === 200) {
+            if (response.status === 200 || response.status===201) {
                 console.log("data updated successfully")
             }
             console.log(response.status)
             setPersonalDetailsUpdateModalOpen(false)
+            setMessage('Data Updated Successfully')
 
         } catch (error) {
             console.error('Error updating data:', error);
+            setMessage('Error in Data Updating')
         }
 
 

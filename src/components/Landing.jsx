@@ -5,12 +5,14 @@ import ImageSlider from './ImageSlider'
 import IMAGES from '../data/data'
 import { useMobileContext } from '../contexts/MobileContext'
 import { usePanelContext } from '../contexts/PanelContext'
+import { useMessageContext } from '../contexts/MessageContext'
 
 const Landing = () => {
 
     // const [isMobile, setIsMobile] = useState(false);
     const { isMobile, setMobile } = useMobileContext()
     const { isSidebarOpen } = usePanelContext()
+    const {message, setMessage}= useMessageContext()
 
     const openSidebar = (!isMobile && isSidebarOpen) ? 'xl:ps-10' : 'xl-ps-20'
     const adjustTextSizeofTitle = (!isMobile && isSidebarOpen) ? 'xl:text-5xl' : 'xl:text-6xl'
@@ -30,7 +32,9 @@ const Landing = () => {
                             </div>
                         </div>
                         <div className='flex pt-5 max-[500px]:justify-center motion-preset-shrink'>
-                            <Link to="/templates" className='rounded-md bg-blue-600 hover:bg-blue-800 text-white w-48 flex justify-center items-center md:p-5 min-[412px]:p-2 md:text-2xl min-[412px]:text-lg hover:cursor-pointer'>Try For Free</Link>
+                            <Link to="/templates" className='rounded-md bg-blue-600 hover:bg-blue-800 text-white w-48 flex justify-center items-center md:p-5 min-[412px]:p-2 md:text-2xl min-[412px]:text-lg hover:cursor-pointer'
+                            onClick={()=>setMessage('Navigating to Templates')}
+                            >Try For Free</Link>
                         </div>
 
                     </div>

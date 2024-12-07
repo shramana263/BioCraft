@@ -4,6 +4,7 @@ import axiosClient from '../../axios-client';
 import axios from 'axios';
 import { useProgressContext } from '../../contexts/ProgressContext';
 import { useNavigate } from 'react-router-dom';
+import { useMessageContext } from '../../contexts/MessageContext';
 const Skills = () => {
   const [isOpen, setOpen] = useState(false)
   const [data, setData] = useState(null)
@@ -95,6 +96,7 @@ export default Skills
 
 export const SkillsForm = ({ setOpen, setData, isOpen, isNewEntry, setNewEntry }) => {
   const skillRef = useRef();
+  const {message, setMessage}= useMessageContext()
 
   const handleSubmit = async () => {
     const payload = {
@@ -109,14 +111,16 @@ export const SkillsForm = ({ setOpen, setData, isOpen, isNewEntry, setNewEntry }
           'Authorization': `Bearer ${token}`
         },
       });
-      if (response.status === 201) {
+      if (response.status === 201 || response.status===200) {
         console.log("data uploaded successfully")
         setNextButton(false)
+        setMessage('Data Uploaded Successfully')
       }
-      console.log(response.status)
+    
 
     } catch (error) {
       console.error('Error uploading data:', error);
+      setMessage('Error in Uploading data')
     }
     if (isOpen == true) {
 

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useProgressContext } from '../../contexts/ProgressContext';
 import axiosClient from '../../axios-client';
 import { TbCellSignal4 } from 'react-icons/tb';
+import { useMessageContext } from '../../contexts/MessageContext';
 const EducationDetails = () => {
   const [isOpen, setOpen] = useState(false)
   const [data, setData] = useState(null)
@@ -86,6 +87,7 @@ export const EducationDetailsForm = ({ setOpen, setData, setNewEntry, isOpen, is
   const year_of_passingRef = useRef();
   const percentageRef = useRef();
   const gpaRef = useRef();
+  const {message, setMessage}= useMessageContext()
 
   const handleSubmit = async () => {
     const payload = {
@@ -105,13 +107,15 @@ export const EducationDetailsForm = ({ setOpen, setData, setNewEntry, isOpen, is
         },
       });
       if (response.status === 201 || response.status===200) {
-        console.log("data uploaded successfully")
+        // console.log("data uploaded successfully")
+        setMessage('Data Uploaded Sucessfully')
         // window.location.reload()
       }
       console.log(response.status)
 
     } catch (error) {
       console.error('Error uploading data:', error);
+      setMessage('Error in Uploading Data')
     }
     if(isOpen==true)
     {

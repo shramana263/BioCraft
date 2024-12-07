@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDataContext } from '../../../contexts/DataContext';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import axiosClient from '../../../axios-client';
+import { useMessageContext } from '../../../contexts/MessageContext';
 
 const SocialDetailsUpdate = ({ id }) => {
     const nameRef = useRef();
@@ -9,6 +10,8 @@ const SocialDetailsUpdate = ({ id }) => {
     const { isSocialDetailsUpdateModalOpen, setSocialDetailsUpdateModalOpen } = useDataContext()
     const [data, setData] = useState(null)
     const [updateButton, setUpdateButton] = useState(false)
+    const {message, setMessage}= useMessageContext()
+
     const handleSubmit = async () => {
         const payload = {
             name: nameRef.current.value,
@@ -23,15 +26,16 @@ const SocialDetailsUpdate = ({ id }) => {
                     'Authorization': `Bearer ${token}`
                 },
             });
-            if (response.status === 200) {
+            if (response.status === 200 || response.status===201) {
                 console.log("data updated successfully")
                 setSocialDetailsUpdateModalOpen(false)
-
+                setMessage('Data Updated Successfully')
             }
             console.log(response.status)
 
         } catch (error) {
             console.error('Error updated data:', error);
+            setMessage('Error in Data Updating')
         }
 
     }

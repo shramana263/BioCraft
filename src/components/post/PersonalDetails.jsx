@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { FaCirclePlus } from "react-icons/fa6";
 import axios from 'axios';
 import { useProgressContext } from '../../contexts/ProgressContext';
+import { useMessageContext } from '../../contexts/MessageContext';
 const PersonalDetails = () => {
   const [isOpen, setOpen] = useState(false)
   return (
@@ -42,6 +43,7 @@ const PersonalDetailsForm = ({setOpen}) => {
   const mobileRef= useRef();
   const genderRef= useRef();
   const dobRef= useRef();
+  const {message, setMessage}= useMessageContext()
 
   const handleSubmit=async()=>{
     const payload={
@@ -61,14 +63,16 @@ const PersonalDetailsForm = ({setOpen}) => {
           'Authorization': `Bearer ${token}`
         },
       });
-      if (response.status === 201) {
-        console.log("data uploaded successfully")
+      if (response.status === 201 || response.status===200) {
+        // console.log("data uploaded successfully")
         setNext(1)
+        setMessage('Data Uploaded Successfully')
       }
-      console.log(response.status)
-
+      // console.log(response.status)
+      
     } catch (error) {
-      console.error('Error uploading data:', error);
+      // console.error('Error uploading data:', error);
+      setMessage('Error in Data Uploading')
     }
 
     

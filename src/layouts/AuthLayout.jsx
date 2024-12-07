@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useStateContext } from '../contexts/StateContext'
 import { fetchUser } from '../services/user-api';
 import { authLogout } from '../services/auth-api';
@@ -10,13 +10,16 @@ import Sidebar from '../components/Structure/Sidebar';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { usePanelContext } from '../contexts/PanelContext';
 import { useMobileContext } from '../contexts/MobileContext';
+import Popup from '../components/messagePopup/Popup';
+import { useMessageContext } from '../contexts/MessageContext';
 
 const AuthLayout = () => {
   const navigate = useNavigate();
   const { user, token, setUser, setToken } = useStateContext();
   const [isOpen, setOpen] = useState(true);
-  const {isSidebarOpen, setSidebarOpen}= usePanelContext()
-  const {isMobile}= useMobileContext()
+  const { isSidebarOpen, setSidebarOpen } = usePanelContext()
+  const { isMobile } = useMobileContext()
+  const { message, setMessage } = useMessageContext()
 
   const authUser = useQuery({
     queryKey: ['user'],
@@ -45,8 +48,18 @@ const AuthLayout = () => {
     ev.preventDefault();
     logout.mutate()
   }
-  const outletWidth= (!isMobile && isSidebarOpen) ?'w-[83.5%]': 'w-full'
-  const outletPosition=(!isMobile && isSidebarOpen) ? 'justify-end slideRight': ''
+  const outletWidth = (!isMobile && isSidebarOpen) ? 'w-[83.5%]' : 'w-full'
+  const outletPosition = (!isMobile && isSidebarOpen) ? 'justify-end slideRight' : ''
+
+
+  useEffect(()=>{
+    if(message!=null){
+      setTimeout(() => {
+        setMessage(null)
+      }, 2000);
+    }
+  },[message])
+
   return (
     authUser.isLoading ? <div className='h-screen w-full flex justify-center items-center'>
       <AiOutlineLoading3Quarters size={80} className='motion-preset-spin' />
@@ -64,6 +77,10 @@ const AuthLayout = () => {
             <main className=''>
               {/* <h3>AuthLayout</h3> */}
               <Outlet />
+              {
+                message &&
+                <Popup />
+              }
             </main>
           </div>
         </div>

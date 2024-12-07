@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from '../axios-client'
 import { FaPencil } from 'react-icons/fa6'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDataContext } from '../contexts/DataContext'
 import PersonalDetailsUpdate from '../components/forms/update/PersonalDetailsUpdate'
 import EducationDetailsUpdate from '../components/forms/update/EducationalDetailsUpdate'
@@ -77,7 +77,7 @@ const DataPreview = () => {
                 <div className='flex md:flex-row min-[300px]:flex-col sm:flex-row justify-center items-center gap-5'>
                     <div className="flex justify-center items-center md:w-[30%]">
 
-                        <div className='h-56 w-56 border-2 border-black rounded-full overflow-hidden'>
+                        <div className='h-56 w-56 border-2 border-black rounded-full overflow-hidden motion-preset-pop'>
                             {
                                 profileImage ?
                                     <img src={profileImage} alt="hello" className='h-full w-full' />
@@ -92,7 +92,7 @@ const DataPreview = () => {
                         {/* </div> */}
                     </div>
 
-                    <div className='border-2 rounded p-3 bg-green-100 sm:w-[70%] w-full'>
+                    <div className='border-2 rounded p-3 bg-green-100 sm:w-[70%] w-full motion-preset-slide-left'>
 
                         <div className='flex text-3xl mb-3'>
                             Personal Details
@@ -147,7 +147,7 @@ const DataPreview = () => {
                 </div>
 
                 {/* Educational details */}
-                <div className='border-2 rounded p-3 bg-pink-100'>
+                <div className='border-2 rounded p-3 bg-pink-100 motion-preset-slide-left'>
                     <div className='flex justify-between items-center text-3xl mb-3'>
                         <div className='flex justify-center items-center'>
 
@@ -205,7 +205,7 @@ const DataPreview = () => {
                 </div>
 
                 {/* Specialization details */}
-                <div className='border-2 rounded p-3 bg-purple-100'>
+                <div className='border-2 rounded p-3 bg-purple-100 motion-preset-slide-left'>
                     <div className='flex justify-between items-center text-3xl mb-3'>
                         <div className='flex justify-center items-center'>
 
@@ -248,7 +248,7 @@ const DataPreview = () => {
                 </div>
 
                 {/* Experience details */}
-                <div className='border-2 rounded p-3 bg-yellow-100'>
+                <div className='border-2 rounded p-3 bg-yellow-100 motion-preset-slide-left'>
                     <div className='flex justify-between items-center text-3xl mb-3'>
                         <div className='flex justify-center items-center'>
 
@@ -302,7 +302,7 @@ const DataPreview = () => {
                 </div>
 
                 {/* Skills details */}
-                <div className='border-2 rounded p-3 bg-rose-100'>
+                <div className='border-2 rounded p-3 bg-rose-100 motion-preset-slide-left'>
                     <div className='flex justify-between items-center text-3xl mb-3'>
                         <div className='flex justify-center items-center'>
 
@@ -343,7 +343,7 @@ const DataPreview = () => {
 
                 </div>
                 {/* Social network details */}
-                <div className='border-2 rounded p-3 bg-lime-100'>
+                <div className='border-2 rounded p-3 bg-lime-100 motion-preset-slide-left'>
                     <div className='flex justify-between items-center text-3xl mb-3'>
                         <div className='flex justify-center items-center'>
 
@@ -362,7 +362,7 @@ const DataPreview = () => {
                                         // item.github &&
                                         <div className='flex justify-between items-center border rounded p-3 bg-white'>
 
-                                            <div>
+                                            <div className='min-[300px]:w-[60%] overflow-x-scroll no-scrollbar'>
 
                                                 <div>
                                                     <span className='font-bold capitalize '>{item.name} : </span> <span>{item.link}</span>
@@ -390,12 +390,12 @@ const DataPreview = () => {
 
                 </div>
             </div>
-            <div className='flex w-full p-3'>
+            <Link to='/' className='flex w-full p-3'>
                 <div className="flex justify-center max-[300px]:w-full items-center w-56 p-3 bg-green-800 text-white font-bold rounded-r-full rounded-l-full">
 
                     Back to Home
                 </div>
-            </div>
+            </Link>
 
             {/* Personal-details-update form */}
             {

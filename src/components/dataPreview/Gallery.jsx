@@ -3,12 +3,15 @@ import axiosClient from '../../axios-client';
 import UploadDoc from '../forms/UploadDoc';
 import Preview, { PreviewComponent } from '../Preview';
 import { useDataContext } from '../../contexts/DataContext';
+import { useMessageContext } from '../../contexts/MessageContext';
 
 const Gallery = () => {
     const [images, setImages] = useState(null)
     const [isOpen, setOpen] = useState(false)
     const [selectedImage, setSelectedImage] = useState(null);
     const { currentProfileImage, setCurrentProfileImage } = useDataContext();
+    const {setMessage}= useMessageContext()
+
     const token = localStorage.getItem('ACCESS_TOKEN');
     const getCurrentProfileImage = () => {
         axiosClient.get('/show/profile-image')
@@ -46,10 +49,12 @@ const Gallery = () => {
             })
             if (response.status == 201 || response.status == 200) {
                 console.log("data updated")
+                setMessage('Profile Picture Updated Successfully')
                 getCurrentProfileImage();
             }
             else{
                 console.log("error")
+                setMessage('Error in Updating Profile Picture')
             }
         }
         catch (error) {

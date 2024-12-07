@@ -92,7 +92,7 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                             token &&
                             <>
                                 <li>
-                                    <div className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" onClick={onLogout}>
+                                    <div className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group hover:cursor-pointer" onClick={onLogout}>
                                         <div>
                                             <RiLogoutCircleRLine size={20} />
                                         </div>

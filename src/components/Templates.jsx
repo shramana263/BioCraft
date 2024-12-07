@@ -3,6 +3,7 @@ import Preview from './Preview'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useStateContext } from '../contexts/StateContext'
+import { MdOutlineStart } from 'react-icons/md'
 
 const bio_templates = [
   {
@@ -22,16 +23,16 @@ const bio_templates = [
 const Templates = () => {
   const navigate = useNavigate()
   const { user, token, setUser, setToken } = useStateContext();
-  useEffect(() => {
-    if (!token) {
-      navigate('/signup')
-    }
+  // useEffect(() => {
+  //   if (!token) {
+  //     navigate('/signup')
+  //   }
 
-  }, [])
+  // }, [])
   return (
     <>
       <div className='flex justify-center items-center bg-indigo-50 h-full p-20'>
-        <div className='flex flex-wrap gap-10'>
+        <div className='flex flex-wrap justify-center gap-10'>
           {
             bio_templates && <FormTemplates bio_template={bio_templates} />
           }
@@ -45,11 +46,22 @@ const Templates = () => {
           </button>
         </div> */}
       </div>
-      <div className='fixed bg-black text-white rounded-full p-3 w-56 flex justify-center items-center bottom-[100px] right-[100px] hover:cursor-pointer font-bold text-xl'>
+      {
+        token &&
         <Link to="/formbiodata" className=''>
-          Get Started
+          <div className='fixed bg-black text-white motion-preset-wobble   rounded-full p-3  flex justify-center items-center bottom-[10%] right-[5%] hover:cursor-pointer font-bold text-xl'>
+            <MdOutlineStart size={30} />
+          </div>
         </Link>
-      </div>
+      }
+      {
+        !token &&
+        <div className='fixed bg-black text-white rounded-full p-3 w-56 flex justify-center items-center bottom-[100px] right-[100px] hover:cursor-pointer font-bold text-xl'>
+          <Link to="/signin" className=''>
+            Get Started
+          </Link>
+        </div>
+      }
 
     </>
   )

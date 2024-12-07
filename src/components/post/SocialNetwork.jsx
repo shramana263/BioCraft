@@ -113,14 +113,16 @@ export const SocialNetworkForm = ({ setOpen, setData, setNextButton, isOpen, isN
                     'Authorization': `Bearer ${token}`
                 },
             });
-            if (response.status === 201) {
+            if (response.status === 201 || response.status ===200) {
                 console.log("data uploaded successfully")
+                setMessage('Data Uploaded Successfully')
                 setNextButton(false)
             }
             console.log(response.status)
 
         } catch (error) {
             console.error('Error uploading data:', error);
+            setMessage('Error in Data Uploading')
         }
         if (isOpen == true) {
 
