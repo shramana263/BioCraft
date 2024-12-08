@@ -10,9 +10,10 @@ import Template1 from '../components/outputTemplate/Template1';
 import Template4 from '../components/outputTemplate/Template4';
 import Template3 from '../components/outputTemplate/Template3';
 import Template2 from '../components/outputTemplate/Template2';
-import ProfileImageUpdate from '../pages/update/ProfileImageUpdate';
+import ProfileImageUpdate from '../components/forms/update/ProfileImageUpdate';
 import Landing from '../components/Landing';
 import ContactUs from '../pages/ContactUs';
+import Review from '../pages/Review';
 
 
 const AuthRouter = () => {
@@ -33,6 +34,7 @@ const AuthRouter = () => {
             <Route path="/template-4" element={<Template4/>}/>
             <Route path="/update-profile-image" element={<ProfileImageUpdate/>}/>
             <Route path='/contact-us' element={<ContactUs/>} />
+            <Route path='/review' element={<Review/>}/>
 
       </Routes>
     </>

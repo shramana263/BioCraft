@@ -88,6 +88,14 @@ const Gallery = () => {
 
 
     }
+    const isEmpty = (obj) => {
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                return false;
+            }
+        }
+        return true;
+    };
 
 
     useEffect(() => {
@@ -105,16 +113,16 @@ const Gallery = () => {
     }, [currentProfileImage])
     return (
         <>
-            <div className='md:h-[90vh] md:w-[100vh] min-[412px]:h-full min-[412px]:w-screen  border rounded-lg p-7 shadow-lg flex  flex-col justify-center items-center gap-3'>
+            <div className='md:h-full md:w-[90vh] min-[412px]:h-[90%] min-[412px]:w-screen  border rounded-lg p-10 ] shadow-lg flex  flex-col justify-center items-center gap-3'>
                 {
-                    images?
+                    !isEmpty(images)?
                     <>
                         <div>
                             Click to choose from below
                         </div>
-                        <div className='grid grid-cols-4 h-56 gap-2 overflow-y-scroll'>
+                        <div className='grid grid-cols-5 sm:h-56 h-32 gap-2 overflow-y-scroll'>
                             {images && images.map((image, index) => (
-                                <div key={index} className="h-[100%] w-[100%]" onDoubleClick={() => {
+                                <div key={index} className="h-[90%] w-[90%]" onDoubleClick={() => {
                                     setOpen(true);
                                     setSelectedImage(image.url);
                                 }}

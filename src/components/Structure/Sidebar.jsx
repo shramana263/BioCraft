@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "../../services/user-api";
 import { ImCross } from "react-icons/im";
 import { FaImagePortrait, FaUser } from "react-icons/fa6";
-import { MdSpaceDashboard } from "react-icons/md";
+import { MdRateReview, MdSpaceDashboard } from "react-icons/md";
 import { AiOutlineLogout } from "react-icons/ai";
 import { RiContactsFill, RiLogoutCircleRLine } from "react-icons/ri";
 import { IoMdInformationCircle } from "react-icons/io";
@@ -11,11 +11,13 @@ import { usePanelContext } from "../../contexts/PanelContext";
 import { useStateContext } from "../../contexts/StateContext";
 import { IoCreateOutline } from "react-icons/io5";
 import { BiLogInCircle } from "react-icons/bi";
+import { useMobileContext } from "../../contexts/MobileContext";
 
 const Sidebar = ({ isOpen, setOpen, onLogout }) => {
 
     const { setSidebarOpen } = usePanelContext()
     const { token } = useStateContext()
+    const { isMobile } = useMobileContext()
 
     return (
         <>
@@ -28,7 +30,9 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                         {
                             !token &&
                             <li>
-                                <Link to='/landing' className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 " >
+                                <Link to='/landing' className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
+                                    onClick={() => { if (isMobile) { setOpen(false) } }}
+                                >
                                     <div><MdSpaceDashboard size={20} /></div>
                                     <span className="ms-3">Home</span>
                                 </Link>
@@ -38,20 +42,26 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                             token &&
                             <>
                                 <li>
-                                    <Link to="profile" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                                    <Link to="profile" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
+                                        onClick={() => { if (isMobile) { setOpen(false) } }}
+                                    >
                                         <div><FaUser size={20} /></div>
                                         <span className="ms-3">Profile</span>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 " >
+                                    <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
+                                        onClick={() => { if (isMobile) { setOpen(false) } }}
+                                    >
                                         <div><MdSpaceDashboard size={20} /></div>
                                         <span className="ms-3">Home</span>
                                     </Link>
                                 </li>
 
                                 <li>
-                                    <Link to="make-biodata" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" >
+                                    <Link to="make-biodata" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                        onClick={() => { if (isMobile) { setOpen(false) } }}
+                                    >
                                         <div>
                                             <FaImagePortrait size={20} />
                                         </div>
@@ -61,17 +71,29 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                                 </li>
                             </>
                         }
+                        <li>
+                            <Link to="/review" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
+                                onClick={() => { if (isMobile) { setOpen(false) } }}
+                            >
+                                <div><MdRateReview size={20} /></div>
+                                <span className="ms-3">Reviews</span>
+                            </Link>
+                        </li>
                         {
                             !token &&
                             <>
                                 <li>
-                                    <Link to="signin" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                                    <Link to="signin" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
+                                        onClick={() => { if (isMobile) { setOpen(false) } }}
+                                    >
                                         <div><BiLogInCircle size={20} /></div>
                                         <span className="ms-3">Sign In</span>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="signup" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 " >
+                                    <Link to="signup" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 "
+                                        onClick={() => { if (isMobile) { setOpen(false) } }}
+                                    >
                                         <div><IoCreateOutline size={20} /></div>
                                         <span className="ms-3">Sign Up</span>
                                     </Link>
@@ -82,7 +104,9 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                         }
 
                         <li>
-                            <Link to="/about-us" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" >
+                            <Link to="/about-us" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                onClick={() => { if (isMobile) { setOpen(false) } }}
+                            >
                                 <div>
                                     <IoMdInformationCircle size={20} />
                                 </div>
@@ -90,7 +114,9 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/contact-us" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" >
+                            <Link to="/contact-us" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                onClick={() => { if (isMobile) { setOpen(false) } }}
+                            >
                                 <div>
                                     <RiContactsFill size={20} />
                                 </div>

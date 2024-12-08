@@ -2,7 +2,7 @@ import React from 'react'
 import DataPreview from './DataPreview'
 import { IoDocuments } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
-import ProfileImageUpdate from './update/ProfileImageUpdate'
+import ProfileImageUpdate from '../components/forms/update/ProfileImageUpdate'
 import { useDataContext } from '../contexts/DataContext'
 
 const Profile = () => {
@@ -37,7 +37,7 @@ const Profile = () => {
                 isOpenProfileImageUpdateModal &&
                 <div className='z-30 h-screen w-full flex justify-center items-center  absolute top-0 left 0 bg-white overflow-y-scroll'>
                     {/* {console.log("hello update profile image")} */}
-                    <div className='w-full h-full'>
+                    <div className='w-full h-screen flex justify-center items-center'>
 
                     <ProfileImageUpdate />
                     </div>
