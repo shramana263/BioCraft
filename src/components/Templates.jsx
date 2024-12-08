@@ -56,11 +56,12 @@ const Templates = () => {
       }
       {
         !token &&
-        <div className='fixed bg-black text-white rounded-full p-3 w-56 flex justify-center items-center bottom-[100px] right-[100px] hover:cursor-pointer font-bold text-xl'>
-          <Link to="/signin" className=''>
-            Get Started
-          </Link>
-        </div>
+        <Link to="/signin" className=''>
+          <div className='fixed bg-black text-white motion-preset-wobble   rounded-full p-3  flex justify-center items-center bottom-[10%] right-[5%] hover:cursor-pointer font-bold text-xl'>
+            <MdOutlineStart size={30} />
+          </div>
+        </Link>
+
       }
 
     </>

@@ -10,13 +10,17 @@ export const MessageProvider = ({ children }) => {
     const [message, setMessage] = useState(null)
     // const [nextButton, setNextButton]=useState(false)
 
-    const messagePopup = () => {
+    // const messagePopup = () => {
         
-    }
+    // }
 
-    useEffect(() => {
-        messagePopup()
-    }, [])
+    useEffect(()=>{
+        if(message!=null){
+          setTimeout(() => {
+            setMessage(null)
+          }, 2000);
+        }
+      },[message])
 
     return (
         <MessageContext.Provider value={{

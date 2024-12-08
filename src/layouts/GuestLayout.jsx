@@ -6,8 +6,9 @@ import Navbar from '../components/Structure/Navbar'
 import { useMobileContext } from '../contexts/MobileContext'
 import { usePanelContext } from '../contexts/PanelContext'
 import { useMessageContext } from '../contexts/MessageContext'
+import Popup from '../components/messagePopup/Popup'
 
-const GuestLayout = () => {
+const GuestLayout = ({children}) => {
   const navigate = useNavigate();
   const { isSidebarOpen, setSidebarOpen } = usePanelContext()
   const { isMobile } = useMobileContext()
@@ -21,13 +22,7 @@ const GuestLayout = () => {
   const outletWidth = (!isMobile && isSidebarOpen) ? 'w-[83.5%]' : 'w-full'
   const outletPosition = (!isMobile && isSidebarOpen) ? 'justify-end slideRight' : ''
 
-  useEffect(() => {
-    if (message != null) {
-      setTimeout(() => {
-        setMessage(null)
-      }, 2000);
-    }
-  }, [message])
+  
   return (
     <>
       <div className={`flex w-full ${outletPosition}`}>
@@ -37,7 +32,8 @@ const GuestLayout = () => {
           </div>
           <div>
             {/* <h3>GuestLayout</h3> */}
-            <Outlet />
+            {/* <Outlet /> */}
+            {children}
             {
               message &&
               <Popup />

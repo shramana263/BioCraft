@@ -26,6 +26,15 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                             <ImCross />
                         </div>
                         {
+                            !token &&
+                            <li>
+                                <Link to='/landing' className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 " >
+                                    <div><MdSpaceDashboard size={20} /></div>
+                                    <span className="ms-3">Home</span>
+                                </Link>
+                            </li>
+                        }
+                        {
                             token &&
                             <>
                                 <li>
@@ -35,7 +44,7 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 " >
+                                    <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100 " >
                                         <div><MdSpaceDashboard size={20} /></div>
                                         <span className="ms-3">Home</span>
                                     </Link>
@@ -81,7 +90,7 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                             </Link>
                         </li>
                         <li>
-                            <Link className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" >
+                            <Link to="/contact-us" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" >
                                 <div>
                                     <RiContactsFill size={20} />
                                 </div>

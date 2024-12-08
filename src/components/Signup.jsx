@@ -4,6 +4,7 @@ import { authRegister } from '../services/auth-api';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { useStateContext } from '../contexts/StateContext';
+import { useMessageContext } from '../contexts/MessageContext';
 
 const SignUpForm = () => {
     const nameRef=useRef();
@@ -11,12 +12,15 @@ const SignUpForm = () => {
     const passwordRef=useRef();
     const confPasswordRef=useRef();
     const {setUser, setToken}= useStateContext();
+    const {setMessage}= useMessageContext()
+
     const registerMutation= useMutation({
         mutationFn:authRegister,
         onSuccess:(data)=>{
             console.log("data fetching: "+data)
             setUser(data.data)
             setToken(data.token)
+            setMessage('Account Created!')
             toast.success("Registration Successful")
         },
         onError:(error)=>{

@@ -126,24 +126,39 @@ const FormTemplates = ({ bio_template }) => {
               <img src={img.src} alt="" className='h-full w-full' />
               <div className='absolute invisible group-hover:visible h-full w-full bg-slate-600/10 top-0 backdrop-blur-sm'>
                 <div className=' invisible  group-hover:visible h-full flex justify-center items-center hover:cursor-pointer '>
-                  {/* {console.log("image id : ", img.id)} */}
+                  {console.log("data : ", socialNetworkData)}
 
                   <div>
                     {/* {
                       personalData && */}
                     <div>
+                      {
+                        !isEmpty(socialNetworkData) &&
+                        <NavLink
+                          to={{
+                            pathname: `/template-${img.id}`,
 
-                      <NavLink
-                        to={{
-                          pathname: `/template-${img.id}`,
+                          }}
+                          state={{ personalData: personalData[0], educationalData: educationalData, specializationData: specializationData, experienceData: experienceData, skillData: skillData, profileImage: profileImage, socialNetworkData: socialNetworkData }}
 
-                        }}
-                        state={{ personalData: personalData[0], educationalData: educationalData, specializationData: specializationData, experienceData: experienceData, skillData: skillData, profileImage: profileImage, socialNetworkData:socialNetworkData }}
+                          className='border-4 rounded-r-full rounded-l-full p-2 text-xl border-black font-bold'
+                        >
+                          Use template
+                        </NavLink>
+                      }
+                      {
+                        isEmpty(socialNetworkData) &&
+                        <NavLink
+                          to={{
+                            pathname: `/formbiodata`,
 
-                        className='border-4 rounded-r-full rounded-l-full p-2 text-xl border-black font-bold'
-                      >
-                        Use template
-                      </NavLink>
+                          }}
+                          
+                          className='border-4 rounded-r-full rounded-l-full p-2 text-xl border-black font-bold'
+                        >
+                          Use template
+                        </NavLink>
+                      }
                     </div>
                     {/* } */}
                   </div>

@@ -13,7 +13,7 @@ import { useMobileContext } from '../contexts/MobileContext';
 import Popup from '../components/messagePopup/Popup';
 import { useMessageContext } from '../contexts/MessageContext';
 
-const AuthLayout = () => {
+const AuthLayout = ({children}) => {
   const navigate = useNavigate();
   const { user, token, setUser, setToken } = useStateContext();
   const [isOpen, setOpen] = useState(true);
@@ -32,17 +32,19 @@ const AuthLayout = () => {
       setUser({});
       setToken(null);
       console.log("logout successful");
-      navigate('/landing');
+      setSidebarOpen(false)
+      setMessage('Logged out Successfully')
+      navigate('/');
       // toast.success("Logout Successful")
     },
     onError: (err) => {
       console.log(err);
     }
   })
-  if (!token) {
-    console.log("no token")
-    navigate('/landing')
-  }
+  // if (!token) {
+  //   console.log("no token")
+  //   navigate('/landing')
+  // }
 
   const onLogout = (ev) => {
     ev.preventDefault();
@@ -52,13 +54,7 @@ const AuthLayout = () => {
   const outletPosition = (!isMobile && isSidebarOpen) ? 'justify-end slideRight' : ''
 
 
-  useEffect(()=>{
-    if(message!=null){
-      setTimeout(() => {
-        setMessage(null)
-      }, 2000);
-    }
-  },[message])
+  
 
   return (
     authUser.isLoading ? <div className='h-screen w-full flex justify-center items-center'>
@@ -76,7 +72,8 @@ const AuthLayout = () => {
             </div>
             <main className=''>
               {/* <h3>AuthLayout</h3> */}
-              <Outlet />
+              {/* <Outlet /> */}
+              {children}
               {
                 message &&
                 <Popup />

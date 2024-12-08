@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useStateContext } from '../contexts/StateContext'
 import { useMobileContext } from '../contexts/MobileContext'
 import { usePanelContext } from '../contexts/PanelContext'
+import { useMessageContext } from '../contexts/MessageContext'
 
 const Signin = () => {
 
@@ -14,6 +15,7 @@ const Signin = () => {
     const navigate = useNavigate();
     const {isMobile}= useMobileContext()
     const {setSidebarOpen}= usePanelContext()
+    const {setMessage}= useMessageContext()
 
     const loginMutation = useMutation({
         mutationFn: authLogin,
@@ -21,6 +23,7 @@ const Signin = () => {
             console.log(data)
             setUser(data.data)
             setToken(data.token)
+            setMessage('Logged in Successfully')
             navigate('/')
             setSidebarOpen(false)
         },
