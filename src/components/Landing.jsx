@@ -86,9 +86,9 @@ const Landing = () => {
                     <div className='text-xl font-thin flex justify-center items-center'>We have developed a resume builder based on feedback from thousands of users, recruiter expertise, stellar template design and the best hiring practices. The goal is simple: help you land that dream job interview! Get an advantage in the modern professional environment.</div>
 
                     <div className='flex justify-start items-center'>
-                        <div className='hover:cursor-pointer rounded bg-[#1A91F0] hover:bg-[#1a68f0] text-white w-64 p-5 flex justify-center items-center text-2xl font-bold'>
+                        <Link to="/make-biodata" className='hover:cursor-pointer rounded bg-[#1A91F0] hover:bg-[#1a68f0] text-white w-64 p-5 flex justify-center items-center text-2xl font-bold'>
                             Build Your Biodata
-                        </div>
+                        </Link>
                     </div>
 
                 </div>
@@ -139,10 +139,10 @@ const Landing = () => {
                 <div className='md:w-[1200px] min-[412px]:w-[400px]'>
                     <ImageSlider images={IMAGES} slidesToShow={3} />
                 </div>
-                <div className='flex justify-center items-center gap-5 text-white text-3xl hover:cursor-pointer group'>
+                <Link to="/make-biodata" className='flex justify-center items-center gap-5 text-white text-3xl hover:cursor-pointer group'>
                     <span className='flex justify-center items-center font-bold'>Try Out</span>
                     <span className='flex justify-center items-center p-3 rounded-full bg-slate-600 animate-slide group-hover:bg-white group-hover:text-slate-700'><FaArrowRight /></span>
-                </div>
+                </Link>
 
             </div>
 
@@ -160,7 +160,7 @@ const Landing = () => {
                         </span>
                     </div>
                     <div className='flex justify-center items-center mt-4'>
-                        <div className='p-5 text-white rounded-lg bg-blue-600 hover:bg-blue-800 text-xl font-semibold hover:cursor-pointer'>Get Started</div>
+                        <Link to="/formbiodata" className='p-5 text-white rounded-lg bg-blue-600 hover:bg-blue-800 text-xl font-semibold hover:cursor-pointer'>Get Started</Link>
                     </div>
 
                 </div>
@@ -182,22 +182,22 @@ const Landing = () => {
                         <div className='flex flex-col gap-3'>
                             <div className='text-gray-600 font-bold'>OUR COMPANY</div>
                             <div className='flex flex-col gap-2 text-xl'>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>About Us</div>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>Pricing</div>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>Product Updates</div>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>Sponsorship Program</div>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>Media kit</div>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>Affiliates</div>
+                                <Link to="/about-us" className='hover:text-blue-600 hover: cursor-pointer'>About Us</Link>
+                                <Link to="#" className='hover:text-blue-600 hover: cursor-pointer'>Pricing</Link>
+                                <Link className='hover:text-blue-600 hover: cursor-pointer'>Product Updates</Link>
+                                <Link className='hover:text-blue-600 hover: cursor-pointer'>Sponsorship Program</Link>
+                                <Link className='hover:text-blue-600 hover: cursor-pointer'>Media kit</Link>
+                                <Link className='hover:text-blue-600 hover: cursor-pointer'>Affiliates</Link>
 
                             </div>
                         </div>
                         <div className='flex flex-col gap-3'>
                             <div className='text-gray-600 font-bold'>SUPPORT</div>
                             <div className='flex flex-col gap-2 text-xl'>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>FAQ</div>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>Contact Us</div>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>Terms of Service</div>
-                                <div className='hover:text-blue-600 hover: cursor-pointer'>Privacy</div>
+                                <Link className='hover:text-blue-600 hover: cursor-pointer'>FAQ</Link>
+                                <Link to="/contact-us" className='hover:text-blue-600 hover: cursor-pointer'>Contact Us</Link>
+                                <Link className='hover:text-blue-600 hover: cursor-pointer'>Terms of Service</Link>
+                                <Link className='hover:text-blue-600 hover: cursor-pointer'>Privacy</Link>
 
                             </div>
                         </div>

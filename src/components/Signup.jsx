@@ -21,10 +21,11 @@ const SignUpForm = () => {
             setUser(data.data)
             setToken(data.token)
             setMessage('Account Created!')
-            toast.success("Registration Successful")
+            // toast.success("Registration Successful")
         },
         onError:(error)=>{
-            toast.error(error.response.data.message)
+            // toast.error(error.response.data.message)
+            setMessage(error.response.data.message)
         }
     })
 
@@ -38,6 +39,9 @@ const SignUpForm = () => {
             };
             console.log(payload)
             registerMutation.mutate(payload)
+        }
+        else{
+            setMessage('Password fields didn\'t match')
         }
     }
 

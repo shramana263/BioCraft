@@ -120,7 +120,7 @@ const FormTemplates = ({ bio_template }) => {
     <>
 
       {
-        personalData ? bio_template.map((img, index) => (
+        bio_template.map((img, index) => (
           <>
             <div key={index} className='h-[600px] w-[400px] group relative '>
               <img src={img.src} alt="" className='h-full w-full' />
@@ -171,10 +171,10 @@ const FormTemplates = ({ bio_template }) => {
 
           </>
         ))
-          :
-          <div>
-            <AiOutlineLoading3Quarters size={50} className='motion-preset-spin' />
-          </div>
+          // :
+          // <div>
+          //   <AiOutlineLoading3Quarters size={50} className='motion-preset-spin' />
+          // </div>
 
       }
 

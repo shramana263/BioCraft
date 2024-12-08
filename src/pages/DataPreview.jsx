@@ -17,6 +17,7 @@ import { SpecializationForm } from '../components/post/Specialization'
 import { SkillsForm } from '../components/post/Skills'
 import { SocialNetworkForm } from '../components/post/SocialNetwork'
 import { MdDeleteForever } from 'react-icons/md'
+import DeleteData from '../components/delete/DeleteData'
 
 const DataPreview = () => {
 
@@ -33,6 +34,8 @@ const DataPreview = () => {
         isSocialDetailsUpdateModalOpen, setSocialDetailsUpdateModalOpen, isNewEntry, setNewEntry
     } = useDataContext()
     const navigate = useNavigate();
+
+    const {deleteData, setDeleteData}= useDataContext()
 
     const handleProfileImageUpdate = () => {
         //navigate('/update-profile-image');
@@ -74,7 +77,7 @@ const DataPreview = () => {
 
         fetchData();
     }, [currentProfileImage, isNewEntry, isPersonalDetailsUpdateModalOpen, isEducationalDetailsUpdateModalOpen, isSpecializationDetailsUpdateModalOpen
-        , isExperienceDetailsUpdateModalOpen, isSkillDetailsUpdateModalOpen, isSocialDetailsUpdateModalOpen
+        , isExperienceDetailsUpdateModalOpen, isSkillDetailsUpdateModalOpen, isSocialDetailsUpdateModalOpen, deleteData
     ])
 
     return (
@@ -217,7 +220,7 @@ const DataPreview = () => {
                                             </div>
                                             <div className='flex gap-3'>
                                                 <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                                    onClick={() => { setDeleteData('deleteEducation'); setIndex(item.id) }}
                                                 ><MdDeleteForever size={20} /></div>
                                                 <div className='border p-3 rounded hover:cursor-pointer'
                                                     onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
@@ -269,7 +272,7 @@ const DataPreview = () => {
                                             </div>
                                             <div className='flex gap-3'>
                                                 <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                                     onClick={() => { setDeleteData('deleteSpecialization'); setIndex(item.id) }}
                                                 ><MdDeleteForever size={20} /></div>
                                                 <div className='border p-3 rounded hover:cursor-pointer'
                                                     onClick={() => { setSpecializationDetailsUpdateModalOpen(true); setIndex(index) }}
@@ -329,7 +332,7 @@ const DataPreview = () => {
                                             </div>
                                             <div className='flex gap-3'>
                                                 <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                                     onClick={() => { setDeleteData('deleteExperience'); setIndex(item.id) }}
                                                 ><MdDeleteForever size={20} /></div>
                                                 <div className='border p-3 rounded hover:cursor-pointer'
                                                     onClick={() => { setExperienceDetailsUpdateModalOpen(true); setIndex(index) }}
@@ -379,7 +382,7 @@ const DataPreview = () => {
                                             </div>
                                             <div className='flex gap-3'>
                                                 <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                                     onClick={() => { setDeleteData('deleteSkill'); setIndex(item.id) }}
                                                 ><MdDeleteForever size={20} /></div>
                                                 <div className='border p-3 rounded hover:cursor-pointer'
                                                     onClick={() => { setSkillDetailsUpdateModalOpen(true); setIndex(index) }}
@@ -431,7 +434,7 @@ const DataPreview = () => {
                                                     </div>
                                                     <div className='flex gap-3'>
                                                         <div className='border p-3 rounded hover:cursor-pointer'
-                                                            onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
+                                                             onClick={() => { setDeleteData('deleteSocial'); setIndex(item.id) }}
                                                         ><MdDeleteForever size={20} /></div>
                                                         <div className='border p-3 rounded hover:cursor-pointer'
                                                             onClick={() => { setSocialDetailsUpdateModalOpen(true); setIndex(index) }}
@@ -557,6 +560,11 @@ const DataPreview = () => {
 
 
                 </div>
+            }
+
+            {
+                deleteData && 
+                <DeleteData id={index} setDeleteData={setDeleteData}/>
             }
 
 

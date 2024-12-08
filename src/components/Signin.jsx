@@ -23,12 +23,13 @@ const Signin = () => {
             console.log(data)
             setUser(data.data)
             setToken(data.token)
-            setMessage('Logged in Successfully')
             navigate('/')
+            setMessage('Logged in Successfully')
             setSidebarOpen(false)
         },
         onError: (error) => {
             console.log(error)
+            setMessage(error.response.data.message)
         }
     })
 

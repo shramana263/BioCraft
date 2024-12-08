@@ -44,13 +44,14 @@ export const DataProvider = ({ children }) => {
     const [deleteData, setDeleteData]= useState(null)
     const {message, setMessage}= useMessageContext()
 
-    const deleteUserData=(option, id)=>{
-        if(option=='deleteEducation'){
+    const deleteUserData=(id)=>{
+        if(deleteData=='deleteEducation'){
             axiosClient.delete(`/delete/educationaldetails/${id}`)
             .then((response)=>{
                 if(response.status==200)
                 {
                     setMessage('Data Deleted Successfully')
+                    setDeleteData(null)
                 }
             })
             .catch((err)=>{
@@ -58,12 +59,13 @@ export const DataProvider = ({ children }) => {
                 setMessage('Error in Deleting Data')
             })
         }
-        if(option=='deleteSpecialization'){
+        if(deleteData=='deleteSpecialization'){
             axiosClient.delete(`/delete/specialization/${id}`)
             .then((response)=>{
                 if(response.status==200)
                 {
                     setMessage('Data Deleted Successfully')
+                    setDeleteData(null)
                 }
             })
             .catch((err)=>{
@@ -71,12 +73,13 @@ export const DataProvider = ({ children }) => {
                 setMessage('Error in Deleting Data')
             })
         }
-        if(option=='deleteExperience'){
+        if(deleteData=='deleteExperience'){
             axiosClient.delete(`/delete/experience/${id}`)
             .then((response)=>{
                 if(response.status==200)
                 {
                     setMessage('Data Deleted Successfully')
+                    setDeleteData(null)
                 }
             })
             .catch((err)=>{
@@ -84,12 +87,13 @@ export const DataProvider = ({ children }) => {
                 setMessage('Error in Deleting Data')
             })
         }
-        if(option=='deleteSkill'){
+        if(deleteData=='deleteSkill'){
             axiosClient.delete(`/delete/skill/${id}`)
             .then((response)=>{
                 if(response.status==200)
                 {
                     setMessage('Data Deleted Successfully')
+                    setDeleteData(null)
                 }
             })
             .catch((err)=>{
@@ -97,12 +101,13 @@ export const DataProvider = ({ children }) => {
                 setMessage('Error in Deleting Data')
             })
         }
-        if(option=='deleteSocial'){
+        if(deleteData=='deleteSocial'){
             axiosClient.delete(`/delete/social-network/${id}`)
             .then((response)=>{
                 if(response.status==200)
                 {
                     setMessage('Data Deleted Successfully')
+                    setDeleteData(null)
                 }
             })
             .catch((err)=>{

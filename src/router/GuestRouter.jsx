@@ -7,6 +7,7 @@ import Signin from '../components/Signin';
 import Templates from '../components/Templates';
 import AboutUs from '../pages/AbountUs';
 import ContactUs from '../pages/ContactUs';
+import MakeBiodata from '../pages/MakeBiodata';
 
 const GuestRouter = () => {
     console.log("I am in guest layout")
@@ -21,6 +22,12 @@ const GuestRouter = () => {
             <Route path='/landing' element={<Landing/>} />
             <Route path='/guest-templates' element={<Templates/>} />
             <Route path='/contact-us' element={<ContactUs/>} />
+            <Route path="/make-biodata" element={<MakeBiodata/>}/>
+            <Route path="/formbiodata" element={<Signin/>}/>
+            <Route path="/template-1" element={<Signin/>}/>
+            <Route path="/template-2" element={<Signin/>}/>
+            <Route path="/template-3" element={<Signin/>}/>
+            <Route path="/template-4" element={<Signin/>}/>
             
         </Routes> 
     </>
