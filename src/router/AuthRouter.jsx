@@ -16,7 +16,7 @@ import ContactUs from '../pages/ContactUs';
 
 
 const AuthRouter = () => {
-    console.log("I am in auth Layout");
+    // console.log("I am in auth Layout");
   return (
     <>
       <Routes>

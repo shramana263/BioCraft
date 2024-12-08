@@ -10,7 +10,7 @@ import ContactUs from '../pages/ContactUs';
 import MakeBiodata from '../pages/MakeBiodata';
 
 const GuestRouter = () => {
-    console.log("I am in guest layout")
+    // console.log("I am in guest layout")
     return (
     <>
      

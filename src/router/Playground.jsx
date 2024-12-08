@@ -45,10 +45,10 @@ const PlayGround = () => {
 
 
     useEffect(() => {
-        console.log('before');
+        // console.log('before');
 
         isValidToken();
-        console.log("pathname is", pathname, isGuest);
+        // console.log("pathname is", pathname, isGuest);
 
 
     }, [pathname])
