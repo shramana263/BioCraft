@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { fetchUser } from "../../services/user-api";
 import { useReactToPrint } from "react-to-print";
+import { FaDownload } from "react-icons/fa";
 
 const Template2 = () => {
   const contentRef = useRef();
@@ -22,7 +23,7 @@ const Template2 = () => {
 
   return (
     <>
-      <button className='bg-lime-100 border px-4 py-3 rounded font-bold m-5 w-56' onClick={reactToPrintFn}>Print</button>
+      <button className='fixed bottom-8 right-8 shadow-md bg-lime-100 border p-4 rounded-full font-bold m-5' onClick={reactToPrintFn}><FaDownload size={20} /></button>
       <div className="bg-gray-100 h-full items-center flex justify-center">
 
         <div ref={contentRef}>

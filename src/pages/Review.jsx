@@ -121,7 +121,7 @@ const Review = () => {
                             See what others think
                         </div>
                     </div>
-                    <div className='w-full p-10 pt-3 flex flex-col gap-3'>
+                    <div className='w-full sm:p-10 pt-3 flex flex-col gap-3'>
                         {
                             data ?
                                 !isEmpty(data) ?
