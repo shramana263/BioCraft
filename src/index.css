@@ -5,6 +5,17 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  overflow-y: scroll;
+  scrollbar-width: 0; /* for Firefox */
+  -ms-overflow-style: none; /* for Internet Explorer and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
+
 .slide {
     transform: scale(0.7);
     transition: transform 300ms;

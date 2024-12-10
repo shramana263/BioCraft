@@ -12,6 +12,7 @@ import { useStateContext } from "../../contexts/StateContext";
 import { IoCreateOutline } from "react-icons/io5";
 import { BiLogInCircle } from "react-icons/bi";
 import { useMobileContext } from "../../contexts/MobileContext";
+import { FaQuestionCircle } from "react-icons/fa";
 
 const Sidebar = ({ isOpen, setOpen }) => {
 
@@ -121,6 +122,16 @@ const Sidebar = ({ isOpen, setOpen }) => {
                                     <RiContactsFill size={20} />
                                 </div>
                                 <span className="flex-1 ms-3 whitespace-nowrap">Contact Us</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/frequently-asked-question" className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                                onClick={() => { if (isMobile) { setOpen(false) } }}
+                            >
+                                <div>
+                                    <FaQuestionCircle  size={20} />
+                                </div>
+                                <span className="flex-1 ms-3 whitespace-nowrap">FAQ</span>
                             </Link>
                         </li>
                         {/* {

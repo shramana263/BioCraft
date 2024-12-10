@@ -20,7 +20,7 @@ const Profile = () => {
 
                 <div>
 
-                    <div className='text-5xl text-orange-900 font-extrabold p-3 pb-0 w-full flex justify-center items-center'>
+                    <div className='text-5xl text-orange-900 font-extrabold p-3 md:pt-5 pb-0 w-full flex justify-center items-center'>
                         PROFILE
                     </div>
                     <div>

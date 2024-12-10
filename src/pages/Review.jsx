@@ -114,20 +114,20 @@ const Review = () => {
                                 ></textarea>
                             </div>
                             <div className='flex gap-4'>
-
-                                <button
-                                    type="submit"
-                                    className="w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition duration-200"
-                                >
-                                    Post 
-                                </button>
-                                <button
+                            <button
                                 onClick={()=>setAnonymous(true)}
                                     type="submit"
                                     className="w-full bg-yellow-700 text-white font-semibold py-2 rounded-md transition duration-200"
                                 >
                                     Post as Anonymous
                                 </button>
+                                <button
+                                    type="submit"
+                                    className="w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition duration-200"
+                                >
+                                    Post 
+                                </button>
+                                
                             </div>
                         </form>
                     </div>
@@ -146,7 +146,7 @@ const Review = () => {
                         {
                             data ?
                                 !isEmpty(data) ?
-                                    data.map((item, index) => (
+                                    data.slice().reverse().map((item, index) => (
                                         <div key={index}>
 
                                             <div className='w-full bg-white rounded p-5 motion-preset-slide-left'>

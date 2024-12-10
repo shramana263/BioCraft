@@ -9,6 +9,7 @@ import AboutUs from '../pages/AbountUs';
 import ContactUs from '../pages/ContactUs';
 import MakeBiodata from '../pages/MakeBiodata';
 import Review from '../pages/Review';
+import Faq from '../pages/Faq';
 
 const GuestRouter = () => {
     // console.log("I am in guest layout")
@@ -30,6 +31,7 @@ const GuestRouter = () => {
             <Route path="/template-3" element={<Signin/>}/>
             <Route path="/template-4" element={<Signin/>}/>
             <Route path='/review' element={<Review/>}/>
+            <Route path='/frequently-asked-question' element={<Faq/>}/>
             
         </Routes> 
     </>
