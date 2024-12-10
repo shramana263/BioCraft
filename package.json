@@ -23,6 +23,7 @@
     "react-to-print": "^3.0.2",
     "react-toastify": "^10.0.5",
     "slick-carousel": "^1.8.1",
+    "tailwindcss-animate": "^1.0.7",
     "tailwindcss-motion": "^0.4.3-beta"
   },
   "devDependencies": {

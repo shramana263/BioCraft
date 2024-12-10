@@ -13,7 +13,7 @@ import { IoCreateOutline } from "react-icons/io5";
 import { BiLogInCircle } from "react-icons/bi";
 import { useMobileContext } from "../../contexts/MobileContext";
 
-const Sidebar = ({ isOpen, setOpen, onLogout }) => {
+const Sidebar = ({ isOpen, setOpen }) => {
 
     const { setSidebarOpen } = usePanelContext()
     const { token } = useStateContext()
@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
 
     return (
         <>
-            <aside className="fixed top-0 left-0 z-40 w-64 h-screen animate-slideRight" >
+            <aside className="fixed top-0 left-0 z-40 w-64 h-screen animate-slideRight " >
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 ">
                     <ul className="space-y-2 font-medium">
                         <div className="p-3 w-full flex justify-end" onClick={() => { setOpen(false); setSidebarOpen(false) }}>
@@ -123,20 +123,14 @@ const Sidebar = ({ isOpen, setOpen, onLogout }) => {
                                 <span className="flex-1 ms-3 whitespace-nowrap">Contact Us</span>
                             </Link>
                         </li>
-                        {
+                        {/* {
                             token &&
                             <>
                                 <li>
-                                    <div className="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group hover:cursor-pointer" onClick={onLogout}>
-                                        <div>
-                                            <RiLogoutCircleRLine size={20} />
-                                        </div>
-                                        <span className="flex-1 ms-3 whitespace-nowrap">Logout</span>
-                                        {/* <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full">Pro</span> */}
-                                    </div>
+                                    
                                 </li>
                             </>
-                        }
+                        } */}
 
 
                     </ul>

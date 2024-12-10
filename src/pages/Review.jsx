@@ -5,6 +5,8 @@ import axiosClient from '../axios-client';
 import { useMessageContext } from '../contexts/MessageContext';
 import { useStateContext } from '../contexts/StateContext';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { fetchUser } from '../services/user-api';
 
 const Review = () => {
     // Create refs for each input field
@@ -14,7 +16,15 @@ const Review = () => {
     const [data, setData] = useState(null)
     const [isFetch, setFetch] = useState(false)
     const { token } = useStateContext()
+    const [isAnonymous, setAnonymous]= useState(false)
     const navigate = useNavigate()
+    
+
+    const authUser = useQuery({
+        queryKey: ['user'],
+        queryFn: fetchUser
+    })
+    // console.log(authUser.data.name)
 
     // Handle form submission
     const handleSubmit = (e) => {
@@ -31,7 +41,7 @@ const Review = () => {
             }
             // Get values from refs
             const payload = {
-                name: nameRef.current.value,
+                name: isAnonymous?'Anonymous':authUser.data.name,
                 review: reviewRef.current.value
             }
 
@@ -45,7 +55,7 @@ const Review = () => {
                 })
 
             // Clear the form fields after submission
-            nameRef.current.value = '';
+            // nameRef.current.value = '';
             reviewRef.current.value = '';
         }
 
@@ -73,7 +83,7 @@ const Review = () => {
     return (
         <>
             <div className="flex flex-col items-center gap-10 p-10  min-h-screen h-full bg-gray-100">
-                <div className='h-[400px] w-full flex justify-center items-center'>
+                <div className='h-[300px] w-full flex justify-center items-center'>
 
                     <div className="bg-white p-6 rounded-lg shadow-md w-full h-full  max-w-md motion-preset-pop">
                         <div className="text-2xl flex justify-center items-center gap-3 font-bold text-center mb-6">Submit Your Review
@@ -82,7 +92,7 @@ const Review = () => {
                             </div>
                         </div>
                         <form onSubmit={handleSubmit}>
-                            <div className="mb-4">
+                            {/* <div className="mb-4">
                                 <label className="block text-sm font-medium text-gray-700" htmlFor="name">Name</label>
                                 <input
                                     type="text"
@@ -90,7 +100,7 @@ const Review = () => {
                                     ref={nameRef}
                                     className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
                                 />
-                            </div>
+                            </div> */}
 
                             <div className="mb-4">
                                 <label className="block text-sm font-medium text-gray-700" htmlFor="review">Review</label>
@@ -98,16 +108,27 @@ const Review = () => {
                                     id="review"
                                     ref={reviewRef}
                                     rows="4"
+                                    placeholder='Write review here...'
                                     className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
 
                                 ></textarea>
                             </div>
-                            <button
-                                type="submit"
-                                className="w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition duration-200"
-                            >
-                                Submit Review
-                            </button>
+                            <div className='flex gap-4'>
+
+                                <button
+                                    type="submit"
+                                    className="w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition duration-200"
+                                >
+                                    Post 
+                                </button>
+                                <button
+                                onClick={()=>setAnonymous(true)}
+                                    type="submit"
+                                    className="w-full bg-yellow-700 text-white font-semibold py-2 rounded-md transition duration-200"
+                                >
+                                    Post as Anonymous
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
