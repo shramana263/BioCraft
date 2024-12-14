@@ -88,7 +88,7 @@ const Navbar = ({ userName, onLogout }) => {
 
                     {/* <Link to="/signin" className="bg-orange-900 text-white rounded-md ms-3 px-3 py-2 font-sans text font-bold justify-end md:float-right"><IoPersonSharp size={30} /></Link> */}
                     {
-                        (token && !isMobile) &&
+                        token &&
                         <>
                             <UserProfileMenu image={image} userName={userName} onLogout={onLogout} />
                         </>
