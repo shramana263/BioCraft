@@ -7,11 +7,11 @@ const BotIcon = () => {
         <>
             {
                 visible &&
-                <div className='absolute right-32 top-20 motion-preset-pop'>
+                <div className='absolute sm:right-32 top-20 right-0 motion-preset-pop'>
                     <Chat />
                 </div>
             }
-            <div className='h-16 w-16 rounded-full overflow-hidden cursor-pointer' onClick={()=>{setVisible(prev=>!prev);console.log(visible)}} >
+            <div className='sm:h-16 sm:w-16 h-10 w-10 rounded-full overflow-hidden cursor-pointer' onClick={()=>{setVisible(prev=>!prev);console.log(visible)}} >
                 <img src="src/assets/images/chatbot1.jpg" alt="" className='h-full w-full' />
             </div>
         </>

@@ -1,5 +1,6 @@
 .react-chatbot-kit-chat-container {
     width: 400px;
+    box-shadow:2px 3px 9px 0px #000000;
 }
 .react-chatbot-kit-chat-inner-container {
     background-color: #f5fff6;

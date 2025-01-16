@@ -45,7 +45,7 @@ const Navbar = ({ userName, onLogout }) => {
                     <Sidebar setOpen={setOpen} />
                 </div>
             }
-            <div className={`fixed ${outletWidth} bg-white flex justify-between items-center p-5 border-b`}>
+            <div className={`fixed ${outletWidth} bg-white flex justify-between items-center p-3 border-b`}>
                 <div className='flex justify-center items-center gap-3'>
 
                     <div className='border rounded-lg p-2'
@@ -55,7 +55,7 @@ const Navbar = ({ userName, onLogout }) => {
                         <span>BioCraft</span>
                     </div>
                 </div>
-                <div className='flex gap-10'>
+                <div className='flex sm:gap-8 gap-2'>
                     {/* {token &&
 
                         <div className='font-bold flex justify-center items-center'>Hello, {userName}</div>
@@ -86,18 +86,21 @@ const Navbar = ({ userName, onLogout }) => {
                             </Link>
                         </div>
                     }
-                    
-                    <BotIcon/>
+                    <div className='flex justify-center items-center sm:gap-8 gap-2'>
+
+                        <BotIcon />
+                        {
+                            token &&
+                            <>
+                                <UserProfileMenu image={image} userName={userName} onLogout={onLogout} />
+                            </>
+
+
+                        }
+                    </div>
+
 
                     {/* <Link to="/signin" className="bg-orange-900 text-white rounded-md ms-3 px-3 py-2 font-sans text font-bold justify-end md:float-right"><IoPersonSharp size={30} /></Link> */}
-                    {
-                        token &&
-                        <>
-                            <UserProfileMenu image={image} userName={userName} onLogout={onLogout} />
-                        </>
-
-
-                    }
 
                 </div>
             </div>
@@ -115,7 +118,7 @@ const UserProfileMenu = ({ image, userName, onLogout }) => {
     }
     return (
         <>
-            <ProfileTab image={image} handleSwitch={handleSwitch}/>
+            <ProfileTab image={image} handleSwitch={handleSwitch} />
             {
                 isLogoutOpen &&
                 <ProfileMenu handleSwitch={handleSwitch} image={image} userName={userName} onLogout={onLogout} />
@@ -129,7 +132,7 @@ const ProfileTab = ({ image, handleSwitch }) => {
 
     return (
         <>
-            <div onClick={handleSwitch} className="flex items-center hover:cursor-pointer text-white ms-3 h-14 w-14 rounded-full overflow-hidden font-sans text font-bold justify-end md:float-right border-2 border-neutral-900">
+            <div onClick={handleSwitch} className="flex items-center hover:cursor-pointer text-white ms-3 sm:h-14 sm:w-14 h-10 w-10 rounded-full overflow-hidden font-sans text font-bold justify-end md:float-right border-2 border-neutral-900">
 
                 <img src={image ?? "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659652_640.png"} alt="" className='h-full w-full' />
 
@@ -142,7 +145,7 @@ const ProfileTab = ({ image, handleSwitch }) => {
 
 
 const ProfileMenu = ({ handleSwitch, image, userName, onLogout }) => {
-    
+
     return (
         <>
             <div className='h-72 w-60 p-4 border absolute bg-blue-50  top-20 pt-0 right-10 flex flex-col gap-5 items-center rounded text-neutral-900 motion-preset-pop'>
