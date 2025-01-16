@@ -2,9 +2,13 @@ import React from 'react';
 import { createChatBotMessage } from 'react-chatbot-kit';
 
 const MessageParser = ({ children, actions }) => {
+    
     const parse = (message) => {
         if (message.includes('start') || message.includes('Start') || message.includes('How to start') || message.includes('how to start') || message.includes('explore') || message.includes('Explore')) {
             actions.initialAction();
+        }
+        else if(message.includes('hello') || message.includes('Hello') || message.includes('hi') || message.includes('Hi') || message.includes('hey') || message.includes('Hey')) {
+            actions.helloAction();
         }
         else if (message.includes('biodata') || message.includes('Biodata') || message.includes('profile') || message.includes('Profile') || message.includes('get my biodata') || message.includes('Get my biodata')) {
             actions.initialAction1();
