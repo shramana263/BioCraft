@@ -8,7 +8,7 @@ import './Chat.css'
 
 const Chat = () => {
     return (
-        <div className='flex justify-center items-center h-full w-full p-10'>
+        <div className=''>
             {/* <ActionProvider> */}
 
                 <Chatbot

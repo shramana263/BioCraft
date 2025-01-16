@@ -9,6 +9,7 @@ import axiosClient from '../../axios-client';
 import { useMessageContext } from '../../contexts/MessageContext';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
+import BotIcon from '../../chatbot/BotIcon';
 
 const Navbar = ({ userName, onLogout }) => {
     const { token, user } = useStateContext();
@@ -54,7 +55,7 @@ const Navbar = ({ userName, onLogout }) => {
                         <span>BioCraft</span>
                     </div>
                 </div>
-                <div className='flex gap-12'>
+                <div className='flex gap-10'>
                     {/* {token &&
 
                         <div className='font-bold flex justify-center items-center'>Hello, {userName}</div>
@@ -85,6 +86,8 @@ const Navbar = ({ userName, onLogout }) => {
                             </Link>
                         </div>
                     }
+                    
+                    <BotIcon/>
 
                     {/* <Link to="/signin" className="bg-orange-900 text-white rounded-md ms-3 px-3 py-2 font-sans text font-bold justify-end md:float-right"><IoPersonSharp size={30} /></Link> */}
                     {
