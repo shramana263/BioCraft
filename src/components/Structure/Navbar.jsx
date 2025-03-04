@@ -11,6 +11,7 @@ import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import BotIcon from '../../chatbot/BotIcon';
 import DarkMode from '../theme/DarkMode';
+import Logo from '../../Logo/Logo';
 
 const Navbar = ({ userName, onLogout }) => {
     const { token, user } = useStateContext();
@@ -49,11 +50,12 @@ const Navbar = ({ userName, onLogout }) => {
             <div className={`fixed ${outletWidth} bg-white  flex justify-between items-center p-3 border-b`}>
                 <div className='flex justify-center items-center gap-3'>
 
-                    <div className='border rounded-lg p-2'
+                    <div className='rounded-lg p-2'
                         onClick={() => { setOpen(true); setSidebarOpen(true) }}
                     ><GiHamburgerMenu size={25} /></div>
                     <div className='font-bold text-3xl flex justify-center items-center'>
-                        <span>BioCraft</span>
+                        {/* <span>BioCraft</span> */}
+                        <span><Logo/></span>
                     </div>
                 </div>
                 <div className='flex sm:gap-8 gap-2'>
