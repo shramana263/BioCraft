@@ -38,7 +38,6 @@ const DataPreview = () => {
     const {deleteData, setDeleteData}= useDataContext()
 
     const handleProfileImageUpdate = () => {
-        //navigate('/update-profile-image');
         setOpenProfileImageUpdateModal(true)
     }
     const isEmpty = (obj) => {
@@ -61,11 +60,6 @@ const DataPreview = () => {
                 axiosClient.get('/show/profile-image'),
                 axiosClient.get('/index/social-network')
             ])
-            console.log("response1 : ", response1.data)
-            // console.log("response2 : ", response2.data.data)
-            // console.log("response3 : ", response3.data.data[0].id)
-            // console.log("response4 : ", response4.data.data)
-            // console.log("response6 : ", response7.data.data[0])
             setPersonalData(response1.data.data);
             setEducationalData(response2.data.data);
             setSpecializationData(response3.data.data);
@@ -82,494 +76,295 @@ const DataPreview = () => {
 
     return (
         <>
-            <div className='flex w-full p-5 h-full flex-col gap-5'>
-                {/* <div className='text-4xl font-bold ps-3 pe-3 max-[300px]:flex max-[300px]:justify-center'>Your Information</div> */}
-                {/* Profile Image */}
-
-                {/* Personal details */}
-                <div className='flex md:flex-row min-[300px]:flex-col sm:flex-row justify-center items-center gap-5'>
-                    <div className="flex justify-center items-center md:w-[30%]">
-
-                        <div className='h-56 w-56 border-2 border-black rounded-full overflow-hidden motion-preset-pop'>
+            <div className='w-full p-6 h-full flex flex-col gap-8 bg-gray-50'>
+                {/* Profile Image and Personal Details */}
+                <div className='flex md:flex-row min-[300px]:flex-col sm:flex-row justify-center items-center gap-8'>
+                    <div className="flex justify-center items-center md:w-[30%] relative">
+                        <div className='h-64 w-64 border-4 border-purple-200 rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300'>
                             {
                                 profileImage ?
-                                    <img src={profileImage} alt="hello" className='h-full w-full' />
+                                    <img src={profileImage} alt="Profile" className='h-full w-full object-cover' />
                                     :
-                                    <div className='h-full w-full flex justify-center items-center'>
-                                        <AiOutlineLoading3Quarters size={80} className='motion-preset-spin' />
+                                    <div className='h-full w-full flex justify-center items-center bg-gray-100'>
+                                        <AiOutlineLoading3Quarters size={80} className='animate-spin text-purple-500' />
                                     </div>
                             }
                         </div>
-                        {/* <div className=''> */}
-                        <div className='border p-3 rounded-full hover:cursor-pointer absolute bg-purple-200' onClick={handleProfileImageUpdate}><FaPencil /></div>
-                        {/* </div> */}
+                        <div className='absolute bottom-2 right-2 bg-purple-500 p-3 rounded-full hover:bg-purple-600 transition-colors duration-300 cursor-pointer shadow-md' onClick={handleProfileImageUpdate}>
+                            <FaPencil className='text-white' />
+                        </div>
                     </div>
 
-                    <div className='border-2 rounded p-3 bg-green-100 sm:w-[70%] w-full motion-preset-slide-left'>
-
-                        <div className='flex justify-between items-center text-3xl mb-3'>
-                            <div className='flex justify-center items-center'>
-
+                    <div className='border-2 border-purple-100 rounded-lg p-6 bg-white shadow-xl w-full md:w-[70%]'>
+                        <div className='flex justify-between items-center text-2xl mb-4'>
+                            <div className='font-bold text-purple-700 uppercase'>
                                 Personal Details
                             </div>
                             {
                                 isEmpty(personalData) &&
-                                <div className='flex justify-center items-center' onClick={() => setNewEntry('addEducation')}>
-                                    <IoAddCircleOutline />
+                                <div className='text-purple-500 hover:text-purple-700 cursor-pointer transition-colors duration-300' onClick={() => setNewEntry('addEducation')}>
+                                    <IoAddCircleOutline size={28} />
                                 </div>
                             }
                         </div>
 
-
                         {
                             personalData ?
                                 isEmpty(personalData) ?
-                                    <>
-                                        <div className='flex justify-between items-center border p-3 rounded bg-white'>No data Found</div>
-                                    </>
+                                    <div className='flex justify-between items-center border p-4 rounded bg-gray-50 text-gray-600'>No data Found</div>
                                     :
                                     personalData.map((item, index) => (
-
-                                        <div key={index} className='flex justify-between items-center border p-3 rounded bg-white'>
-                                            <div>
-
-                                                <div>
-                                                    <span className='font-bold'>First Name : </span> <span>{item.fname}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Last Name : </span> <span>{item.lname}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Address: </span> <span>{item.address}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Contact no : </span> <span>{item.contact_no}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Date of Birth : </span> <span>{item.DOB}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Gender : </span> <span>{item.gender}</span>
-                                                </div>
+                                        <div key={index} className='flex justify-between items-center border p-4 rounded bg-gray-50 shadow-sm hover:shadow-md transition-shadow duration-300'>
+                                            <div className='space-y-2'>
+                                                <div><span className='font-semibold text-purple-600'>First Name:</span> <span>{item.fname}</span></div>
+                                                <div><span className='font-semibold text-purple-600'>Last Name:</span> <span>{item.lname}</span></div>
+                                                <div><span className='font-semibold text-purple-600'>Address:</span> <span>{item.address}</span></div>
+                                                <div><span className='font-semibold text-purple-600'>Contact No:</span> <span>{item.contact_no}</span></div>
+                                                <div><span className='font-semibold text-purple-600'>Date of Birth:</span> <span>{item.DOB}</span></div>
+                                                <div><span className='font-semibold text-purple-600'>Gender:</span> <span>{item.gender}</span></div>
                                             </div>
-                                            <div>
-                                                <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setPersonalDetailsUpdateModalOpen(prev => true) }}
-                                                ><FaPencil /></div>
+                                            <div className='p-2 rounded-lg bg-purple-100 hover:bg-purple-200 cursor-pointer transition-colors duration-300' onClick={() => setPersonalDetailsUpdateModalOpen(true)}>
+                                                <FaPencil className='text-purple-600' />
                                             </div>
-
                                         </div>
                                     ))
                                 :
-                                <div>
-                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters size={40} className='animate-spin text-purple-500' />
                                 </div>
                         }
-
-
-                        {/* </div> */}
-
-
                     </div>
                 </div>
 
-                {/* Educational details */}
-                <div className='border-2 rounded p-3 bg-pink-100 motion-preset-slide-left'>
-                    <div className='flex justify-between items-center text-3xl mb-3'>
-                        <div className='flex justify-center items-center'>
-
+                {/* Educational Details */}
+                <div className='border-2 border-pink-100 rounded-lg p-6 bg-white shadow-xl'>
+                    <div className='flex justify-between items-center text-2xl mb-4'>
+                        <div className='font-bold text-pink-700 uppercase'>
                             Education
                         </div>
-                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addEducation')}>
-                            <IoAddCircleOutline />
+                        <div className='text-pink-500 hover:text-pink-700 cursor-pointer transition-colors duration-300' onClick={() => setNewEntry('addEducation')}>
+                            <IoAddCircleOutline size={28} />
                         </div>
                     </div>
-                    <div className='flex flex-col gap-4'>
-
+                    <div className='space-y-4'>
                         {
                             educationalData ?
                                 isEmpty(educationalData) ?
-                                    <>
-                                        <div className='flex justify-between items-center border p-3 rounded bg-white'>No data Found</div>
-                                    </>
+                                    <div className='flex justify-between items-center border p-4 rounded bg-gray-50 text-gray-600'>No data Found</div>
                                     :
                                     educationalData.map((item, index) => (
-                                        <div key={index} className='flex justify-between items-center border rounded p-3 bg-white'>
-                                            <div>
-                                                <div>
-                                                    <span className='font-bold'>Degree : </span> <span>{item.degree}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>School/University : </span> <span>{item.school_university}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Year of Passing : </span> <span>{item.year_of_passing}</span>
-                                                </div>
-                                                {
-                                                    educationalData.percentage &&
-                                                    <div>
-                                                        <span className='font-bold'>Marks(in percentage) : </span> <span>{item.percentage}</span>
-                                                    </div>
-                                                }
-                                                {
-                                                    educationalData.gpa &&
-                                                    <div>
-                                                        <span className='font-bold'>Marks(in GPA) : </span> <span>{item.gpa}</span>
-                                                    </div>
-                                                }
+                                        <div key={index} className='flex justify-between items-center border p-4 rounded bg-gray-50 shadow-sm hover:shadow-md transition-shadow duration-300'>
+                                            <div className='space-y-2'>
+                                                <div><span className='font-semibold text-pink-600'>Degree:</span> <span>{item.degree}</span></div>
+                                                <div><span className='font-semibold text-pink-600'>School/University:</span> <span>{item.school_university}</span></div>
+                                                <div><span className='font-semibold text-pink-600'>Year of Passing:</span> <span>{item.year_of_passing}</span></div>
+                                                {item.percentage && <div><span className='font-semibold text-pink-600'>Marks (in %):</span> <span>{item.percentage}</span></div>}
+                                                {item.gpa && <div><span className='font-semibold text-pink-600'>Marks (in GPA):</span> <span>{item.gpa}</span></div>}
                                             </div>
                                             <div className='flex gap-3'>
-                                                <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setDeleteData('deleteEducation'); setIndex(item.id) }}
-                                                ><MdDeleteForever size={20} /></div>
-                                                <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}
-                                                ><FaPencil /></div>
+                                                <div className='p-2 rounded-lg bg-pink-100 hover:bg-pink-200 cursor-pointer transition-colors duration-300' onClick={() => { setDeleteData('deleteEducation'); setIndex(item.id) }}>
+                                                    <MdDeleteForever className='text-pink-600' size={20} />
+                                                </div>
+                                                <div className='p-2 rounded-lg bg-pink-100 hover:bg-pink-200 cursor-pointer transition-colors duration-300' onClick={() => { setEducationalDetailsUpdateModalOpen(true); setIndex(index) }}>
+                                                    <FaPencil className='text-pink-600' />
+                                                </div>
                                             </div>
-
                                         </div>
                                     ))
                                 :
-                                <div>
-                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters size={40} className='animate-spin text-pink-500' />
                                 </div>
                         }
-
-
                     </div>
                 </div>
 
-                {/* Specialization details */}
-                <div className='border-2 rounded p-3 bg-purple-100 motion-preset-slide-left'>
-                    <div className='flex justify-between items-center text-3xl mb-3'>
-                        <div className='flex justify-center items-center'>
-
+                {/* Specialization Details */}
+                <div className='border-2 border-purple-100 rounded-lg p-6 bg-white shadow-xl'>
+                    <div className='flex justify-between items-center text-2xl mb-4'>
+                        <div className='font-bold text-purple-700 uppercase'>
                             Specialization
                         </div>
-                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addSpecialization')}>
-                            <IoAddCircleOutline />
+                        <div className='text-purple-500 hover:text-purple-700 cursor-pointer transition-colors duration-300' onClick={() => setNewEntry('addSpecialization')}>
+                            <IoAddCircleOutline size={28} />
                         </div>
                     </div>
-                    <div className='flex flex-col gap-4'>
+                    <div className='space-y-4'>
                         {
                             specializationData ?
                                 isEmpty(specializationData) ?
-                                    <>
-                                        <div className='flex justify-between items-center border p-3 rounded bg-white'>No data Found</div>
-                                    </>
+                                    <div className='flex justify-between items-center border p-4 rounded bg-gray-50 text-gray-600'>No data Found</div>
                                     :
-
                                     specializationData.map((item, index) => (
-                                        <div key={index} className='flex justify-between items-center border rounded p-3 bg-white'>
-                                            <div>
-
-                                                <div>
-                                                    <span className='font-bold'>Certificate name : </span> <span>{item.certificate}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Organisation name : </span> <span>{item.Organisation}</span>
-                                                </div>
+                                        <div key={index} className='flex justify-between items-center border p-4 rounded bg-gray-50 shadow-sm hover:shadow-md transition-shadow duration-300'>
+                                            <div className='space-y-2'>
+                                                <div><span className='font-semibold text-purple-600'>Certificate Name:</span> <span>{item.certificate}</span></div>
+                                                <div><span className='font-semibold text-purple-600'>Organisation:</span> <span>{item.Organisation}</span></div>
                                             </div>
                                             <div className='flex gap-3'>
-                                                <div className='border p-3 rounded hover:cursor-pointer'
-                                                     onClick={() => { setDeleteData('deleteSpecialization'); setIndex(item.id) }}
-                                                ><MdDeleteForever size={20} /></div>
-                                                <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setSpecializationDetailsUpdateModalOpen(true); setIndex(index) }}
-                                                ><FaPencil /></div>
+                                                <div className='p-2 rounded-lg bg-purple-100 hover:bg-purple-200 cursor-pointer transition-colors duration-300' onClick={() => { setDeleteData('deleteSpecialization'); setIndex(item.id) }}>
+                                                    <MdDeleteForever className='text-purple-600' size={20} />
+                                                </div>
+                                                <div className='p-2 rounded-lg bg-purple-100 hover:bg-purple-200 cursor-pointer transition-colors duration-300' onClick={() => { setSpecializationDetailsUpdateModalOpen(true); setIndex(index) }}>
+                                                    <FaPencil className='text-purple-600' />
+                                                </div>
                                             </div>
                                         </div>
                                     ))
                                 :
-                                <div>
-                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters size={40} className='animate-spin text-purple-500' />
                                 </div>
                         }
-
                     </div>
                 </div>
 
-                {/* Experience details */}
-                <div className='border-2 rounded p-3 bg-yellow-100 motion-preset-slide-left'>
-                    <div className='flex justify-between items-center text-3xl mb-3'>
-                        <div className='flex justify-center items-center'>
-
+                {/* Experience Details */}
+                <div className='border-2 border-yellow-100 rounded-lg p-6 bg-white shadow-xl'>
+                    <div className='flex justify-between items-center text-2xl mb-4'>
+                        <div className='font-bold text-yellow-700 uppercase'>
                             Experience
                         </div>
-                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addExperience')}>
-                            <IoAddCircleOutline />
+                        <div className='text-yellow-500 hover:text-yellow-700 cursor-pointer transition-colors duration-300' onClick={() => setNewEntry('addExperience')}>
+                            <IoAddCircleOutline size={28} />
                         </div>
                     </div>
-                    <div className='flex flex-col gap-4'>
-
-
+                    <div className='space-y-4'>
                         {
                             experienceData ?
                                 isEmpty(experienceData) ?
-                                    <>
-                                        <div className='flex justify-between items-center border p-3 rounded bg-white'>No data Found</div>
-                                    </>
+                                    <div className='flex justify-between items-center border p-4 rounded bg-gray-50 text-gray-600'>No data Found</div>
                                     :
                                     experienceData.map((item, index) => (
-                                        <div key={index} className='flex justify-between items-center border rounded p-3 bg-white'>
-                                            <div>
-
-                                                <div>
-                                                    <span className='font-bold'>Starting Date : </span> <span>{item.starting_date}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Ending Date : </span> <span>{item.ending_date}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Role/Position: </span> <span>{item.role}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Organisation : </span> <span>{item.organisation}</span>
-                                                </div>
-                                                <div>
-                                                    <span className='font-bold'>Description : </span> <span>{item.description}</span>
-                                                </div>
+                                        <div key={index} className='flex justify-between items-center border p-4 rounded bg-gray-50 shadow-sm hover:shadow-md transition-shadow duration-300'>
+                                            <div className='space-y-2'>
+                                                <div><span className='font-semibold text-yellow-600'>Starting Date:</span> <span>{item.starting_date}</span></div>
+                                                <div><span className='font-semibold text-yellow-600'>Ending Date:</span> <span>{item.ending_date}</span></div>
+                                                <div><span className='font-semibold text-yellow-600'>Role/Position:</span> <span>{item.role}</span></div>
+                                                <div><span className='font-semibold text-yellow-600'>Organisation:</span> <span>{item.organisation}</span></div>
+                                                <div><span className='font-semibold text-yellow-600'>Description:</span> <span>{item.description}</span></div>
                                             </div>
                                             <div className='flex gap-3'>
-                                                <div className='border p-3 rounded hover:cursor-pointer'
-                                                     onClick={() => { setDeleteData('deleteExperience'); setIndex(item.id) }}
-                                                ><MdDeleteForever size={20} /></div>
-                                                <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setExperienceDetailsUpdateModalOpen(true); setIndex(index) }}
-
-                                                ><FaPencil /></div>
+                                                <div className='p-2 rounded-lg bg-yellow-100 hover:bg-yellow-200 cursor-pointer transition-colors duration-300' onClick={() => { setDeleteData('deleteExperience'); setIndex(item.id) }}>
+                                                    <MdDeleteForever className='text-yellow-600' size={20} />
+                                                </div>
+                                                <div className='p-2 rounded-lg bg-yellow-100 hover:bg-yellow-200 cursor-pointer transition-colors duration-300' onClick={() => { setExperienceDetailsUpdateModalOpen(true); setIndex(index) }}>
+                                                    <FaPencil className='text-yellow-600' />
+                                                </div>
                                             </div>
                                         </div>
                                     ))
                                 :
-                                <div>
-                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters size={40} className='animate-spin text-yellow-500' />
                                 </div>
                         }
-
                     </div>
-
                 </div>
 
-                {/* Skills details */}
-                <div className='border-2 rounded p-3 bg-rose-100 motion-preset-slide-left'>
-                    <div className='flex justify-between items-center text-3xl mb-3'>
-                        <div className='flex justify-center items-center'>
-
+                {/* Skills Details */}
+                <div className='border-2 border-rose-100 rounded-lg p-6 bg-white shadow-xl'>
+                    <div className='flex justify-between items-center text-2xl mb-4'>
+                        <div className='font-bold text-rose-700 uppercase'>
                             Skills
                         </div>
-                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addSkill')}>
-                            <IoAddCircleOutline />
+                        <div className='text-rose-500 hover:text-rose-700 cursor-pointer transition-colors duration-300' onClick={() => setNewEntry('addSkill')}>
+                            <IoAddCircleOutline size={28} />
                         </div>
                     </div>
-                    <div className='flex flex-col gap-4'>
-
+                    <div className='space-y-4'>
                         {
                             skillData ?
                                 isEmpty(skillData) ?
-                                    <>
-                                        <div className='flex justify-between items-center border p-3 rounded bg-white'>No data Found</div>
-                                    </>
+                                    <div className='flex justify-between items-center border p-4 rounded bg-gray-50 text-gray-600'>No data Found</div>
                                     :
-
                                     skillData.map((item, index) => (
-                                        <div key={index} className='flex justify-between items-center border rounded p-3 bg-white'>
-                                            <div>
-
-                                                <div>
-                                                    <span className='font-bold'>Skills : </span> <span>{item.skill}</span>
-                                                </div>
+                                        <div key={index} className='flex justify-between items-center border p-4 rounded bg-gray-50 shadow-sm hover:shadow-md transition-shadow duration-300'>
+                                            <div className='space-y-2'>
+                                                <div><span className='font-semibold text-rose-600'>Skill:</span> <span>{item.skill}</span></div>
                                             </div>
                                             <div className='flex gap-3'>
-                                                <div className='border p-3 rounded hover:cursor-pointer'
-                                                     onClick={() => { setDeleteData('deleteSkill'); setIndex(item.id) }}
-                                                ><MdDeleteForever size={20} /></div>
-                                                <div className='border p-3 rounded hover:cursor-pointer'
-                                                    onClick={() => { setSkillDetailsUpdateModalOpen(true); setIndex(index) }}
-
-                                                ><FaPencil /></div>
+                                                <div className='p-2 rounded-lg bg-rose-100 hover:bg-rose-200 cursor-pointer transition-colors duration-300' onClick={() => { setDeleteData('deleteSkill'); setIndex(item.id) }}>
+                                                    <MdDeleteForever className='text-rose-600' size={20} />
+                                                </div>
+                                                <div className='p-2 rounded-lg bg-rose-100 hover:bg-rose-200 cursor-pointer transition-colors duration-300' onClick={() => { setSkillDetailsUpdateModalOpen(true); setIndex(index) }}>
+                                                    <FaPencil className='text-rose-600' />
+                                                </div>
                                             </div>
                                         </div>
                                     ))
                                 :
-                                <div>
-                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters size={40} className='animate-spin text-rose-500' />
                                 </div>
                         }
-
                     </div>
-
                 </div>
-                {/* Social network details */}
-                <div className='border-2 rounded p-3 bg-lime-100 motion-preset-slide-left'>
-                    <div className='flex justify-between items-center text-3xl mb-3'>
-                        <div className='flex justify-center items-center'>
 
+                {/* Social Network Details */}
+                <div className='border-2 border-lime-100 rounded-lg p-6 bg-white shadow-xl'>
+                    <div className='flex justify-between items-center text-2xl mb-4'>
+                        <div className='font-bold text-lime-700 uppercase'>
                             Social Networks
                         </div>
-                        <div className='flex justify-center items-center' onClick={() => setNewEntry('addSocial')}>
-                            <IoAddCircleOutline />
+                        <div className='text-lime-500 hover:text-lime-700 cursor-pointer transition-colors duration-300' onClick={() => setNewEntry('addSocial')}>
+                            <IoAddCircleOutline size={28} />
                         </div>
                     </div>
-                    <div className='flex flex-col gap-4'>
-
+                    <div className='space-y-4'>
                         {
                             socialNetworkData ?
                                 isEmpty(socialNetworkData) ?
-                                    <>
-                                        <div className='flex justify-between items-center border p-3 rounded bg-white'>No data Found</div>
-                                    </>
+                                    <div className='flex justify-between items-center border p-4 rounded bg-gray-50 text-gray-600'>No data Found</div>
                                     :
                                     socialNetworkData.map((item, index) => (
-                                        <div key={index} >
-                                            {
-                                                // item.github &&
-                                                <div className='flex justify-between items-center border rounded p-3 bg-white'>
-
-                                                    <div className='min-[300px]:w-[60%] overflow-x-scroll no-scrollbar'>
-
-                                                        <div>
-                                                            <span className='font-bold capitalize '>{item.name} : </span> <span>{item.link}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div className='flex gap-3'>
-                                                        <div className='border p-3 rounded hover:cursor-pointer'
-                                                             onClick={() => { setDeleteData('deleteSocial'); setIndex(item.id) }}
-                                                        ><MdDeleteForever size={20} /></div>
-                                                        <div className='border p-3 rounded hover:cursor-pointer'
-                                                            onClick={() => { setSocialDetailsUpdateModalOpen(true); setIndex(index) }}
-
-                                                        ><FaPencil /></div>
-                                                    </div>
+                                        <div key={index} className='flex justify-between items-center border p-4 rounded bg-gray-50 shadow-sm hover:shadow-md transition-shadow duration-300'>
+                                            <div className='min-[300px]:w-[60%] overflow-x-scroll no-scrollbar'>
+                                                <div><span className='font-semibold text-lime-600 capitalize'>{item.name}:</span> <span>{item.link}</span></div>
+                                            </div>
+                                            <div className='flex gap-3'>
+                                                <div className='p-2 rounded-lg bg-lime-100 hover:bg-lime-200 cursor-pointer transition-colors duration-300' onClick={() => { setDeleteData('deleteSocial'); setIndex(item.id) }}>
+                                                    <MdDeleteForever className='text-lime-600' size={20} />
                                                 </div>
-                                            }
+                                                <div className='p-2 rounded-lg bg-lime-100 hover:bg-lime-200 cursor-pointer transition-colors duration-300' onClick={() => { setSocialDetailsUpdateModalOpen(true); setIndex(index) }}>
+                                                    <FaPencil className='text-lime-600' />
+                                                </div>
+                                            </div>
                                         </div>
                                     ))
                                 :
-                                <div>
-                                    <AiOutlineLoading3Quarters size={40} className='motion-preset-spin' />
+                                <div className='flex justify-center items-center'>
+                                    <AiOutlineLoading3Quarters size={40} className='animate-spin text-lime-500' />
                                 </div>
                         }
-
                     </div>
-
                 </div>
             </div>
-            <Link to='/' className='flex w-full p-3'>
-                <div className="flex justify-center max-[300px]:w-full items-center w-56 p-3 bg-green-800 text-white font-bold rounded-r-full rounded-l-full">
 
+            {/* Back to Home Button */}
+            <Link to='/' className='fixed bottom-4 right-4'>
+                <div className="flex justify-center items-center w-56 p-3 bg-green-800 text-white font-bold rounded-full shadow-lg hover:bg-green-900 transition-colors duration-300">
                     Back to Home
                 </div>
             </Link>
 
-            {/* Personal-details-update form */}
-            {
-                isPersonalDetailsUpdateModalOpen &&
-                <div className='w-full flex justify-center items-center'>
-                    <PersonalDetailsUpdate />
-                </div>
-            }
-
-            {/* Educational-details-update form */}
-            {
-                isEducationalDetailsUpdateModalOpen &&
-                <div className='w-full flex justify-center items-center'>
-                    <EducationDetailsUpdate id={educationalData[index].id} />
-                </div>
-            }
-
-            {/* Specialization-details-update form */}
-            {
-                isSpecializationDetailsUpdateModalOpen &&
-                <div className='w-full flex justify-center items-center'>
-                    <SpecializationUpdate id={specializationData[index].id} />
-                </div>
-            }
-
-            {/* Experience-details-update form */}
-            {
-                isExperienceDetailsUpdateModalOpen &&
-                <div className='w-full flex justify-center items-center'>
-                    <ExperienceUpdate id={experienceData[index].id} />
-                </div>
-            }
-
-            {/* Skills-details-update form */}
-            {
-                isSkillDetailsUpdateModalOpen &&
-                <div className='w-full flex justify-center items-center'>
-                    <SkillsUpdate id={skillData[index].id} />
-                </div>
-            }
-            {/* Skills-details-update form */}
-            {
-                isSocialDetailsUpdateModalOpen &&
-                <div className='w-full flex justify-center items-center'>
-                    <SocialDetailsUpdate id={socialNetworkData[index].id} />
-                </div>
-            }
-
+            {/* Update Modals */}
+            {isPersonalDetailsUpdateModalOpen && <PersonalDetailsUpdate />}
+            {isEducationalDetailsUpdateModalOpen && <EducationDetailsUpdate id={educationalData[index].id} />}
+            {isSpecializationDetailsUpdateModalOpen && <SpecializationUpdate id={specializationData[index].id} />}
+            {isExperienceDetailsUpdateModalOpen && <ExperienceUpdate id={experienceData[index].id} />}
+            {isSkillDetailsUpdateModalOpen && <SkillsUpdate id={skillData[index].id} />}
+            {isSocialDetailsUpdateModalOpen && <SocialDetailsUpdate id={socialNetworkData[index].id} />}
 
             {/* Add Data Forms */}
-            {
-                isNewEntry == 'addEducation' &&
-                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
+            {isNewEntry === 'addEducation' && <EducationDetailsForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />}
+            {isNewEntry === 'addExperience' && <ExperienceForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />}
+            {isNewEntry === 'addSpecialization' && <SpecializationForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />}
+            {isNewEntry === 'addSkill' && <SkillsForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />}
+            {isNewEntry === 'addSocial' && <SocialNetworkForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />}
 
-                    <EducationDetailsForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
-
-
-
-                </div>
-            }
-            {
-                isNewEntry == 'addExperience' &&
-                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
-
-                    <ExperienceForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
-
-
-
-                </div>
-            }
-            {
-                isNewEntry == 'addSpecialization' &&
-                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
-
-                    <SpecializationForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
-
-
-
-                </div>
-            }
-            {
-                isNewEntry == 'addSkill' &&
-                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
-
-                    <SkillsForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
-
-
-
-                </div>
-            }
-            {
-                isNewEntry == 'addSocial' &&
-                <div className='fixed top-0 left-0 bg-white w-full flex justify-center items-center'>
-
-                    <SocialNetworkForm setNewEntry={setNewEntry} isNewEntry={isNewEntry} />
-
-
-
-                </div>
-            }
-
-            {
-                deleteData && 
-                <DeleteData id={index} setDeleteData={setDeleteData}/>
-            }
-
-
-
-
+            {/* Delete Data Modal */}
+            {deleteData && <DeleteData id={index} setDeleteData={setDeleteData} />}
         </>
     )
 }

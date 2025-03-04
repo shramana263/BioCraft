@@ -43,6 +43,10 @@ const AuthLayout = ({ children }) => {
       console.log(err);
     }
   })
+  // if (!token) {
+  //   console.log("no token")
+  //   navigate('/landing')
+  // }
 
   const onLogout = (ev) => {
     ev.preventDefault();
@@ -50,16 +54,11 @@ const AuthLayout = ({ children }) => {
   }
   const outletWidth = (!isMobile && isSidebarOpen) ? 'w-[83.5%]' : 'w-full'
   const outletPosition = (!isMobile && isSidebarOpen) ? 'justify-end slideRight' : ''
+  useEffect(()=>{
+    console.log("DarkMode= ",isDark);
+  },[isDark]);
 
-  // Add or remove the 'dark' class on the <html> element based on the isDark state
-  useEffect(() => {
-    const htmlElement = document.documentElement;
-    if (isDark) {
-      htmlElement.classList.add('dark');
-    } else {
-      htmlElement.classList.remove('dark');
-    }
-  }, [isDark]);
+
 
   return (
     authUser.isLoading ? <div className='h-screen w-full flex justify-center items-center'>
@@ -67,15 +66,18 @@ const AuthLayout = ({ children }) => {
     </div> :
       <>
         <div className={``}>
-          <div className={`flex w-full ${outletPosition}`}>
+          <div className={`flex w-full ${outletPosition} ${isDark ? 'dark' : ''}`}>
             <div className={`flex flex-col ${outletWidth}`}>
               <div className={`h-20 w-full z-20`}>
+
                 <Navbar
                   userName={authUser.data?.name}
                   onLogout={onLogout}
                 />
               </div>
               <main className=''>
+                {/* <h3>AuthLayout</h3> */}
+                {/* <Outlet /> */}
                 {children}
                 {
                   message &&
