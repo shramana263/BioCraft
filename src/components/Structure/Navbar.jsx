@@ -10,6 +10,7 @@ import { useMessageContext } from '../../contexts/MessageContext';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import BotIcon from '../../chatbot/BotIcon';
+import DarkMode from '../theme/DarkMode';
 
 const Navbar = ({ userName, onLogout }) => {
     const { token, user } = useStateContext();
@@ -45,7 +46,7 @@ const Navbar = ({ userName, onLogout }) => {
                     <Sidebar setOpen={setOpen} />
                 </div>
             }
-            <div className={`fixed ${outletWidth} bg-white flex justify-between items-center p-3 border-b`}>
+            <div className={`fixed ${outletWidth} dark:bg-neutral-300 bg-white  flex justify-between items-center p-3 border-b`}>
                 <div className='flex justify-center items-center gap-3'>
 
                     <div className='border rounded-lg p-2'
@@ -60,6 +61,9 @@ const Navbar = ({ userName, onLogout }) => {
 
                         <div className='font-bold flex justify-center items-center'>Hello, {userName}</div>
                     } */}
+
+                    <DarkMode/>
+
                     {
                         (!isMobile && !isSidebarOpen) &&
                         <>

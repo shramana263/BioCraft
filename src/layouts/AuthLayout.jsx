@@ -12,14 +12,16 @@ import { usePanelContext } from '../contexts/PanelContext';
 import { useMobileContext } from '../contexts/MobileContext';
 import Popup from '../components/messagePopup/Popup';
 import { useMessageContext } from '../contexts/MessageContext';
+import { useThemeContext } from '../contexts/ThemeContext';
 
-const AuthLayout = ({children}) => {
+const AuthLayout = ({ children }) => {
   const navigate = useNavigate();
   const { user, token, setUser, setToken } = useStateContext();
   const [isOpen, setOpen] = useState(true);
   const { isSidebarOpen, setSidebarOpen } = usePanelContext()
   const { isMobile } = useMobileContext()
   const { message, setMessage } = useMessageContext()
+  const { isDark, setDark } = useThemeContext()
 
   const authUser = useQuery({
     queryKey: ['user'],
@@ -41,10 +43,6 @@ const AuthLayout = ({children}) => {
       console.log(err);
     }
   })
-  // if (!token) {
-  //   console.log("no token")
-  //   navigate('/landing')
-  // }
 
   const onLogout = (ev) => {
     ev.preventDefault();
@@ -53,35 +51,40 @@ const AuthLayout = ({children}) => {
   const outletWidth = (!isMobile && isSidebarOpen) ? 'w-[83.5%]' : 'w-full'
   const outletPosition = (!isMobile && isSidebarOpen) ? 'justify-end slideRight' : ''
 
-
-  
+  // Add or remove the 'dark' class on the <html> element based on the isDark state
+  useEffect(() => {
+    const htmlElement = document.documentElement;
+    if (isDark) {
+      htmlElement.classList.add('dark');
+    } else {
+      htmlElement.classList.remove('dark');
+    }
+  }, [isDark]);
 
   return (
     authUser.isLoading ? <div className='h-screen w-full flex justify-center items-center'>
       <AiOutlineLoading3Quarters size={80} className='motion-preset-spin' />
     </div> :
       <>
-        <div className={`flex w-full ${outletPosition}`}>
-          <div className={`flex flex-col ${outletWidth}`}>
-            <div className={`h-20 w-full z-20`}>
-
-              <Navbar
-                userName={authUser.data?.name}
-                onLogout={onLogout}
-              />
+        <div className={``}>
+          <div className={`flex w-full ${outletPosition}`}>
+            <div className={`flex flex-col ${outletWidth}`}>
+              <div className={`h-20 w-full z-20`}>
+                <Navbar
+                  userName={authUser.data?.name}
+                  onLogout={onLogout}
+                />
+              </div>
+              <main className=''>
+                {children}
+                {
+                  message &&
+                  <Popup />
+                }
+              </main>
             </div>
-            <main className=''>
-              {/* <h3>AuthLayout</h3> */}
-              {/* <Outlet /> */}
-              {children}
-              {
-                message &&
-                <Popup />
-              }
-            </main>
           </div>
         </div>
-
       </>
   )
 }

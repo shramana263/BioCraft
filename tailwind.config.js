@@ -29,4 +29,10 @@ export default {
   plugins: [require('tailwindcss-motion'),
     require('tailwindcss-animate')
   ],
+  
 }
+// // tailwind.config.js
+// module.exports = {
+//   darkMode: 'class', // Enable dark mode using the 'class' strategy
+//   // Other configurations...
+// };

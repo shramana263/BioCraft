@@ -7,6 +7,7 @@ import { useMobileContext } from '../contexts/MobileContext'
 import { usePanelContext } from '../contexts/PanelContext'
 import { useMessageContext } from '../contexts/MessageContext'
 import Popup from '../components/messagePopup/Popup'
+import { useThemeContext } from '../contexts/ThemeContext'
 
 const GuestLayout = ({children}) => {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ const GuestLayout = ({children}) => {
   const { isMobile } = useMobileContext()
   const { token } = useStateContext();
   const { message, setMessage } = useMessageContext()
+  const {isDark, setDark}= useThemeContext();
+
   if (token) {
     // return <Nagivate to="/templates" />;
     return navigate("/");
@@ -25,7 +28,7 @@ const GuestLayout = ({children}) => {
   
   return (
     <>
-      <div className={`flex w-full ${outletPosition}`}>
+      <div className={`flex w-full ${outletPosition} ${isDark?'dark':''}`}>
         <div className={`flex flex-col ${outletWidth}`}>
           <div className={`h-20 w-full z-20`}>
             <Navbar />
