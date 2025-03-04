@@ -17,6 +17,7 @@ import Review from '../pages/Review';
 import Faq from '../pages/Faq';
 import JobApi from '../job_search/JobApi';
 import Chat from '../chatbot/Chat';
+import LandingAdmin from '../admin/LandingAdmin';
 
 
 const AuthRouter = () => {
@@ -41,6 +42,8 @@ const AuthRouter = () => {
             <Route path='/frequently-asked-question' element={<Faq/>}/>
             <Route path='/job-search' element={<JobApi/>}/>
             <Route path='/chat' element={<Chat/>}/>
+
+            <Route path='/admin' element={<LandingAdmin/>}/>
 
       </Routes>
     </>
