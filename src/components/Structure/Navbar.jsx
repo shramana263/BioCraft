@@ -44,6 +44,7 @@ const Navbar = ({ userName, onLogout }) => {
             {
                 isOpen &&
                 <div className=''>
+                    {/* <Sidebar setOpen={setOpen} /> */}
                     <Sidebar setOpen={setOpen} />
                 </div>
             }
