@@ -6,20 +6,20 @@ const DarkMode = () => {
     const { isDark, setDark } = useThemeContext()
     return (
         <>
-            <div className='flex justify-center items-center hover:cursor-pointer'>
+            <div className='flex justify-center items-center hover:cursor-pointer dark:text-neutral-50'>
                 {
                     isDark ?
                         <>
                             <div className='flex justify-center items-center motion-preset-pop' onClick={()=>setDark(false)}>
 
-                                <MdOutlineLightMode />
+                                <MdOutlineLightMode size={20} />
                             </div>
                         </>
                         :
                         <>
                             <div className='flex justify-center items-center motion-preset-pop'onClick={()=>setDark(true)}>
 
-                                <MdOutlineDarkMode />
+                                <MdOutlineDarkMode size={20}/>
                             </div>
 
                         </>

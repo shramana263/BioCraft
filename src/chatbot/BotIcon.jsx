@@ -11,7 +11,7 @@ const BotIcon = () => {
                     <Chat />
                 </div>
             }
-            <div className='sm:h-16 sm:w-16 h-10 w-10 rounded-full overflow-hidden cursor-pointer' onClick={()=>{setVisible(prev=>!prev);console.log(visible)}} >
+            <div className='sm:h-16 sm:w-16 h-10 w-10 rounded-full overflow-hidden cursor-pointer dark:border dark:bg-neutral-200' onClick={()=>{setVisible(prev=>!prev);console.log(visible)}} >
                 <img src="src/assets/images/chatbot1.jpg" alt="" className='h-full w-full' />
             </div>
         </>

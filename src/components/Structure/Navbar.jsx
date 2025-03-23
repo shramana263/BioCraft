@@ -48,18 +48,18 @@ const Navbar = ({ userName, onLogout }) => {
                     <Sidebar setOpen={setOpen} />
                 </div>
             }
-            <div className={`fixed ${outletWidth} bg-white dark:bg-neutral-800 flex justify-between items-center p-3 border-b`}>
+            <div className={`fixed ${outletWidth} bg-white h-20 dark:bg-neutral-800 flex justify-between items-center p-3 border-b dark:border-none`}>
                 <div className='flex justify-center items-center gap-3'>
 
-                    <div className='rounded-lg p-2'
+                    <div className='rounded-lg p-2 dark:text-neutral-50'
                         onClick={() => { setOpen(true); setSidebarOpen(true) }}
                     ><GiHamburgerMenu size={25} /></div>
-                    <div className='font-bold text-3xl flex justify-center items-center'>
-                        {/* <span>BioCraft</span> */}
-                        <span><Logo/></span>
+                    <div className='font-bold text-3xl md:text-4xl dark:text-neutral-50 flex justify-center items-center'>
+                        <span>BioCraft</span>
+                        {/* <span><Logo/></span> */}
                     </div>
                 </div>
-                <div className='flex sm:gap-8 gap-2'>
+                <div className='flex sm:gap-8 gap-5'>
                     {/* {token &&
 
                         <div className='font-bold flex justify-center items-center'>Hello, {userName}</div>
@@ -69,7 +69,7 @@ const Navbar = ({ userName, onLogout }) => {
 
                     {
                         (!isMobile && !isSidebarOpen) &&
-                        <>
+                        <div className='dark:text-neutral-50 flex justify-center items-center gap-5'>
                             <Link to="/about-us" className='flex justify-center items-center'>
                                 <div className='text-xl'>About Us</div>
                             </Link>
@@ -79,7 +79,7 @@ const Navbar = ({ userName, onLogout }) => {
                             <div className='flex justify-center items-center'>
                                 <div className='border h-10'></div>
                             </div>
-                        </>
+                        </div>
                     }
 
                     {
