@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useStateContext } from '../contexts/StateContext'
 import { fetchUser } from '../services/user-api';
 import { authLogout } from '../services/auth-api';
-import { toast } from 'react-toastify';
-import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import Navbar from '../components/Structure/Navbar';
-import Sidebar from '../components/Structure/Sidebar';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { usePanelContext } from '../contexts/PanelContext';
 import { useMobileContext } from '../contexts/MobileContext';
