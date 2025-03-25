@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { FaArrowRight, FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP, FaYoutube } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import ImageSlider from './ImageSlider'

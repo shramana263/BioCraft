@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { authRegister } from '../services/auth-api';
 import { useMutation } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 import { useStateContext } from '../contexts/StateContext';
 import { useMessageContext } from '../contexts/MessageContext';
 

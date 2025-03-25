@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
-import Landing from '../components/Landing'
-import { Outlet, useNavigate } from 'react-router-dom'
+import React from 'react'
+import {  useNavigate } from 'react-router-dom'
 import { useStateContext } from '../contexts/StateContext'
 import Navbar from '../components/Structure/Navbar'
 import { useMobileContext } from '../contexts/MobileContext'

@@ -1,7 +1,6 @@
 import React from 'react'
 import Preview from './Preview'
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
 import { useStateContext } from '../contexts/StateContext'
 import { MdOutlineStart } from 'react-icons/md'
 
