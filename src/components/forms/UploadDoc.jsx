@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
 import { SlCloudUpload } from "react-icons/sl";
 import axiosClient from '../../axios-client';
 import { useDataContext } from '../../contexts/DataContext';
@@ -11,7 +10,7 @@ const UploadDoc = () => {
   const [tags, setTags] = useState('');
   const [uploadStatus, setUploadStatus] = useState('');
   const [isDraggingOver, setDraggingOver] = useState(false)
-  const { profileImage, setProfileImage } = useDataContext()
+  // const { profileImage, setProfileImage } = useDataContext()
   const { currentProfileImage, setCurrentProfileImage } = useDataContext()
   const {setMessage}= useMessageContext()
 

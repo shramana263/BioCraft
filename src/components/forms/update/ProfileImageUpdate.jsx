@@ -5,7 +5,7 @@ import { LuMinimize2 } from 'react-icons/lu'
 
 const ProfileImageUpdate = () => {
 
-    const { currentProfileImage, setCurrentProfileImage, isOpenProfileIMageUpdateModal, setOpenProfileImageUpdateModal } = useDataContext()
+    const { currentProfileImage, setOpenProfileImageUpdateModal } = useDataContext()
     return (
         <div className=' border p-20 flex xl:flex-row md:flex-col sm:flex-col min-[412px]:flex-col min-[412px]:overflow-y-scroll no-scrollbar md:p-10 min-[412px]:pt-5 shadow-lg gap-6 sm:w-[80%] w-full  sm:h-[90%] justify-center items-center motion-preset-pop'>
 

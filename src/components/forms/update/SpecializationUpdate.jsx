@@ -8,10 +8,10 @@ const SpecializationUpdate = ({ id }) => {
   const certificateRef = useRef();
   const organisationRef = useRef();
 
-  const { isSpecializationDetailsUpdateModalOpen, setSpecializationDetailsUpdateModalOpen } = useDataContext()
+  const { setSpecializationDetailsUpdateModalOpen } = useDataContext()
   const [data, setData] = useState(null)
   const [updateButton, setUpdateButton] = useState(false)
-  const {message, setMessage}= useMessageContext()
+  const {setMessage}= useMessageContext()
 
   const handleSubmit = async () => {
     const payload = {

@@ -7,10 +7,10 @@ import { useMessageContext } from '../../../contexts/MessageContext';
 const SocialDetailsUpdate = ({ id }) => {
     const nameRef = useRef();
     const linkRef= useRef()
-    const { isSocialDetailsUpdateModalOpen, setSocialDetailsUpdateModalOpen } = useDataContext()
+    const {  setSocialDetailsUpdateModalOpen } = useDataContext()
     const [data, setData] = useState(null)
     const [updateButton, setUpdateButton] = useState(false)
-    const {message, setMessage}= useMessageContext()
+    const { setMessage}= useMessageContext()
 
     const handleSubmit = async () => {
         const payload = {

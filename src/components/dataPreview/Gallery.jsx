@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from '../../axios-client';
 import UploadDoc from '../forms/UploadDoc';
-import Preview, { PreviewComponent } from '../Preview';
+import { PreviewComponent } from '../Preview';
 import { useDataContext } from '../../contexts/DataContext';
 import { useMessageContext } from '../../contexts/MessageContext';
 

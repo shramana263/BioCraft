@@ -1,5 +1,4 @@
 import React from 'react'
-import axiosClient from '../../axios-client'
 import { useDataContext } from '../../contexts/DataContext'
 
 const DeleteData = ({id, setDeleteData}) => {

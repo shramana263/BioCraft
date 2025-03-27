@@ -10,7 +10,7 @@ const ExperienceUpdate = ({id}) => {
     const roleRef = useRef();
     const organisationRef = useRef();
     const descriptionRef = useRef();
-    const { isExperienceDetailsUpdateModalOpen, setExperienceDetailsUpdateModalOpen } = useDataContext()
+    const {  setExperienceDetailsUpdateModalOpen } = useDataContext()
     const [data, setData] = useState(null)
     const [updateButton, setUpdateButton] = useState(false)
     const {message, setMessage}= useMessageContext()

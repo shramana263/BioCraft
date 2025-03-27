@@ -6,7 +6,7 @@ import { useMessageContext } from '../../../contexts/MessageContext';
 
 const SkillsUpdate = ({ id }) => {
     const skillRef = useRef();
-    const { isSkillDetailsUpdateModalOpen, setSkillDetailsUpdateModalOpen } = useDataContext()
+    const {  setSkillDetailsUpdateModalOpen } = useDataContext()
     const [data, setData] = useState(null)
     const [updateButton, setUpdateButton] = useState(false)
     const {message, setMessage}= useMessageContext()
