@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useRef } from 'react'
+import React, {  useRef } from 'react'
 import { useLocation } from 'react-router-dom';
 import { fetchUser } from '../../services/user-api';
 import { useReactToPrint } from 'react-to-print';

@@ -3,7 +3,7 @@ import { useMessageContext } from '../../contexts/MessageContext'
 
 const Popup = () => {
 
-    const {message, setMessage}= useMessageContext()
+    const {message}= useMessageContext()
 
     return (
         <>

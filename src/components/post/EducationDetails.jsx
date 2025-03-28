@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaCirclePlus, FaPencil } from "react-icons/fa6";
-
-import axios from 'axios';
 import { useProgressContext } from '../../contexts/ProgressContext';
 import axiosClient from '../../axios-client';
-import { TbCellSignal4 } from 'react-icons/tb';
 import { useMessageContext } from '../../contexts/MessageContext';
 const EducationDetails = () => {
   const [isOpen, setOpen] = useState(false)

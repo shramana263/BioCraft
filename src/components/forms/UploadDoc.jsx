@@ -7,7 +7,7 @@ import { useMessageContext } from '../../contexts/MessageContext';
 const UploadDoc = () => {
 
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [tags, setTags] = useState('');
+  const [, setTags] = useState('');
   const [uploadStatus, setUploadStatus] = useState('');
   const [isDraggingOver, setDraggingOver] = useState(false)
   // const { profileImage, setProfileImage } = useDataContext()
