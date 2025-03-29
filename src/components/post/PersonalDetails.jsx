@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
 import { FaCirclePlus } from "react-icons/fa6";
-import axios from 'axios';
 import { useProgressContext } from '../../contexts/ProgressContext';
 import { useMessageContext } from '../../contexts/MessageContext';
 const PersonalDetails = () => {
