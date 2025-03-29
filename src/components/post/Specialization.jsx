@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaCirclePlus, FaPencil } from "react-icons/fa6";
 import axiosClient from '../../axios-client';
-import axios from 'axios';
 import { useProgressContext } from '../../contexts/ProgressContext';
 import { useMessageContext } from '../../contexts/MessageContext';
 const Specialization = () => {
   const [isOpen, setOpen] = useState(false)
   const [data, setData] = useState(null)
-  const { nextButton, isNext, setNextButton } = useProgressContext()
+  const {  setNextButton } = useProgressContext()
   // const []
   useEffect(() => {
     // console.log("hello")

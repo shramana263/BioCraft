@@ -1,10 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchUser } from "../../services/user-api";
 import { ImCross } from "react-icons/im";
 import { FaImagePortrait, FaUser } from "react-icons/fa6";
 import { MdRateReview, MdSpaceDashboard } from "react-icons/md";
-import { AiOutlineLogout } from "react-icons/ai";
-import { RiContactsFill, RiLogoutCircleRLine } from "react-icons/ri";
+import { RiContactsFill } from "react-icons/ri";
 import { IoMdInformationCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { usePanelContext } from "../../contexts/PanelContext";

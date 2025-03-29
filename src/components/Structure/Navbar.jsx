@@ -6,19 +6,16 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { useMobileContext } from '../../contexts/MobileContext';
 import { usePanelContext } from '../../contexts/PanelContext';
 import axiosClient from '../../axios-client';
-import { useMessageContext } from '../../contexts/MessageContext';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import BotIcon from '../../chatbot/BotIcon';
 import DarkMode from '../theme/DarkMode';
-import Logo from '../../Logo/Logo';
 
 const Navbar = ({ userName, onLogout }) => {
     const { token, user } = useStateContext();
     const [isOpen, setOpen] = useState(false)
     const { isMobile } = useMobileContext()
     const [image, setImage] = useState(null)
-    const { setMessage } = useMessageContext()
 
 
     const { isSidebarOpen, setSidebarOpen } = usePanelContext()

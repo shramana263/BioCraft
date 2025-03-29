@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useProgressContext } from '../../contexts/ProgressContext'
 import axiosClient from '../../axios-client'
 import { FaCirclePlus, FaPencil } from 'react-icons/fa6'
-import { LuHeading4 } from 'react-icons/lu'
 
 const SocialNetwork = () => {
     const [isOpen, setOpen] = useState(false)
     const [data, setData] = useState(null)
-    const { nextButton, setNext, isNext, setNextButton } = useProgressContext()
-    const navigate = useNavigate()
+    const { setNext, setNextButton } = useProgressContext()
 
     const handleSubmit = () => {
         const payload = {
