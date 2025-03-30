@@ -1,6 +1,6 @@
 import React from 'react'
 import Preview from './Preview'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useStateContext } from '../contexts/StateContext'
 import { MdOutlineStart } from 'react-icons/md'
 
@@ -20,8 +20,7 @@ const bio_templates = [
 ]
 
 const Templates = () => {
-  const navigate = useNavigate()
-  const { user, token, setUser, setToken } = useStateContext();
+  const { token } = useStateContext();
   // useEffect(() => {
   //   if (!token) {
   //     navigate('/signup')

@@ -10,11 +10,11 @@ import { useThemeContext } from '../contexts/ThemeContext'
 
 const GuestLayout = ({children}) => {
   const navigate = useNavigate();
-  const { isSidebarOpen, setSidebarOpen } = usePanelContext()
+  const { isSidebarOpen } = usePanelContext()
   const { isMobile } = useMobileContext()
   const { token } = useStateContext();
-  const { message, setMessage } = useMessageContext()
-  const {isDark, setDark}= useThemeContext();
+  const { message } = useMessageContext()
+  const {isDark}= useThemeContext();
 
   if (token) {
     // return <Nagivate to="/templates" />;
