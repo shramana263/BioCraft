@@ -3,7 +3,6 @@ import React, { useRef } from 'react'
 import { authLogin } from '../services/auth-api'
 import { Link, useNavigate } from 'react-router-dom'
 import { useStateContext } from '../contexts/StateContext'
-import { useMobileContext } from '../contexts/MobileContext'
 import { usePanelContext } from '../contexts/PanelContext'
 import { useMessageContext } from '../contexts/MessageContext'
 
@@ -13,7 +12,6 @@ const Signin = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const navigate = useNavigate();
-    const {isMobile}= useMobileContext()
     const {setSidebarOpen}= usePanelContext()
     const {setMessage}= useMessageContext()
 

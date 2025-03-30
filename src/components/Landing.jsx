@@ -5,14 +5,13 @@ import ImageSlider from './ImageSlider'
 import IMAGES from '../data/data'
 import { useMobileContext } from '../contexts/MobileContext'
 import { usePanelContext } from '../contexts/PanelContext'
-import { useMessageContext } from '../contexts/MessageContext'
 import { useStateContext } from '../contexts/StateContext'
 
 const Landing = () => {
 
     const { isMobile, setMobile } = useMobileContext()
     const { isSidebarOpen } = usePanelContext()
-    const { message, setMessage } = useMessageContext()
+    // const { message, setMessage } = useMessageContext()
     const { token } = useStateContext()
 
     const openSidebar = (!isMobile && isSidebarOpen) ? 'xl:ps-10' : 'xl-ps-20'
