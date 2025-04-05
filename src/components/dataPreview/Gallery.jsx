@@ -113,44 +113,39 @@ const Gallery = () => {
     }, [currentProfileImage])
     return (
         <>
-            <div className='md:h-full md:w-[90vh] min-[412px]:h-[90%] min-[412px]:w-screen  border rounded-lg p-10 ] shadow-lg flex  flex-col justify-center items-center gap-3'>
+            <div className='md:h-full md:w-[90vh] min-[412px]:h-[90%] min-[412px]:w-screen border rounded-lg p-10 shadow-lg flex flex-col justify-center items-center gap-3 dark:bg-gray-800 dark:border-gray-700'>
                 {
                     !isEmpty(images)?
                     <>
-                        <div>
+                        <div className='dark:text-gray-200'>
                             Click to choose from below
                         </div>
-                        <div className='grid grid-cols-5 sm:h-56 h-32 gap-2 overflow-y-scroll'>
+                        <div className='grid grid-cols-5 sm:h-56 h-32 gap-2 overflow-y-scroll dark:bg-gray-700 p-2 rounded'>
                             {images && images.map((image, index) => (
-                                <div key={index} className="h-[90%] w-[90%]" onDoubleClick={() => {
+                                <div key={index} className="h-[90%] w-[90%] hover:opacity-80 transition-opacity" onDoubleClick={() => {
                                     setOpen(true);
                                     setSelectedImage(image.url);
                                 }}
-
                                     onClick={() => handleClick(image.id)}
                                 >
-                                    <img src={image.url} alt="" />
+                                    <img src={image.url} alt="" className="rounded shadow-sm" />
                                     {isOpen && (
                                         <PreviewComponent image={selectedImage} setOpen={setOpen} isOpen={isOpen} />
                                     )}
                                 </div>
                             ))}
-
-
                         </div>
-                        <div className='flex justify-between items-center gap-3'>
-                            <div className='h-0 md:w-56 min-[412px]:w-36 border '></div>
+                        <div className='flex justify-between items-center gap-3 dark:text-gray-300'>
+                            <div className='h-0 md:w-56 min-[412px]:w-36 border dark:border-gray-600'></div>
                             <div> OR</div>
-                            <div className='h-0 md:w-56 min-[412px]:w-36 border '></div>
+                            <div className='h-0 md:w-56 min-[412px]:w-36 border dark:border-gray-600'></div>
                         </div>
                     </>
                     :
-                    <div>Upload image</div>
+                    <div className='dark:text-gray-200'>Upload image</div>
                 }
 
-
                 <UploadDoc />
-
             </div>
         </>
     )

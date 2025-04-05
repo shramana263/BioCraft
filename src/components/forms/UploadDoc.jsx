@@ -163,89 +163,87 @@ const UploadDoc = () => {
 
   return (
     <>
-      {/* <div className="bg-gray-100 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"> */}
-      <div className="max-w-lg w-full bg-white rounded-lg">
-        {/* <h1 className="text-2xl font-bold mb-6 text-gray-800">Upload Document</h1> */}
-        <form onSubmit={handleSubmit}>
-          {/* <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Document File</label>
+  <div className="max-w-lg w-full bg-white dark:bg-slate-800 rounded-lg shadow-lg">
+    <form onSubmit={handleSubmit}>
+      <div className='flex w-full justify-center items-center'>
+        {!selectedFiles.length && (
+          <div
+            className="dropzone flex flex-col w-full justify-center items-center gap-3 p-2 transition-colors duration-300"
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+            onDragLeave={handleDragLeave}
+            style={{
+              border: isDraggingOver 
+                ? "4px dashed #00C21A" 
+                : "4px dashed #757070"
+            }}
+          >
+            <div className='font-thin dark:text-green-400' style={{ color: isDraggingOver ? "#00C21A" : "#757070" }}>
+              <SlCloudUpload size={80} className="dark:text-green-400" />
+            </div>
+            <h1 className='text-lg dark:text-green-400' style={{ color: isDraggingOver ? "#00C21A" : "#757070" }}>
+              Drag and Drop File to Upload
+            </h1>
+            <h1 className='dark:text-green-400' style={{ color: isDraggingOver ? "#00C21A" : "#757070" }}>Or</h1>
             <input
               type="file"
+              multiple
               onChange={handleFileChange}
-              className="block w-full text-gray-700 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+              hidden
+              ref={inputRef}
             />
-          </div> */}
-          <div className='flex w-full justify-center items-center'>
-
-            {
-              !selectedFiles.length &&
-              <div
-                className="dropzone flex flex-col w-full justify-center items-center gap-3 p-2"
-                onDragOver={handleDragOver}
-                onDrop={handleDrop}
-                onDragLeave={handleDragLeave}
-                style={{
-                  border: isDraggingOver ? "4px dashed #00C21A" : "4px dashed #757070"
-                }}
-              >
-                <div className=' font-thin' style={{ color: isDraggingOver ? "#00C21A" : "#757070" }}> <SlCloudUpload size={80} /></div>
-                <h1 className='text-lg' style={{ color: isDraggingOver ? "#00C21A" : "#757070" }}>Drag and Drop File to Upload</h1>
-                <h1 style={{ color: isDraggingOver ? "#00C21A" : "#757070" }}>Or</h1>
-                <input
-                  type="file"
-                  multiple
-                  onChange={handleFileChange}
-                  hidden
-                  // accept="image/png, image/jpeg"
-                  ref={inputRef}
-                />
-                <div className='rounded p-3  hover:cursor-pointer'
-                  style={{ color: isDraggingOver ? "#00C21A" : "#757070", border: isDraggingOver ? "2px solid #00C21A" : "2px solid #757070" }}
-                  onClick={() => inputRef.current.click()}
-                >Select File</div>
-              </div>
-            }
-            <div className='flex flex-col'>
-
-              {
-                selectedFiles.length > 0 &&
-                <span className='text-xl font-bold'>Selected File</span>
-              }
-              {
-                selectedFiles &&
-                <>
-                  <div className='w-full'>
-
-                    {
-                      selectedFiles && selectedFiles.map((file) => (
-
-                        <div className='grid grid-cols-2 justify-center items-center gap-7'>
-                          {/* {console.log("file",file)} */}
-                          <span className='border ps-4 pe-4 pt-2 pb-2 border-black text-lg'>{file.name}</span>
-                          <div className='border p-2 rounded bg-slate-900 flex justify-center items-center text-xl text-white hover:cursor-pointer' onClick={handleChangeFile}>Change file</div>
-                        </div>
-                      ))
-                    }
-                  </div>
-                </>
-              }
+            <div 
+              className='rounded p-3 hover:cursor-pointer transition-colors duration-300 dark:text-green-400 dark:border-green-500'
+              style={{ 
+                color: isDraggingOver ? "#00C21A" : "#757070",
+                border: isDraggingOver ? "2px solid #00C21A" : "2px solid #757070"
+              }}
+              onClick={() => inputRef.current.click()}
+            >
+              Select File
             </div>
           </div>
-
-
-          <button
-            type="submit"
-            className="w-full mt-2 bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-          >
-            Upload
-          </button>
-          {uploadStatus && <p className="mt-4 text-center text-gray-600">{uploadStatus}</p>}
-        </form>
+        )}
+        
+        <div className='flex flex-col w-full'>
+          {selectedFiles.length > 0 && (
+            <span className='text-xl font-bold dark:text-white'>Selected File</span>
+          )}
+          {selectedFiles && (
+            <div className='w-full space-y-2'>
+              {selectedFiles.map((file) => (
+                <div key={file.name} className='grid grid-cols-2 justify-center items-center gap-7 p-2'>
+                  <span className='border ps-4 pe-4 pt-2 pb-2 border-black dark:border-slate-400 text-lg dark:text-gray-300'>
+                    {file.name}
+                  </span>
+                  <div 
+                    className='border p-2 rounded bg-slate-900 dark:bg-green-700 flex justify-center items-center text-xl text-white hover:cursor-pointer transition-colors duration-300 dark:hover:bg-green-600'
+                    onClick={handleChangeFile}
+                  >
+                    Change file
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-      {/* </div> */}
 
-
-    </>
+      <button
+        type="submit"
+        className="w-full mt-4 bg-indigo-600 dark:bg-green-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 dark:hover:bg-green-700 transition-colors duration-300"
+      >
+        Upload
+      </button>
+      
+      {uploadStatus && (
+        <p className="mt-4 text-center text-gray-600 dark:text-gray-300">
+          {uploadStatus}
+        </p>
+      )}
+    </form>
+  </div>
+</>
   );
 };
 
