@@ -27,12 +27,12 @@ const GuestLayout = ({children}) => {
   
   return (
     <>
-      <div className={`flex w-full ${outletPosition} ${isDark?'dark':''}`}>
-        <div className={`flex flex-col ${outletWidth}`}>
+      <div className={`flex w-full h-screen ${outletPosition} ${isDark?'dark':''}`}>
+        <div className={`flex flex-col h-screen ${outletWidth}`}>
           <div className={`h-20 w-full z-20`}>
             <Navbar />
           </div>
-          <div>
+          <div className='h-[calc(100vh-80px)] w-full flex justify-center items-center'>
             {/* <h3>GuestLayout</h3> */}
             {/* <Outlet /> */}
             {children}
