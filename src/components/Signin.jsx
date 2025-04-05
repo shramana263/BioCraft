@@ -90,7 +90,7 @@ const Signin = () => {
                             <button
                                 type="submit"
                                 className="border p-3 rounded-s-full rounded-e-full ps-5 pe-5 border-orange-800 font-bold text-orange-800 hover:text-white hover:bg-orange-800 hover:shadow-lg hover:ps-6 hover:pe-6
-                dark:border-orange-600 dark:text-orange-600 dark:hover:bg-orange-700 dark:hover:border-orange-700 transition-all duration-200"
+                dark:border-orange-600 dark:text-orange-600 dark:hover:text-orange-200 dark:hover:bg-orange-700 dark:hover:border-orange-700 transition-all duration-200"
                             >
                                 SIGN IN
                             </button>
