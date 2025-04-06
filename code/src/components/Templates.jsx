@@ -29,25 +29,17 @@ const Templates = () => {
   // }, [])
   return (
     <>
-      <div className='flex justify-center items-center bg-indigo-50 h-full p-20'>
+      <div className='flex justify-center items-center bg-indigo-50 dark:bg-gray-900 h-full p-20'>
         <div className='flex flex-wrap justify-center gap-10'>
           {
             bio_templates && <FormTemplates bio_template={bio_templates} />
           }
         </div>
-
-        {/* <div class="group relative bg-gray-300 w-60 h-40 m-3">
-          <button class="invisible group-hover:visible  
-            absolute pr-10 pl-10 pt-2 pb-2 mt-24  
-            ml-4 bg-blue-500 text-white">
-            Button
-          </button>
-        </div> */}
       </div>
       {
         token &&
         <Link to="/formbiodata" className=''>
-          <div className='fixed bg-black text-white motion-preset-wobble   rounded-full p-3  flex justify-center items-center bottom-[10%] right-[5%] hover:cursor-pointer font-bold text-xl'>
+          <div className='fixed bg-black dark:bg-white text-white dark:text-black motion-preset-wobble rounded-full p-3 flex justify-center items-center bottom-[10%] right-[5%] hover:cursor-pointer font-bold text-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors'>
             <MdOutlineStart size={30} />
           </div>
         </Link>
@@ -55,13 +47,11 @@ const Templates = () => {
       {
         !token &&
         <Link to="/signin" className=''>
-          <div className='fixed bg-black text-white motion-preset-wobble   rounded-full p-3  flex justify-center items-center bottom-[10%] right-[5%] hover:cursor-pointer font-bold text-xl'>
+          <div className='fixed bg-black dark:bg-white text-white dark:text-black motion-preset-wobble rounded-full p-3 flex justify-center items-center bottom-[10%] right-[5%] hover:cursor-pointer font-bold text-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors'>
             <MdOutlineStart size={30} />
           </div>
         </Link>
-
       }
-
     </>
   )
 }

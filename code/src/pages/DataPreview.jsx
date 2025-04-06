@@ -339,12 +339,12 @@ const DataPreview = () => {
                 </div>
             </div>
 
-            {/* Back to Home Button */}
+            {/* Back to Home Button
             <Link to='/' className='fixed bottom-4 right-4'>
                 <div className="flex justify-center items-center w-56 p-3 bg-green-800 dark:bg-green-900 text-white font-bold rounded-full shadow-lg hover:bg-green-900 dark:hover:bg-green-800 transition-colors duration-300">
                     Back to Home
                 </div>
-            </Link>
+            </Link> */}
 
             {/* Update Modals */}
             {isPersonalDetailsUpdateModalOpen && <PersonalDetailsUpdate />}

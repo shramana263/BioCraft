@@ -32,10 +32,10 @@ const MakeBiodata = () => {
 
   return (
     <>
-      <div className='bg-indigo-50 font-bold text-4xl w-full flex pt-7 justify-center items-center text-purple-950'>
+      <div className='bg-indigo-50 dark:bg-slate-900 font-bold text-4xl w-full flex pt-7 justify-center items-center text-purple-950 dark:text-indigo-200'>
         Templates
       </div>
-      <div className='flex justify-center items-center bg-indigo-50 h-full p-20 pt-0'>
+      <div className='flex justify-center items-center bg-indigo-50 dark:bg-slate-900 h-full p-20 pt-0'>
         {/* <div className='grid md:grid-cols-3 min-[412px]:grid-cols-1  gap-10'> */}
         <div className='flex flex-wrap justify-center items-center gap-10'>
           {
@@ -118,66 +118,52 @@ const FormTemplates = ({ bio_template }) => {
 
   return (
     <>
+      {bio_template.map((img, index) => (
+        <>
+          <div key={index} className='h-[600px] w-[400px] group relative'>
+            <img src={img.src} alt="" className='h-full w-full' />
+            <div className='absolute invisible group-hover:visible h-full w-full bg-slate-600/10 dark:bg-slate-900/30 top-0 backdrop-blur-sm'>
+              <div className='invisible group-hover:visible h-full flex justify-center items-center hover:cursor-pointer'>
+                {console.log("data : ", socialNetworkData)}
 
-      {
-        bio_template.map((img, index) => (
-          <>
-            <div key={index} className='h-[600px] w-[400px] group relative '>
-              <img src={img.src} alt="" className='h-full w-full' />
-              <div className='absolute invisible group-hover:visible h-full w-full bg-slate-600/10 top-0 backdrop-blur-sm'>
-                <div className=' invisible  group-hover:visible h-full flex justify-center items-center hover:cursor-pointer '>
-                  {console.log("data : ", socialNetworkData)}
-
+                <div>
                   <div>
-                    {/* {
-                      personalData && */}
-                    <div>
-                      {
-                        !isEmpty(socialNetworkData) &&
-                        <NavLink
-                          to={{
-                            pathname: `/template-${img.id}`,
-
-                          }}
-                          state={{ personalData: personalData[0], educationalData: educationalData, specializationData: specializationData, experienceData: experienceData, skillData: skillData, profileImage: profileImage, socialNetworkData: socialNetworkData }}
-
-                          className='border-4 rounded-r-full rounded-l-full p-2 text-xl border-black font-bold'
-                        >
-                          Use template
-                        </NavLink>
-                      }
-                      {
-                        isEmpty(socialNetworkData) &&
-                        <NavLink
-                          to={{
-                            pathname: `/formbiodata`,
-
-                          }}
-                          
-                          className='border-4 rounded-r-full rounded-l-full p-2 text-xl border-black font-bold'
-                        >
-                          Use template
-                        </NavLink>
-                      }
-                    </div>
-                    {/* } */}
+                    {!isEmpty(socialNetworkData) && (
+                      <NavLink
+                        to={{
+                          pathname: `/template-${img.id}`,
+                        }}
+                        state={{ 
+                          personalData: personalData[0], 
+                          educationalData, 
+                          specializationData, 
+                          experienceData, 
+                          skillData, 
+                          profileImage, 
+                          socialNetworkData 
+                        }}
+                        className='border-4 rounded-r-full rounded-l-full p-2 text-xl border-black dark:border-white text-black dark:text-white font-bold hover:bg-black/10 dark:hover:bg-white/10 transition-colors'
+                      >
+                        Use template
+                      </NavLink>
+                    )}
+                    {isEmpty(socialNetworkData) && (
+                      <NavLink
+                        to={{
+                          pathname: `/formbiodata`,
+                        }}
+                        className='border-4 rounded-r-full rounded-l-full p-2 text-xl border-black dark:border-white text-black dark:text-white font-bold hover:bg-black/10 dark:hover:bg-white/10 transition-colors'
+                      >
+                        Use template
+                      </NavLink>
+                    )}
                   </div>
-
                 </div>
-
               </div>
-
             </div>
-
-          </>
-        ))
-          // :
-          // <div>
-          //   <AiOutlineLoading3Quarters size={50} className='motion-preset-spin' />
-          // </div>
-
-      }
-
+          </div>
+        </>
+      ))}
     </>
   )
 }
