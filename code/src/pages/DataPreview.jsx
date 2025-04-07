@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axiosClient from '../axios-client'
 import { FaPencil } from 'react-icons/fa6'
-import { Link, useNavigate } from 'react-router-dom'
 import { useDataContext } from '../contexts/DataContext'
 import PersonalDetailsUpdate from '../components/forms/update/PersonalDetailsUpdate'
 import EducationDetailsUpdate from '../components/forms/update/EducationalDetailsUpdate'
@@ -28,12 +27,11 @@ const DataPreview = () => {
     const [skillData, setSkillData] = useState(null)
     const [socialNetworkData, setSocialNetworkData] = useState(null)
     const [index, setIndex] = useState(0)
-    const { profileImage, setProfileImage, isOpenProfileIMageUpdateModal, setOpenProfileImageUpdateModal, currentProfileImage } = useDataContext()
+    const { profileImage, setProfileImage,  setOpenProfileImageUpdateModal, currentProfileImage } = useDataContext()
     const { isPersonalDetailsUpdateModalOpen, setPersonalDetailsUpdateModalOpen, isEducationalDetailsUpdateModalOpen, setEducationalDetailsUpdateModalOpen, isSpecializationDetailsUpdateModalOpen, setSpecializationDetailsUpdateModalOpen,
         isExperienceDetailsUpdateModalOpen, setExperienceDetailsUpdateModalOpen, isSkillDetailsUpdateModalOpen, setSkillDetailsUpdateModalOpen,
         isSocialDetailsUpdateModalOpen, setSocialDetailsUpdateModalOpen, isNewEntry, setNewEntry
     } = useDataContext()
-    const navigate = useNavigate();
 
     const { deleteData, setDeleteData } = useDataContext()
 
