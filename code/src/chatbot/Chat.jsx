@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { createChatBotMessage } from 'react-chatbot-kit';
 import config from './config';
 import MessageParser from './MessageParser';
 import ActionProvider from './ActionProvider';
