@@ -8,11 +8,6 @@ const MessageContext = createContext({
 export const MessageProvider = ({ children }) => {
 
     const [message, setMessage] = useState(null)
-    // const [nextButton, setNextButton]=useState(false)
-
-    // const messagePopup = () => {
-        
-    // }
 
     useEffect(()=>{
         if(message!=null){

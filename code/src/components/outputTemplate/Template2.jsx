@@ -11,9 +11,9 @@ const Template2 = () => {
   const location = useLocation();
   const personalData = location.state.personalData;
   const educationalData = location.state.educationalData;
-  const specializationData = location.state.specializationData;
+  // const specializationData = location.state.specializationData;
   const experienceData = location.state.experienceData;
-  const skillData = location.state.skillData;
+  // const skillData = location.state.skillData;
   const profileImage = location.state.profileImage
 
   const authUser = useQuery({

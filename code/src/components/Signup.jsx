@@ -4,6 +4,7 @@ import { authRegister } from '../services/auth-api';
 import { useMutation } from '@tanstack/react-query';
 import { useStateContext } from '../contexts/StateContext';
 import { useMessageContext } from '../contexts/MessageContext';
+import { toast } from 'react-toastify';
 
 const SignUpForm = () => {
     const nameRef = useRef();
@@ -20,7 +21,7 @@ const SignUpForm = () => {
             setUser(data.data)
             setToken(data.token)
             setMessage('Account Created!')
-            // toast.success("Registration Successful")
+            toast.success("Registration Successful", {position:toast.POSITION.TOP_CENTER})
         },
         onError: (error) => {
             // toast.error(error.response.data.message)

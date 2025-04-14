@@ -8,7 +8,6 @@ const MobileContext = createContext({
 export const MobileProvider = ({ children }) => {
 
     const [isMobile, setMobile]=useState(false)
-    // const [nextButton, setNextButton]=useState(false)
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth < 768) {
